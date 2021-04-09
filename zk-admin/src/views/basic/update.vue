@@ -7,8 +7,8 @@
         <el-form-item label="编辑ID" prop="id">
           <el-input v-model="goods.id" disabled />
         </el-form-item>
-        <el-form-item label="公司名称" prop="name">
-          <el-input v-model="goods.name" />
+        <el-form-item label="公司名称" prop="owName">
+          <el-input v-model="goods.owName" />
         </el-form-item>
         <el-form-item label="公司logo">
           <el-upload
@@ -19,7 +19,7 @@
             class="avatar-uploader"
             accept=".jpg,.jpeg,.png,.gif"
           >
-            <img v-if="goods.picUrl" :src="goods.picUrl" class="avatar">
+            <img v-if="goods.owLogo" :src="goods.owLogo" class="avatar">
             <i v-else class="el-icon-plus avatar-uploader-icon" />
           </el-upload>
         </el-form-item>
@@ -33,32 +33,32 @@
             class="avatar-uploader"
             accept=".jpg,.jpeg,.png,.gif"
           >
-            <img v-if="goods.picUrl" :src="goods.picUrl" class="avatar">
+            <img v-if="goods.owQrcodePath" :src="goods.owQrcodePath" class="avatar">
             <i v-else class="el-icon-plus avatar-uploader-icon" />
           </el-upload>
         </el-form-item>
 
-        <el-form-item label="电话" prop="name">
-          <el-input v-model="goods.name" />
+        <el-form-item label="电话" prop="owPhone">
+          <el-input v-model="goods.owPhone" />
         </el-form-item>
-        <el-form-item label="手机号" prop="name">
-          <el-input v-model="goods.name" />
+        <el-form-item label="手机号" prop="owTel">
+          <el-input v-model="goods.owTel" />
         </el-form-item>
-        <el-form-item label="工作时间" prop="name">
-          <el-input v-model="goods.name" />
+        <el-form-item label="工作时间" prop="owWoekTime">
+          <el-input v-model="goods.owWoekTime" />
         </el-form-item>
 
-        <el-form-item label="备案" prop="name">
-          <el-input v-model="goods.name" />
+        <el-form-item label="备案" prop="owInternetcp">
+          <el-input v-model="goods.owInternetcp" />
         </el-form-item>
-        <el-form-item label="公司网址" prop="name">
-          <el-input v-model="goods.name" />
+        <el-form-item label="公司网址" prop="owUrl">
+          <el-input v-model="goods.owUrl" />
         </el-form-item>
-        <el-form-item label="公司地址" prop="name">
-          <el-input v-model="goods.name" />
+        <el-form-item label="公司地址" prop="owAddress">
+          <el-input v-model="goods.owAddress" />
         </el-form-item>
-        <el-form-item label="公司邮箱" prop="name">
-          <el-input v-model="goods.name" />
+        <el-form-item label="公司邮箱" prop="owMail">
+          <el-input v-model="goods.owMail" />
         </el-form-item>
 
         <el-form-item label="公司简介">
@@ -160,7 +160,18 @@ export default {
       categoryList: [],
       brandList: [],
       categoryIds: [],
-      goods: { gallery: [] },
+      goods: { id: '1',
+        owLogo: 'http://localhost:8089/admin/storage/fetch/sl9q336i0u1ew2p7kv8m.jpg',
+        owName: '深圳致开科技有限公司',
+        owQrcodePath: 'http://localhost:8089/admin/storage/fetch/sl9q336i0u1ew2p7kv8m.jpg',
+        owPhoneName: '全国统一咨询热线',
+        owPhone: '0755-2720-2606',
+        owTel: '13530108906',
+        owWoekTime: '周一至周日 9:00-18:00 (节假日除外)',
+        owInternetcp: '深圳致开科技有限公司 版权所有 Copyright © 2015-2018 粤ICP备16004202号',
+        owMail: 'allen.cao@chiky.cn',
+        owAddress: '深圳宝安区盐田商务广场A座409、405、411、413',
+        owUrl: ' www.chikytech.com' },
       specVisiable: false,
       specForm: { specification: '', value: '', picUrl: '' },
       specifications: [{ specification: '规格', value: '标准', picUrl: '' }],
@@ -233,37 +244,37 @@ export default {
         return
       }
 
-      const goodsId = this.$route.query.id
-      detailGoods(goodsId).then(response => {
-        this.goods = response.data.data.goods
-        // 稍微调整一下前后端不一致
-        if (this.goods.brandId === 0) {
-          this.goods.brandId = null
-        }
-        if (this.goods.keywords === '') {
-          this.goods.keywords = null
-        }
-        this.specifications = response.data.data.specifications
-        this.products = response.data.data.products
-        this.attributes = response.data.data.attributes
-        this.categoryIds = response.data.data.categoryIds
-
-        this.galleryFileList = []
-        for (var i = 0; i < this.goods.gallery.length; i++) {
-          this.galleryFileList.push({
-            url: this.goods.gallery[i]
-          })
-        }
-        const keywords = response.data.data.goods.keywords
-        if (keywords !== null) {
-          this.keywords = keywords.split(',')
-        }
-      })
-
-      listCatAndBrand().then(response => {
-        this.categoryList = response.data.data.categoryList
-        this.brandList = response.data.data.brandList
-      })
+      // const goodsId = this.$route.query.id
+      // detailGoods(goodsId).then(response => {
+      //   this.goods = response.data.data.goods
+      //   // 稍微调整一下前后端不一致
+      //   if (this.goods.brandId === 0) {
+      //     this.goods.brandId = null
+      //   }
+      //   if (this.goods.keywords === '') {
+      //     this.goods.keywords = null
+      //   }
+      //   this.specifications = response.data.data.specifications
+      //   this.products = response.data.data.products
+      //   this.attributes = response.data.data.attributes
+      //   this.categoryIds = response.data.data.categoryIds
+      //
+      //   // this.galleryFileList = []
+      //   // for (var i = 0; i < this.goods.gallery.length; i++) {
+      //   //   this.galleryFileList.push({
+      //   //     url: this.goods.gallery[i]
+      //   //   })
+      //   // }
+      //   const keywords = response.data.data.goods.keywords
+      //   if (keywords !== null) {
+      //     this.keywords = keywords.split(',')
+      //   }
+      // })
+      //
+      // listCatAndBrand().then(response => {
+      //   this.categoryList = response.data.data.categoryList
+      //   this.brandList = response.data.data.brandList
+      // })
     },
     handleCancel: function() {
       this.$store.dispatch('tagsView/delView', this.$route)

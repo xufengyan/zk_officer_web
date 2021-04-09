@@ -1,16 +1,5 @@
 <template>
   <div class="app-container">
-
-    <!-- 查询和其他操作 -->
-    <!--    <div class="filter-container">-->
-    <!--      <el-input v-model="listQuery.goodsId" clearable class="filter-item" style="width: 160px;" placeholder="请输入商品ID" />-->
-    <!--      <el-input v-model="listQuery.goodsSn" clearable class="filter-item" style="width: 160px;" placeholder="请输入商品编号" />-->
-    <!--      <el-input v-model="listQuery.name" clearable class="filter-item" style="width: 160px;" placeholder="请输入商品名称" />-->
-    <!--      <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">查找</el-button>-->
-    <!--      <el-button class="filter-item" type="primary" icon="el-icon-edit" @click="handleCreate">添加</el-button>-->
-    <!--      <el-button :loading="downloadLoading" class="filter-item" type="primary" icon="el-icon-download" @click="handleDownload">导出</el-button>-->
-    <!--    </div>-->
-
     <!-- 查询结果 -->
     <el-table v-loading="listLoading" :data="list" element-loading-text="正在查询中。。。" border fit highlight-current-row>
 
@@ -45,43 +34,6 @@
       <el-table-column align="center" min-width="100" label="公司网址" prop="owUrl" />
       <el-table-column align="center" min-width="100" label="公司地址" prop="owAddress" />
       <el-table-column align="center" min-width="100" label="公司邮箱" prop="owMail" />
-
-      <!--      <el-table-column align="center" property="iconUrl" label="分享图">-->
-      <!--        <template slot-scope="scope">-->
-      <!--          <img :src="scope.row.shareUrl" width="40">-->
-      <!--        </template>-->
-      <!--      </el-table-column>-->
-
-      <!--      <el-table-column align="center" label="详情" prop="detail">-->
-      <!--        <template slot-scope="scope">-->
-      <!--          <el-dialog :visible.sync="detailDialogVisible" title="商品详情">-->
-      <!--            <div class="goods-detail-box" v-html="goodsDetail" />-->
-      <!--          </el-dialog>-->
-      <!--          <el-button type="primary" size="mini" @click="showDetail(scope.row.detail)">查看</el-button>-->
-      <!--        </template>-->
-      <!--      </el-table-column>-->
-
-      <!--      <el-table-column align="center" label="市场售价" prop="counterPrice" />-->
-
-      <!--      <el-table-column align="center" label="当前价格" prop="retailPrice" />-->
-
-      <!--      <el-table-column align="center" label="是否新品" prop="isNew">-->
-      <!--        <template slot-scope="scope">-->
-      <!--          <el-tag :type="scope.row.isNew ? 'success' : 'error' ">{{ scope.row.isNew ? '新品' : '非新品' }}</el-tag>-->
-      <!--        </template>-->
-      <!--      </el-table-column>-->
-
-      <!--      <el-table-column align="center" label="是否热品" prop="isHot">-->
-      <!--        <template slot-scope="scope">-->
-      <!--          <el-tag :type="scope.row.isHot ? 'success' : 'error' ">{{ scope.row.isHot ? '热品' : '非热品' }}</el-tag>-->
-      <!--        </template>-->
-      <!--      </el-table-column>-->
-
-      <!--      <el-table-column align="center" label="是否在售" prop="isOnSale">-->
-      <!--        <template slot-scope="scope">-->
-      <!--          <el-tag :type="scope.row.isOnSale ? 'success' : 'error' ">{{ scope.row.isOnSale ? '在售' : '未售' }}</el-tag>-->
-      <!--        </template>-->
-      <!--      </el-table-column>-->
 
       <el-table-column align="center" label="操作" width="100" class-name="small-padding fixed-width">
         <template slot-scope="scope">
