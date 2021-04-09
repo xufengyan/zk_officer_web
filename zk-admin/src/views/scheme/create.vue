@@ -2,15 +2,15 @@
   <div class="app-container">
 
     <el-card class="box-card">
-      <h3>公司基本信息</h3>
+      <h3>解决方案添加</h3>
       <el-form ref="goods" :rules="rules" :model="goods" label-width="150px">
-        <el-form-item label="编辑ID" prop="id">
-          <el-input v-model="goods.id" disabled />
+        <!--        <el-form-item label="编辑ID" prop="id">-->
+        <!--          <el-input v-model="goods.id" disabled />-->
+        <!--        </el-form-item>-->
+        <el-form-item label="方案名称" prop="sName">
+          <el-input v-model="goods.sName" />
         </el-form-item>
-        <el-form-item label="公司名称" prop="owName">
-          <el-input v-model="goods.owName" />
-        </el-form-item>
-        <el-form-item label="公司logo">
+        <el-form-item label="方案图片">
           <el-upload
             :headers="headers"
             :action="uploadPath"
@@ -19,50 +19,13 @@
             class="avatar-uploader"
             accept=".jpg,.jpeg,.png,.gif"
           >
-            <img v-if="goods.owLogo" :src="goods.owLogo" class="avatar">
+            <img v-if="goods.sImagePath" :src="goods.owLogo" class="avatar">
             <i v-else class="el-icon-plus avatar-uploader-icon" />
           </el-upload>
         </el-form-item>
 
-        <el-form-item label="二维码">
-          <el-upload
-            :headers="headers"
-            :action="uploadPath"
-            :show-file-list="false"
-            :on-success="uploadPicUrl"
-            class="avatar-uploader"
-            accept=".jpg,.jpeg,.png,.gif"
-          >
-            <img v-if="goods.owQrcodePath" :src="goods.owQrcodePath" class="avatar">
-            <i v-else class="el-icon-plus avatar-uploader-icon" />
-          </el-upload>
-        </el-form-item>
-
-        <el-form-item label="电话" prop="owPhone">
-          <el-input v-model="goods.owPhone" />
-        </el-form-item>
-        <el-form-item label="手机号" prop="owTel">
-          <el-input v-model="goods.owTel" />
-        </el-form-item>
-        <el-form-item label="工作时间" prop="owWoekTime">
-          <el-input v-model="goods.owWoekTime" />
-        </el-form-item>
-
-        <el-form-item label="备案" prop="owInternetcp">
-          <el-input v-model="goods.owInternetcp" />
-        </el-form-item>
-        <el-form-item label="公司网址" prop="owUrl">
-          <el-input v-model="goods.owUrl" />
-        </el-form-item>
-        <el-form-item label="公司地址" prop="owAddress">
-          <el-input v-model="goods.owAddress" />
-        </el-form-item>
-        <el-form-item label="公司邮箱" prop="owMail">
-          <el-input v-model="goods.owMail" />
-        </el-form-item>
-
-        <el-form-item label="公司简介">
-          <editor v-model="goods.detail" :init="editorInit" />
+        <el-form-item label="方案内容">
+          <editor v-model="goods.sContent" :init="editorInit" />
         </el-form-item>
         <!--        <el-form-item label="是否新品" prop="isNew">-->
         <!--          <el-radio-group v-model="goods.isNew">-->
@@ -93,7 +56,7 @@
 
     <div class="op-container">
       <el-button @click="handleCancel">取消</el-button>
-      <el-button type="primary" @click="handleEdit">更新信息</el-button>
+      <el-button type="primary" @click="handleEdit">添加方案</el-button>
     </div>
 
   </div>
@@ -161,17 +124,9 @@ export default {
       brandList: [],
       categoryIds: [],
       goods: { id: '1',
-        owLogo: 'http://localhost:8089/admin/storage/fetch/sl9q336i0u1ew2p7kv8m.jpg',
-        owName: '深圳致开科技有限公司',
-        owQrcodePath: 'http://localhost:8089/admin/storage/fetch/sl9q336i0u1ew2p7kv8m.jpg',
-        owPhoneName: '全国统一咨询热线',
-        owPhone: '0755-2720-2606',
-        owTel: '13530108906',
-        owWoekTime: '周一至周日 9:00-18:00 (节假日除外)',
-        owInternetcp: '深圳致开科技有限公司 版权所有 Copyright © 2015-2018 粤ICP备16004202号',
-        owMail: 'allen.cao@chiky.cn',
-        owAddress: '深圳宝安区盐田商务广场A座409、405、411、413',
-        owUrl: ' www.chikytech.com' },
+        sName: '定位测量方案',
+        sImagePath: '',
+        sContent: '' },
       specVisiable: false,
       specForm: { specification: '', value: '', picUrl: '' },
       specifications: [{ specification: '规格', value: '标准', picUrl: '' }],
@@ -278,7 +233,7 @@ export default {
     },
     handleCancel: function() {
       this.$store.dispatch('tagsView/delView', this.$route)
-      this.$router.push({ path: '/basic/list' })
+      this.$router.push({ path: '/basic/schemeList' })
     },
     // 修改方法
     handleEdit: function() {
@@ -295,7 +250,7 @@ export default {
             message: '编辑成功'
           })
           this.$store.dispatch('tagsView/delView', this.$route)
-          this.$router.push({ path: '/basic/list' })
+          this.$router.push({ path: '/basic/schemeList' })
         })
         .catch(response => {
           MessageBox.alert('业务错误：' + response.data.errmsg, '警告', {

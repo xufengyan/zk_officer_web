@@ -572,6 +572,38 @@ export const asyncRoutes = [
           noCache: true
         },
         hidden: true
+      },
+      {
+        path: 'schemeList',
+        component: () => import('@/views/scheme/list'),
+        name: 'schemeList',
+        meta: {
+          perms: ['GET /admin/scheme/list'],
+          title: '解决方案',
+          noCache: true
+        }
+      },
+      {
+        path: 'schemeCreate',
+        component: () => import('@/views/scheme/create'),
+        name: 'schemeCreate',
+        meta: {
+          perms: ['GET /admin/scheme/create'],
+          title: '解决方案',
+          noCache: true
+        },
+        hidden: true
+      },
+      {
+        path: 'schemeEdit',
+        component: () => import('@/views/scheme/edit'),
+        name: 'schemeEdit',
+        meta: {
+          perms: ['GET /admin/scheme/edit'],
+          title: '解决方案',
+          noCache: true
+        },
+        hidden: true
       }
     ]
   },
