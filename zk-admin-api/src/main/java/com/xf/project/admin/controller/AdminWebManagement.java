@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2021/4/8 11:05
  */
 @RestController
-@RequestMapping("/admin/web")
+@RequestMapping("/admin/basic")
 @Validated
 public class AdminWebManagement {
 
-    @RequiresPermissions("admin:web:mangement")
-    @GetMapping("/getWebManagement")
+    @RequiresPermissions("admin:basic:list")
+    @GetMapping("/list")
     @RequiresPermissionsDesc(menu = {"官网管理", "基本信息管理"}, button = "查询")
     public Object getWebManagement(){
         return ResponseUtil.ok(0);

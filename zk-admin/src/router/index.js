@@ -542,25 +542,36 @@ export const asyncRoutes = [
     ]
   },
   {
-    path: '/zk-home',
+    path: '/basic',
     component: Layout,
     redirect: 'noredirect',
     alwaysShow: true,
-    name: 'zkHome',
+    name: 'basicManage',
     meta: {
       title: '官网管理',
       icon: 'chart'
     },
     children: [
       {
-        path: 'user',
-        component: () => import('@/views/stat/user'),
-        name: 'statUser',
+        path: 'list',
+        component: () => import('@/views/basic/list'),
+        name: 'basicList',
         meta: {
-          perms: ['GET /admin/web/getWebManagement'],
+          perms: ['GET /admin/basic/list'],
           title: '网站基本信息',
           noCache: true
         }
+      },
+      {
+        path: 'update',
+        component: () => import('@/views/basic/update'),
+        name: 'basicUpdate',
+        meta: {
+          perms: ['GET /admin/basic/update'],
+          title: '修改网站基本信息',
+          noCache: true
+        },
+        hidden: true
       }
     ]
   },
