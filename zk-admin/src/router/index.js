@@ -604,6 +604,38 @@ export const asyncRoutes = [
           noCache: true
         },
         hidden: true
+      },
+      {
+        path: 'productList',
+        component: () => import('@/views/product/list'),
+        name: 'productList',
+        meta: {
+          perms: ['GET /admin/product/list'],
+          title: '展示产品管理',
+          noCache: true
+        }
+      },
+      {
+        path: 'productCreate',
+        component: () => import('@/views/product/create'),
+        name: 'productCreate',
+        meta: {
+          perms: ['GET /admin/product/create'],
+          title: '添加产品',
+          noCache: true
+        },
+        hidden: true
+      },
+      {
+        path: 'productEdit',
+        component: () => import('@/views/product/edit'),
+        name: 'productEdit',
+        meta: {
+          perms: ['GET /admin/product/edit'],
+          title: '修改产品',
+          noCache: true
+        },
+        hidden: true
       }
     ]
   },
