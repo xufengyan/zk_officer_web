@@ -1,38 +1,56 @@
 <template>
   <div class="app-container">
-
     <el-card class="box-card">
-      <h3>展示产品添加</h3>
+      <h3>轮播图片管理</h3>
       <el-form ref="goods" :rules="rules" :model="goods" label-width="150px">
-        <el-form-item label="编辑ID" prop="id">
-          <el-input v-model="goods.id" disabled />
-        </el-form-item>
-        <el-form-item label="产品名称" prop="pName">
-          <el-input v-model="goods.pName" />
-        </el-form-item>
-        <el-form-item label="产品所属系列" prop="categoryIds">
-          <el-cascader v-model="categoryIds" :options="categoryList" expand-trigger="hover" clearable @change="handleCategoryChange" />
-        </el-form-item>
-        <el-form-item label="产品型号" prop="pModel">
-          <el-input v-model="goods.pModel" />
-        </el-form-item>
-        <el-form-item label="展示图片">
+        <el-form-item label="宣传画廊">
           <el-upload
-            :headers="headers"
             :action="uploadPath"
-            :show-file-list="false"
-            :on-success="uploadPicUrl"
-            class="avatar-uploader"
+            :limit="4"
+            :headers="headers"
+            :file-list="galleryFileList"
+            :on-exceed="uploadOverrun"
+            :on-success="handleGalleryUrl"
+            :on-remove="handleRemove"
+            multiple
             accept=".jpg,.jpeg,.png,.gif"
+            list-type="picture-card"
           >
-            <img v-if="goods.pImagePath" :src="goods.pImagePath" class="avatar">
-            <i v-else class="el-icon-plus avatar-uploader-icon" />
+            <i class="el-icon-plus" />
           </el-upload>
         </el-form-item>
 
-        <el-form-item label="产品介绍">
-          <editor v-model="goods.pIntroduce" :init="editorInit" />
-        </el-form-item>
+        <div class="block" style="height: 385px;width: 600px">
+          <span class="demonstration">轮播图预览</span>
+          <el-carousel height="385px">
+            <el-carousel-item v-for="item in galleryFileList" :key="item">
+              <el-image :src="item.url" />
+            </el-carousel-item>
+          </el-carousel>
+        </div>
+        <!--        <el-form-item label="是否新品" prop="isNew">-->
+        <!--          <el-radio-group v-model="goods.isNew">-->
+        <!--            <el-radio :label="true">新品</el-radio>-->
+        <!--            <el-radio :label="false">非新品</el-radio>-->
+        <!--          </el-radio-group>-->
+        <!--        </el-form-item>-->
+
+        <!--        <el-form-item label="宣传画廊">-->
+        <!--          <el-upload-->
+        <!--            :action="uploadPath"-->
+        <!--            :headers="headers"-->
+        <!--            :limit="5"-->
+        <!--            :file-list="galleryFileList"-->
+        <!--            :on-exceed="uploadOverrun"-->
+        <!--            :on-success="handleGalleryUrl"-->
+        <!--            :on-remove="handleRemove"-->
+        <!--            multiple-->
+        <!--            accept=".jpg,.jpeg,.png,.gif"-->
+        <!--            list-type="picture-card"-->
+        <!--          >-->
+        <!--            <i class="el-icon-plus" />-->
+        <!--          </el-upload>-->
+        <!--        </el-form-item>-->
 
       </el-form>
     </el-card>
@@ -84,6 +102,21 @@
     display: flex;
     justify-content: center;
   }
+  .el-carousel__item h3 {
+     color: #475669;
+     font-size: 18px;
+     opacity: 0.75;
+     line-height: 300px;
+     margin: 0;
+   }
+
+  .el-carousel__item:nth-child(2n) {
+    background-color: #99a9bf;
+  }
+
+  .el-carousel__item:nth-child(2n+1) {
+    background-color: #d3dce6;
+  }
 </style>
 
 <script>
@@ -102,7 +135,12 @@
         newKeywordVisible: false,
         newKeyword: '',
         keywords: [],
-        galleryFileList: [],
+        galleryFileList: [
+          {name: 'food.jpg', url: 'http://localhost:8089/admin/storage/fetch/lurdfr7w7wo2itgimhgu.jpg'},
+          {name: 'food.jpg', url: 'http://localhost:8089/admin/storage/fetch/lurdfr7w7wo2itgimhgu.jpg'},
+          {name: 'food.jpg', url: 'http://localhost:8089/admin/storage/fetch/lurdfr7w7wo2itgimhgu.jpg'},
+          {name: 'food.jpg', url: 'http://localhost:8089/admin/storage/fetch/lurdfr7w7wo2itgimhgu.jpg'},
+        ],
         categoryList: [{
           value: '1',
           label: '上海'
@@ -115,8 +153,8 @@
         goods: {
           id: '1',
           pType: 1,
-          pName: '测亩仪',
-          pModel: 'zk1000',
+          pName: '定位测量方案',
+          pModel: '',
           pIntroduce: ''
         },
         specVisiable: false,
@@ -259,7 +297,37 @@
       // 图片上传方法
       uploadPicUrl: function(response) {
         this.goods.picUrl = response.data.url
-      }
+      },
+      uploadOverrun: function() {
+        this.$message({
+          type: 'error',
+          message: '上传文件个数超出限制!最多上传5张图片!'
+        })
+      },
+      handleGalleryUrl(response, file, fileList) {
+        if (response.errno === 0) {
+          this.goods.gallery.push(response.data.url)
+        }
+      },
+      handleRemove: function(file, fileList) {
+        for (var i = 0; i < this.galleryFileList.length; i++) {
+          // 这里存在两种情况
+          // 1. 如果所删除图片是刚刚上传的图片，那么图片地址是file.response.data.url
+          //    此时的file.url虽然存在，但是是本机地址，而不是远程地址。
+          // 2. 如果所删除图片是后台返回的已有图片，那么图片地址是file.url
+          var url
+          if (file.response === undefined) {
+            url = file.url
+          } else {
+            url = file.response.data.url
+          }
+
+          if (this.galleryFileList[i].url === url) {
+            this.galleryFileList.splice(i, 1)
+            break
+          }
+        }
+      },
     }
   }
 </script>

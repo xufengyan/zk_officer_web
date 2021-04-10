@@ -636,9 +636,73 @@ export const asyncRoutes = [
           noCache: true
         },
         hidden: true
-      }
+      },
+      {
+        path: 'categoryList',
+        component: () => import('@/views/category/list'),
+        name: 'categoryList',
+        meta: {
+          perms: ['GET /admin/product/edit'],
+          title: '产品系列管理',
+          noCache: true
+        },
+      },
+      {
+        path: 'paragraphList',
+        component: () => import('@/views/paragraph/list'),
+        name: 'paragraphList',
+        meta: {
+          perms: ['GET /admin/paragraph/list'],
+          title: '技术领域和优势',
+          noCache: true
+        },
+      },
     ]
   },
+  {
+    path: '/image',
+    component: Layout,
+    redirect: 'noredirect',
+    alwaysShow: true,
+    name: 'imageManage',
+    meta: {
+      title: '官网图片管理',
+      icon: 'chart'
+    },
+    children: [
+      {
+        path: 'carousel',
+        component: () => import('@/views/imageManagement/carousel'),
+        name: 'carousel',
+        meta: {
+          perms: ['GET /admin/imageManagement/carousel'],
+          title: '轮播图片管理',
+          noCache: true
+        }
+      },
+      {
+        path: 'collaborate',
+        component: () => import('@/views/imageManagement/collaborate'),
+        name: 'collaborate',
+        meta: {
+          perms: ['GET /admin/imageManagement/collaborate'],
+          title: '合作伙伴管理',
+          noCache: true
+        }
+      },
+      {
+        path: 'employment',
+        component: () => import('@/views/imageManagement/employment'),
+        name: 'employment',
+        meta: {
+          perms: ['GET /admin/imageManagement/employment'],
+          title: '招聘管理',
+          noCache: true
+        }
+      },
+    ]
+  },
+
   {
     path: 'external-link',
     component: Layout,

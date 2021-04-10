@@ -133,10 +133,10 @@ export default {
     //   this.$router.push({ path: '/goods/create' })
     // },
     handleUpdate(row) {
-      this.$router.push({ path: '/basic/productCreate', query: { id: row.id }})
+      this.$router.push({ path: '/basic/productEdit', query: { id: row.id }})
     },
     handleCreate() {
-      this.$router.push({ path: '/basic/productEdit' })
+      this.$router.push({ path: '/basic/productCreate' })
     }
     // showDetail(detail) {
     //   this.goodsDetail = detail
