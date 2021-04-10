@@ -11,7 +11,7 @@
  Target Server Version : 50733
  File Encoding         : 65001
 
- Date: 09/04/2021 16:42:21
+ Date: 10/04/2021 16:41:02
 */
 
 SET NAMES utf8mb4;
@@ -38,7 +38,7 @@ CREATE TABLE `zk_admin`  (
 -- ----------------------------
 -- Records of zk_admin
 -- ----------------------------
-INSERT INTO `zk_admin` VALUES (1, 'admin123', '$2a$10$.rEfyBb/GURD9P2p0fRg/OAJGloGNDkJS4lY0cQHeqDgsbdTylBpu', '0:0:0:0:0:0:0:1', '2021-04-09 10:00:49', 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif', '2018-02-01 00:00:00', '2021-04-09 10:00:49', 0, '[1]');
+INSERT INTO `zk_admin` VALUES (1, 'admin123', '$2a$10$.rEfyBb/GURD9P2p0fRg/OAJGloGNDkJS4lY0cQHeqDgsbdTylBpu', '0:0:0:0:0:0:0:1', '2021-04-10 10:26:47', 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif', '2018-02-01 00:00:00', '2021-04-10 10:26:47', 0, '[1]');
 INSERT INTO `zk_admin` VALUES (4, 'promotion123', '$2a$10$wDZLOLLnzZ1EFZ3ldZ1XFOUWDEX6TnQCUFdJz4g.PoMaLTzS8TjWq', '0:0:0:0:0:0:0:1', '2021-04-08 10:59:55', 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif', '2019-01-07 15:16:59', '2021-04-08 10:59:55', 0, '[3]');
 INSERT INTO `zk_admin` VALUES (5, 'mall123', '$2a$10$aCtsc4rG6KmxQ59.IkYse.oRyKuwQoU2CPCmxSdB.d5nXq6aw/z4O', '0:0:0:0:0:0:0:1', '2021-04-08 11:14:25', 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif', '2019-01-07 15:17:25', '2021-04-08 11:14:25', 0, '[2]');
 INSERT INTO `zk_admin` VALUES (6, 'mall1234', '$2a$10$aCtsc4rG6KmxQ59.IkYse.oRyKuwQoU2CPCmxSdB.d5nXq6aw/z4O', '0:0:0:0:0:0:0:1', '2021-04-08 10:52:11', 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif', '2019-01-07 15:17:25', '2021-04-08 10:52:11', 0, '[3]');
@@ -72,11 +72,26 @@ CREATE TABLE `zk_basic`  (
 INSERT INTO `zk_basic` VALUES (1, 'http://localhost:8089/admin/storage/fetch/sl9q336i0u1ew2p7kv8m.jpg', '深圳致开科技有限公司', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- ----------------------------
+-- Table structure for zk_category
+-- ----------------------------
+DROP TABLE IF EXISTS `zk_category`;
+CREATE TABLE `zk_category`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `value` int(10) NULL DEFAULT NULL COMMENT 'key',
+  `label` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '类型名称',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of zk_category
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for zk_download
 -- ----------------------------
 DROP TABLE IF EXISTS `zk_download`;
 CREATE TABLE `zk_download`  (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `d_max_image_url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '展示大图',
   `d_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '文件名',
   `d_descibe` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '文件描述',
@@ -85,10 +100,48 @@ CREATE TABLE `zk_download`  (
   `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '说明文件下载表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '说明文件下载表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of zk_download
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for zk_image_management
+-- ----------------------------
+DROP TABLE IF EXISTS `zk_image_management`;
+CREATE TABLE `zk_image_management`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `image_url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '图片地址',
+  `image_type` int(11) NULL DEFAULT NULL COMMENT '图片类型（0：轮播图片，1：合作伙伴，2：招聘网站，3：荣誉资质）',
+  `visit_url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '访问地址',
+  `add_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
+  `del_type` int(255) NULL DEFAULT 0 COMMENT '删除状态0正常,1删除',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of zk_image_management
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for zk_list
+-- ----------------------------
+DROP TABLE IF EXISTS `zk_list`;
+CREATE TABLE `zk_list`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '名称',
+  `content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '内容',
+  `c_type` int(255) NULL DEFAULT NULL COMMENT '0:技术领域，1：我们的优势',
+  `add_time` datetime NULL DEFAULT NULL,
+  `update_time` datetime NULL DEFAULT NULL,
+  `del_type` int(1) NULL DEFAULT 0 COMMENT '0正常，1删除',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of zk_list
 -- ----------------------------
 
 -- ----------------------------
@@ -108,7 +161,7 @@ CREATE TABLE `zk_log`  (
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) NULL DEFAULT 0 COMMENT '逻辑删除',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 90 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '操作日志表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 91 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '操作日志表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of zk_log
@@ -161,6 +214,7 @@ INSERT INTO `zk_log` VALUES (86, 'admin123', '0:0:0:0:0:0:0:1', 1, '登录', 1, 
 INSERT INTO `zk_log` VALUES (87, 'admin123', '0:0:0:0:0:0:0:1', 1, '登录', 1, '', '', '2021-04-09 09:38:50', '2021-04-09 09:38:50', 0);
 INSERT INTO `zk_log` VALUES (88, 'admin123', '0:0:0:0:0:0:0:1', 1, '登录', 1, '', '', '2021-04-09 10:00:31', '2021-04-09 10:00:31', 0);
 INSERT INTO `zk_log` VALUES (89, 'admin123', '0:0:0:0:0:0:0:1', 1, '登录', 1, '', '', '2021-04-09 10:00:49', '2021-04-09 10:00:49', 0);
+INSERT INTO `zk_log` VALUES (90, 'admin123', '0:0:0:0:0:0:0:1', 1, '登录', 1, '', '', '2021-04-10 10:26:47', '2021-04-10 10:26:47', 0);
 
 -- ----------------------------
 -- Table structure for zk_permission
@@ -242,14 +296,14 @@ INSERT INTO `zk_permission` VALUES (57, 3, 'admin:basic:mangement', '2021-04-08 
 -- ----------------------------
 DROP TABLE IF EXISTS `zk_product`;
 CREATE TABLE `zk_product`  (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `p_type` int(2) NULL DEFAULT NULL COMMENT '产品类型',
   `p_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '产品名称',
   `p_image_path` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '产品图片地址',
   `p_model` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '产品型号',
   `p_introduce` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '产品介绍',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '产品表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '产品表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of zk_product
@@ -283,12 +337,12 @@ INSERT INTO `zk_role` VALUES (3, '推广管理员', '只有推广模块的操作
 -- ----------------------------
 DROP TABLE IF EXISTS `zk_scheme`;
 CREATE TABLE `zk_scheme`  (
-  `id` int(11) NOT NULL COMMENT '解决方案',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '解决方案',
   `s_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '方案名称',
   `s_image_path` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '方案宣传图',
   `s_content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '方案内容',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '解决方案表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '解决方案表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of zk_scheme
@@ -310,11 +364,13 @@ CREATE TABLE `zk_storage`  (
   `deleted` tinyint(1) NULL DEFAULT 0 COMMENT '逻辑删除',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `key`(`key`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '文件存储表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '文件存储表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of zk_storage
 -- ----------------------------
 INSERT INTO `zk_storage` VALUES (12, 'sl9q336i0u1ew2p7kv8m.jpg', 'fc2a95acfbf7421f9cbf496b77801292.jpg', 'image/jpeg', 16108, 'http://localhost:8089/admin/storage/fetch/sl9q336i0u1ew2p7kv8m.jpg', '2021-04-08 15:39:03', '2021-04-08 15:39:03', 0);
+INSERT INTO `zk_storage` VALUES (13, 'cp9t9xzvik3w8d4tcwy6.jpg', 'fc2a95acfbf7421f9cbf496b77801292.jpg', 'image/jpeg', 16108, 'http://localhost:8089/admin/storage/fetch/cp9t9xzvik3w8d4tcwy6.jpg', '2021-04-10 11:25:02', '2021-04-10 11:25:02', 0);
+INSERT INTO `zk_storage` VALUES (14, 'lurdfr7w7wo2itgimhgu.jpg', 'section-11.jpg', 'image/jpeg', 114977, 'http://localhost:8089/admin/storage/fetch/lurdfr7w7wo2itgimhgu.jpg', '2021-04-10 15:03:08', '2021-04-10 15:03:08', 0);
 
 SET FOREIGN_KEY_CHECKS = 1;
