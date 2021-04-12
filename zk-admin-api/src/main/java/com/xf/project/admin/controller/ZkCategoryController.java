@@ -53,6 +53,8 @@ public class ZkCategoryController
         if (zkCategoryService.insertZkCategory(zkCategory) == 0){
             return ResponseUtil.badArgumentValue();
         }
+        zkCategory.setValue(Math.toIntExact(zkCategory.getId()));
+        zkCategoryService.updateZkCategory(zkCategory);
         return ResponseUtil.ok(zkCategory);
     }
 

@@ -25,15 +25,15 @@
       <el-table-column align="center" label="ID" prop="id" />
       <el-table-column align="center" label="value" prop="value" />
 
-      <el-table-column align="center" min-width="100" label="系列名称" prop="lable" />
+      <el-table-column align="center" min-width="100" label="系列名称" prop="label" />
 
-<!--      <el-table-column align="center" property="iconUrl" label="产品图片">-->
-<!--        <template slot-scope="scope">-->
-<!--          <img :src="scope.row.pImagePath" width="100">-->
-<!--        </template>-->
-<!--      </el-table-column>-->
+      <!--      <el-table-column align="center" property="iconUrl" label="产品图片">-->
+      <!--        <template slot-scope="scope">-->
+      <!--          <img :src="scope.row.pImagePath" width="100">-->
+      <!--        </template>-->
+      <!--      </el-table-column>-->
 
-<!--      <el-table-column align="center" min-width="100" label="产品展示内容" prop="pIntroduce" />-->
+      <!--      <el-table-column align="center" min-width="100" label="产品展示内容" prop="pIntroduce" />-->
       <!--      <el-table-column align="center" min-width="100" label="手机" prop="owTel" />-->
       <!--      <el-table-column align="center" min-width="100" label="工作时间" prop="owWoekTime" />-->
       <!--      <el-table-column align="center" min-width="100" label="备案" prop="owInternetcp" />-->
@@ -58,7 +58,7 @@
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="createDialogVisible">
       <el-form ref="dataForm" :rules="rules" :model="category" status-icon label-position="left" label-width="100px" style="width: 400px; margin-left:50px;">
         <el-form-item label="系列名称" prop="name">
-          <el-input v-model="category.lable" />
+          <el-input v-model="category.label" />
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -92,104 +92,124 @@
 </style>
 
 <script>
-  // import { listGoods, deleteGoods } from '@/api/basic'
-  import BackToTop from '@/components/BackToTop'
-  import Pagination from '@/components/Pagination' // Secondary package based on el-pagination
+import { listCategory, createCategory, editCategory } from '@/api/category'
+import BackToTop from '@/components/BackToTop'
+import Pagination from '@/components/Pagination' // Secondary package based on el-pagination
+import { MessageBox } from 'element-ui'
 
-  export default {
-    name: 'GoodsList',
-    components: { BackToTop, Pagination },
-    data() {
-      return {
-        dataForm:{
-          lable:'',
-        },
-        createDialogVisible: false,
-        list: [{
-          id: '1',
-          // pName: 'zk1524测亩仪',
-          // pImagePath: 'http://localhost:8089/admin/storage/fetch/sl9q336i0u1ew2p7kv8m.jpg',
-          // pIntroduce: ''
-          value:1,
-          lable:'zk1000系列'
-        }],
-        total: 0,
-        listLoading: false,
-        listQuery: {
-          page: 1,
-          limit: 20,
-          goodsSn: undefined,
-          name: undefined,
-          sort: 'add_time',
-          order: 'desc'
-        },
-        goodsDetail: '',
-        detailDialogVisible: false,
-        downloadLoading: false,
-        rules: {
-          lable: [
-            { required: true, message: '角色名称不能为空', trigger: 'blur' }
-          ]
-        },
-        textMap: {
-          update: '编辑',
-          create: '创建'
-        },
-        dialogStatus:'create',
-        category:{
-          id:null,
-          value:null,
-          lable:''
-        }
+export default {
+  name: 'GoodsList',
+  components: { BackToTop, Pagination },
+  data() {
+    return {
+      dataForm: {
+        label: ''
+      },
+      createDialogVisible: false,
+      list: [],
+      total: 0,
+      listLoading: false,
+      listQuery: {
+        page: 1,
+        limit: 20,
+        goodsSn: undefined,
+        name: undefined,
+        sort: 'add_time',
+        order: 'desc'
+      },
+      goodsDetail: '',
+      detailDialogVisible: false,
+      downloadLoading: false,
+      rules: {
+        label: [
+          { required: true, message: '角色名称不能为空', trigger: 'blur' }
+        ]
+      },
+      textMap: {
+        update: '编辑',
+        create: '创建'
+      },
+      dialogStatus: 'create',
+      category: {
+        id: null,
+        value: null,
+        label: ''
       }
-    },
-    created() {
-      // this.getList()
-    },
-    methods: {
-      // getList() {
-      //   this.listLoading = true
-      //   listGoods(this.listQuery).then(response => {
-      //     this.list = response.data.data.list
-      //     this.total = response.data.data.total
-      //     this.listLoading = false
-      //   }).catch(() => {
-      //     this.list = []
-      //     this.total = 0
-      //     this.listLoading = false
-      //   })
-      // },
-      // handleFilter() {
-      //   this.listQuery.page = 1
-      //   this.getList()
-      // },
-      // handleCreate() {
-      //   this.$router.push({ path: '/goods/create' })
-      // },
-      handleUpdate(row) {
-        // this.$router.push({ path: '/basic/categoryEdit', query: { id: row.id }})
-        this.dialogStatus = 'update'
-        this.createDialogVisible = true
-        //
-        this.category.id = row.id
-        this.category.value = row.value
-        this.category.lable = row.lable
-      },
-      handleCreate() {
-        // this.$router.push({ path: '/basic/categoryCreate' })
-        this.dialogStatus = 'create'
-        this.createDialogVisible = true
-      },
-      createData(){
-        console.log(this.category)
-      },
-      updateData(){
-        console.log(this.category)
-      }
-      // showDetail(detail) {
-      //   this.goodsDetail = detail
-      //   this.detailDialogVisible = true
-      // },
     }
+  },
+  created() {
+    this.getList()
+  },
+  methods: {
+    getList() {
+      this.listLoading = true
+      listCategory(this.listQuery).then(response => {
+        this.list = response.data.data.list
+        this.total = response.data.data.total
+        this.listLoading = false
+      }).catch(() => {
+        this.list = []
+        this.total = 0
+        this.listLoading = false
+      })
+    },
+    // handleFilter() {
+    //   this.listQuery.page = 1
+    //   this.getList()
+    // },
+    // handleCreate() {
+    //   this.$router.push({ path: '/goods/create' })
+    // },
+    handleUpdate(row) {
+      // this.$router.push({ path: '/basic/categoryEdit', query: { id: row.id }})
+      this.dialogStatus = 'update'
+      this.createDialogVisible = true
+      //
+      this.category.id = row.id
+      this.category.value = row.value
+      this.category.label = row.label
+    },
+    handleCreate() {
+      // this.$router.push({ path: '/basic/categoryCreate' })
+      this.dialogStatus = 'create'
+      this.createDialogVisible = true
+    },
+    createData() {
+      console.log(this.category)
+      createCategory(this.category).then(response => {
+        this.list.unshift(response.data.data)
+        this.$notify.success({
+          title: '成功',
+          message: '添加成功'
+        })
+        this.createDialogVisible = false
+      }).catch(response => {
+        MessageBox.alert('业务错误：' + response.data.errmsg, '警告', {
+          confirmButtonText: '确定',
+          type: 'error'
+        })
+      })
+    },
+    updateData() {
+      console.log(this.category)
+      editCategory(this.category).then(response => {
+        this.$notify.success({
+          title: '成功',
+          message: '修改成功'
+        })
+        this.getList()
+        this.createDialogVisible = false
+      }).catch(response => {
+        MessageBox.alert('业务错误：' + response.data.errmsg, '警告', {
+          confirmButtonText: '确定',
+          type: 'error'
+        })
+      })
+    }
+    // showDetail(detail) {
+    //   this.goodsDetail = detail
+    //   this.detailDialogVisible = true
+    // },
   }
+}
 </script>

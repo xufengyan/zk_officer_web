@@ -17,7 +17,7 @@ export function listCatL1() {
 
 export function createCategory(data) {
   return request({
-    url: '/category/create',
+    url: '/category/add',
     method: 'post',
     data
   })
@@ -31,9 +31,9 @@ export function readCategory(data) {
   })
 }
 
-export function updateCategory(data) {
+export function editCategory(data) {
   return request({
-    url: '/category/update',
+    url: '/category/edit',
     method: 'post',
     data
   })

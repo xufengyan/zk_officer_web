@@ -25,6 +25,8 @@
       <el-table-column align="center" label="ID" prop="id" />
 
       <el-table-column align="center" min-width="100" label="产品名称" prop="pName" />
+      <el-table-column align="center" min-width="100" label="产品所属系列" prop="pType" />
+      <el-table-column align="center" min-width="100" label="产品型号" prop="pModel" />
 
       <el-table-column align="center" property="iconUrl" label="产品图片">
         <template slot-scope="scope">
@@ -32,7 +34,7 @@
         </template>
       </el-table-column>
 
-      <el-table-column align="center" min-width="100" label="产品展示内容" prop="pIntroduce" />
+      <!--      <el-table-column align="center" min-width="100" label="产品展示内容" prop="pIntroduce" />-->
       <!--      <el-table-column align="center" min-width="100" label="手机" prop="owTel" />-->
       <!--      <el-table-column align="center" min-width="100" label="工作时间" prop="owWoekTime" />-->
       <!--      <el-table-column align="center" min-width="100" label="备案" prop="owInternetcp" />-->
@@ -79,7 +81,7 @@
 </style>
 
 <script>
-// import { listGoods, deleteGoods } from '@/api/basic'
+import { listProduct } from '@/api/product'
 import BackToTop from '@/components/BackToTop'
 import Pagination from '@/components/Pagination' // Secondary package based on el-pagination
 
@@ -88,12 +90,7 @@ export default {
   components: { BackToTop, Pagination },
   data() {
     return {
-      list: [{
-        id: '1',
-        pName: 'zk1524测亩仪',
-        pImagePath: 'http://localhost:8089/admin/storage/fetch/sl9q336i0u1ew2p7kv8m.jpg',
-        pIntroduce: ''
-      }],
+      list: [],
       total: 0,
       listLoading: false,
       listQuery: {
@@ -110,27 +107,24 @@ export default {
     }
   },
   created() {
-    // this.getList()
+    this.getList()
   },
   methods: {
-    // getList() {
-    //   this.listLoading = true
-    //   listGoods(this.listQuery).then(response => {
-    //     this.list = response.data.data.list
-    //     this.total = response.data.data.total
-    //     this.listLoading = false
-    //   }).catch(() => {
-    //     this.list = []
-    //     this.total = 0
-    //     this.listLoading = false
-    //   })
-    // },
+    getList() {
+      this.listLoading = true
+      listProduct(this.listQuery).then(response => {
+        this.list = response.data.data.list
+        this.total = response.data.data.total
+        this.listLoading = false
+      }).catch(() => {
+        this.list = []
+        this.total = 0
+        this.listLoading = false
+      })
+    },
     // handleFilter() {
     //   this.listQuery.page = 1
     //   this.getList()
-    // },
-    // handleCreate() {
-    //   this.$router.push({ path: '/goods/create' })
     // },
     handleUpdate(row) {
       this.$router.push({ path: '/basic/productEdit', query: { id: row.id }})
