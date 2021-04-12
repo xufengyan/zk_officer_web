@@ -11,7 +11,7 @@
  Target Server Version : 50733
  File Encoding         : 65001
 
- Date: 10/04/2021 16:41:02
+ Date: 12/04/2021 17:50:05
 */
 
 SET NAMES utf8mb4;
@@ -38,7 +38,7 @@ CREATE TABLE `zk_admin`  (
 -- ----------------------------
 -- Records of zk_admin
 -- ----------------------------
-INSERT INTO `zk_admin` VALUES (1, 'admin123', '$2a$10$.rEfyBb/GURD9P2p0fRg/OAJGloGNDkJS4lY0cQHeqDgsbdTylBpu', '0:0:0:0:0:0:0:1', '2021-04-10 10:26:47', 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif', '2018-02-01 00:00:00', '2021-04-10 10:26:47', 0, '[1]');
+INSERT INTO `zk_admin` VALUES (1, 'admin123', '$2a$10$.rEfyBb/GURD9P2p0fRg/OAJGloGNDkJS4lY0cQHeqDgsbdTylBpu', '0:0:0:0:0:0:0:1', '2021-04-12 17:32:39', 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif', '2018-02-01 00:00:00', '2021-04-12 17:32:39', 0, '[1]');
 INSERT INTO `zk_admin` VALUES (4, 'promotion123', '$2a$10$wDZLOLLnzZ1EFZ3ldZ1XFOUWDEX6TnQCUFdJz4g.PoMaLTzS8TjWq', '0:0:0:0:0:0:0:1', '2021-04-08 10:59:55', 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif', '2019-01-07 15:16:59', '2021-04-08 10:59:55', 0, '[3]');
 INSERT INTO `zk_admin` VALUES (5, 'mall123', '$2a$10$aCtsc4rG6KmxQ59.IkYse.oRyKuwQoU2CPCmxSdB.d5nXq6aw/z4O', '0:0:0:0:0:0:0:1', '2021-04-08 11:14:25', 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif', '2019-01-07 15:17:25', '2021-04-08 11:14:25', 0, '[2]');
 INSERT INTO `zk_admin` VALUES (6, 'mall1234', '$2a$10$aCtsc4rG6KmxQ59.IkYse.oRyKuwQoU2CPCmxSdB.d5nXq6aw/z4O', '0:0:0:0:0:0:0:1', '2021-04-08 10:52:11', 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif', '2019-01-07 15:17:25', '2021-04-08 10:52:11', 0, '[3]');
@@ -51,25 +51,26 @@ CREATE TABLE `zk_basic`  (
   `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ow_logo` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'logo地址',
   `ow_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '网站名称',
-  `ow_brief_introduction` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '网站简介',
+  `ow_brief_introduction` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '网站简介',
   `ow_qrcode_path` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '二维码地址',
   `ow_phone` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '电话',
   `ow_tel` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '手机号',
-  `ow_woek_time` datetime NULL DEFAULT NULL COMMENT '工作时间',
+  `ow_woek_time` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '工作时间',
   `ow_internetcp` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备案',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `add_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime NULL DEFAULT NULL COMMENT '修改时间',
   `ow_url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '公司网址',
   `ow_mail` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '邮箱地址',
   `ow_address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '公司地址',
-  `ow_content` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '公司简介',
+  `ow_lua_type` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '语言类型（zh-CN：中文；en：英文）',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '官网基本信息表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '官网基本信息表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of zk_basic
 -- ----------------------------
-INSERT INTO `zk_basic` VALUES (1, 'http://localhost:8089/admin/storage/fetch/sl9q336i0u1ew2p7kv8m.jpg', '深圳致开科技有限公司', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `zk_basic` VALUES (1, 'http://localhost:8089/admin/storage/fetch/wrdallmxe2coftnwmt92.png', '深圳致开科技有限公司', '<h2 style=\"text-align: center;\">公司简介</h2>\n<h4 style=\"text-align: center;\">致力于做最专业的北斗GPS定位测量解决方案提供商</h4>\n<hr />\n<p>公司是有着丰富实践经验和前沿理论知识的电子工程师发起的，秉承了工程师勤奋，务实，程序的优良品质。 我们始终坚持以客户为中心，坚持创新，致力于为客户提供最优质的产品和服务，帮助合作伙伴以正确的方法制造正确的产品，不仅能够以更低的成本 、更快的速度创新新产品，而且还提高了产品质量和可靠性。</p>\n<p>公司及其前身-众成电子工作室历经数年的磨合、模式、实践、最终决定定位测量领域，公司推出的北斗/GPS土地面积测系统已在工业、农业 交通等各行各业得到广泛应用，由本公司提供技术方案的，GPS/北斗测录在市场上已取得约100K台/年的成绩。</p>\n<p>借助一流的工程能力和优质的服务能力，我们赢得了GPS/北斗测亩仪市场的主导地位，获得合作伙伴的肯定。展望未来，致开 科技坚持创新，客户导向，一如既往的向市场提供稳定的电子产品。</p>\n<p><img src=\"http://ruinianda.com/wp-content/themes/chikytech_theme_v3.6/assets/img/about/qiant.jpg\" width=\"653\" height=\"381\" /></p>', 'http://localhost:8089/admin/storage/fetch/sxw2vy1rqmm7oyj1r35q.jpg', '0755-2720-2606', '13530108906', '周一至周日 9:00-18:00 (节假日除外)', '深圳致开科技有限公司 版权所有 Copyright © 2015-2018 粤ICP备16004202号', '2021-04-12 16:00:37', '2021-04-12 17:39:37', 'www.chikytech.com', 'allen.cao@chiky.cn', '深圳宝安区盐田商务广场A座409、405、411、413', 'zh-CN');
+INSERT INTO `zk_basic` VALUES (2, 'http://localhost:8089/admin/storage/fetch/sl9q336i0u1ew2p7kv8m.jpg', '深圳致开科技有限公司', NULL, 'http://localhost:8089/admin/storage/fetch/sl9q336i0u1ew2p7kv8m.jpg', '0755-2720-2606', '13530108906', '周一至周日 9:00-18:00 (节假日除外)', '深圳致开科技有限公司 版权所有 Copyright © 2015-2018 粤ICP备16004202号', '2021-04-12 16:00:37', '2021-04-12 16:00:40', 'www.chikytech.com', 'allen.cao@chiky.cn', '深圳宝安区盐田商务广场A座409、405、411、413', 'en');
 
 -- ----------------------------
 -- Table structure for zk_category
@@ -97,7 +98,8 @@ CREATE TABLE `zk_download`  (
   `d_descibe` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '文件描述',
   `d_image_path` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '展示图片地址',
   `d_path` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '下载地址',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `d_lan_type` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '语言类型（zh_CN中文说明书，en英文说明书）',
+  `add_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '说明文件下载表' ROW_FORMAT = Dynamic;
@@ -161,7 +163,7 @@ CREATE TABLE `zk_log`  (
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) NULL DEFAULT 0 COMMENT '逻辑删除',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 91 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '操作日志表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 101 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '操作日志表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of zk_log
@@ -215,6 +217,16 @@ INSERT INTO `zk_log` VALUES (87, 'admin123', '0:0:0:0:0:0:0:1', 1, '登录', 1, 
 INSERT INTO `zk_log` VALUES (88, 'admin123', '0:0:0:0:0:0:0:1', 1, '登录', 1, '', '', '2021-04-09 10:00:31', '2021-04-09 10:00:31', 0);
 INSERT INTO `zk_log` VALUES (89, 'admin123', '0:0:0:0:0:0:0:1', 1, '登录', 1, '', '', '2021-04-09 10:00:49', '2021-04-09 10:00:49', 0);
 INSERT INTO `zk_log` VALUES (90, 'admin123', '0:0:0:0:0:0:0:1', 1, '登录', 1, '', '', '2021-04-10 10:26:47', '2021-04-10 10:26:47', 0);
+INSERT INTO `zk_log` VALUES (91, 'admin123', '0:0:0:0:0:0:0:1', 1, '登录', 1, '', '', '2021-04-12 08:59:27', '2021-04-12 08:59:27', 0);
+INSERT INTO `zk_log` VALUES (92, 'admin123', '0:0:0:0:0:0:0:1', 1, '登录', 1, '', '', '2021-04-12 09:14:33', '2021-04-12 09:14:33', 0);
+INSERT INTO `zk_log` VALUES (93, 'admin123', '0:0:0:0:0:0:0:1', 1, '登录', 1, '', '', '2021-04-12 15:51:29', '2021-04-12 15:51:29', 0);
+INSERT INTO `zk_log` VALUES (94, 'admin123', '0:0:0:0:0:0:0:1', 1, '登录', 1, '', '', '2021-04-12 16:03:40', '2021-04-12 16:03:40', 0);
+INSERT INTO `zk_log` VALUES (95, 'admin123', '0:0:0:0:0:0:0:1', 1, '登录', 1, '', '', '2021-04-12 16:10:31', '2021-04-12 16:10:31', 0);
+INSERT INTO `zk_log` VALUES (96, 'admin123', '0:0:0:0:0:0:0:1', 1, '登录', 1, '', '', '2021-04-12 16:27:24', '2021-04-12 16:27:24', 0);
+INSERT INTO `zk_log` VALUES (97, 'admin123', '0:0:0:0:0:0:0:1', 1, '登录', 1, '', '', '2021-04-12 16:29:29', '2021-04-12 16:29:29', 0);
+INSERT INTO `zk_log` VALUES (98, 'admin123', '0:0:0:0:0:0:0:1', 1, '登录', 1, '', '', '2021-04-12 17:03:47', '2021-04-12 17:03:47', 0);
+INSERT INTO `zk_log` VALUES (99, 'admin123', '0:0:0:0:0:0:0:1', 1, '登录', 1, '', '', '2021-04-12 17:18:27', '2021-04-12 17:18:27', 0);
+INSERT INTO `zk_log` VALUES (100, 'admin123', '0:0:0:0:0:0:0:1', 1, '登录', 1, '', '', '2021-04-12 17:32:39', '2021-04-12 17:32:39', 0);
 
 -- ----------------------------
 -- Table structure for zk_permission
@@ -340,13 +352,15 @@ CREATE TABLE `zk_scheme`  (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '解决方案',
   `s_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '方案名称',
   `s_image_path` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '方案宣传图',
-  `s_content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '方案内容',
+  `s_content` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '方案内容',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '解决方案表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '解决方案表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of zk_scheme
 -- ----------------------------
+INSERT INTO `zk_scheme` VALUES (1, '定位测量方案1', 'http://localhost:8089/admin/storage/fetch/1sauzzzvcin173ncjyja.jpg', '<h2 style=\"text-align: center;\">公司简介1</h2>\n<h4 style=\"text-align: center;\">致力于做最专业的北斗GPS定位测量解决方案提供商</h4>\n<hr />\n<p>公司是有着丰富实践经验和前沿理论知识的电子工程师发起的，秉承了工程师勤奋，务实，程序的优良品质。 我们始终坚持以客户为中心，坚持创新，致力于为客户提供最优质的产品和服务，帮助合作伙伴以正确的方法制造正确的产品，不仅能够以更低的成本 、更快的速度创新新产品，而且还提高了产品质量和可靠性。</p>\n<p>公司及其前身-众成电子工作室历经数年的磨合、模式、实践、最终决定定位测量领域，公司推出的北斗/GPS土地面积测系统已在工业、农业 交通等各行各业得到广泛应用，由本公司提供技术方案的，GPS/北斗测录在市场上已取得约100K台/年的成绩。</p>\n<p>借助一流的工程能力和优质的服务能力，我们赢得了GPS/北斗测亩仪市场的主导地位，获得合作伙伴的肯定。展望未来，致开 科技坚持创新，客户导向，一如既往的向市场提供稳定的电子产品。</p>\n<p><img src=\"http://ruinianda.com/wp-content/themes/chikytech_theme_v3.6/assets/img/about/qiant.jpg\" width=\"653\" height=\"381\" /></p>');
+INSERT INTO `zk_scheme` VALUES (2, '测量定位方案2', NULL, '<h2 style=\"text-align: center;\">公司简介2</h2>\n<h4 style=\"text-align: center;\">致力于做最专业的北斗GPS定位测量解决方案提供商</h4>\n<hr />\n<p>公司是有着丰富实践经验和前沿理论知识的电子工程师发起的，秉承了工程师勤奋，务实，程序的优良品质。 我们始终坚持以客户为中心，坚持创新，致力于为客户提供最优质的产品和服务，帮助合作伙伴以正确的方法制造正确的产品，不仅能够以更低的成本 、更快的速度创新新产品，而且还提高了产品质量和可靠性。</p>\n<p>公司及其前身-众成电子工作室历经数年的磨合、模式、实践、最终决定定位测量领域，公司推出的北斗/GPS土地面积测系统已在工业、农业 交通等各行各业得到广泛应用，由本公司提供技术方案的，GPS/北斗测录在市场上已取得约100K台/年的成绩。</p>\n<p>借助一流的工程能力和优质的服务能力，我们赢得了GPS/北斗测亩仪市场的主导地位，获得合作伙伴的肯定。展望未来，致开 科技坚持创新，客户导向，一如既往的向市场提供稳定的电子产品。</p>\n<p><img src=\"http://ruinianda.com/wp-content/themes/chikytech_theme_v3.6/assets/img/about/qiant.jpg\" width=\"653\" height=\"381\" /></p>');
 
 -- ----------------------------
 -- Table structure for zk_storage
@@ -356,7 +370,7 @@ CREATE TABLE `zk_storage`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `key` varchar(63) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '文件的唯一索引',
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '文件名',
-  `type` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '文件类型',
+  `type` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '文件类型',
   `size` int(11) NOT NULL COMMENT '文件大小',
   `url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '文件访问链接',
   `add_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
@@ -364,7 +378,7 @@ CREATE TABLE `zk_storage`  (
   `deleted` tinyint(1) NULL DEFAULT 0 COMMENT '逻辑删除',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `key`(`key`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '文件存储表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 23 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '文件存储表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of zk_storage
@@ -372,5 +386,13 @@ CREATE TABLE `zk_storage`  (
 INSERT INTO `zk_storage` VALUES (12, 'sl9q336i0u1ew2p7kv8m.jpg', 'fc2a95acfbf7421f9cbf496b77801292.jpg', 'image/jpeg', 16108, 'http://localhost:8089/admin/storage/fetch/sl9q336i0u1ew2p7kv8m.jpg', '2021-04-08 15:39:03', '2021-04-08 15:39:03', 0);
 INSERT INTO `zk_storage` VALUES (13, 'cp9t9xzvik3w8d4tcwy6.jpg', 'fc2a95acfbf7421f9cbf496b77801292.jpg', 'image/jpeg', 16108, 'http://localhost:8089/admin/storage/fetch/cp9t9xzvik3w8d4tcwy6.jpg', '2021-04-10 11:25:02', '2021-04-10 11:25:02', 0);
 INSERT INTO `zk_storage` VALUES (14, 'lurdfr7w7wo2itgimhgu.jpg', 'section-11.jpg', 'image/jpeg', 114977, 'http://localhost:8089/admin/storage/fetch/lurdfr7w7wo2itgimhgu.jpg', '2021-04-10 15:03:08', '2021-04-10 15:03:08', 0);
+INSERT INTO `zk_storage` VALUES (15, '05ysdkfdyk3eh2q6o6ha.sql', 'chikycloudweb.sql', 'application/octet-stream', 45348, 'http://localhost:8089/admin/storage/fetch/05ysdkfdyk3eh2q6o6ha.sql', '2021-04-12 09:59:06', '2021-04-12 09:59:06', 0);
+INSERT INTO `zk_storage` VALUES (16, 'sa00gt1x5nde3fftzxlf.txt', '新建文本文档.txt', 'text/plain', 66983, 'http://localhost:8089/admin/storage/fetch/sa00gt1x5nde3fftzxlf.txt', '2021-04-12 11:08:25', '2021-04-12 11:08:25', 0);
+INSERT INTO `zk_storage` VALUES (17, 'k4p5pxbt2kfhbrlvmwyb.sql', 'music_dome.sql', 'application/octet-stream', 30948, 'http://localhost:8089/admin/storage/fetch/k4p5pxbt2kfhbrlvmwyb.sql', '2021-04-12 11:21:43', '2021-04-12 11:21:43', 0);
+INSERT INTO `zk_storage` VALUES (18, 'yjb3etbzq2pbyp27u8tj.log', 'session.log', 'application/octet-stream', 15191, 'http://localhost:8089/admin/storage/fetch/yjb3etbzq2pbyp27u8tj.log', '2021-04-12 11:22:35', '2021-04-12 11:22:35', 0);
+INSERT INTO `zk_storage` VALUES (19, 'z14w5l0rviokm4kt30a2.sql', 'music_dome.sql', 'application/octet-stream', 30948, 'http://localhost:8089/admin/storage/fetch/z14w5l0rviokm4kt30a2.sql', '2021-04-12 11:25:54', '2021-04-12 11:25:54', 0);
+INSERT INTO `zk_storage` VALUES (20, '1sauzzzvcin173ncjyja.jpg', 'section-11.jpg', 'image/jpeg', 114977, 'http://localhost:8089/admin/storage/fetch/1sauzzzvcin173ncjyja.jpg', '2021-04-12 17:38:51', '2021-04-12 17:38:51', 0);
+INSERT INTO `zk_storage` VALUES (21, 'wrdallmxe2coftnwmt92.png', '1134x1134.png', 'image/png', 128749, 'http://localhost:8089/admin/storage/fetch/wrdallmxe2coftnwmt92.png', '2021-04-12 17:39:29', '2021-04-12 17:39:29', 0);
+INSERT INTO `zk_storage` VALUES (22, 'sxw2vy1rqmm7oyj1r35q.jpg', '致开科技二维码.jpg', 'image/jpeg', 153522, 'http://localhost:8089/admin/storage/fetch/sxw2vy1rqmm7oyj1r35q.jpg', '2021-04-12 17:39:34', '2021-04-12 17:39:34', 0);
 
 SET FOREIGN_KEY_CHECKS = 1;
