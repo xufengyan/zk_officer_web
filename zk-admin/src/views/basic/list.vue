@@ -34,6 +34,7 @@
       <el-table-column align="center" min-width="100" label="公司网址" prop="owUrl" />
       <el-table-column align="center" min-width="100" label="公司地址" prop="owAddress" />
       <el-table-column align="center" min-width="100" label="公司邮箱" prop="owMail" />
+      <el-table-column align="center" min-width="100" label="语言类型" prop="owLuaType" />
 
       <el-table-column align="center" label="操作" width="100" class-name="small-padding fixed-width">
         <template slot-scope="scope">
@@ -74,7 +75,7 @@
 </style>
 
 <script>
-// import { listGoods, deleteGoods } from '@/api/basic'
+import { listBasic, readBasic } from '@/api/basic'
 import BackToTop from '@/components/BackToTop'
 import Pagination from '@/components/Pagination' // Secondary package based on el-pagination
 
@@ -83,20 +84,7 @@ export default {
   components: { BackToTop, Pagination },
   data() {
     return {
-      list: [{
-        id: '1',
-        owLogo: 'http://localhost:8089/admin/storage/fetch/sl9q336i0u1ew2p7kv8m.jpg',
-        owName: '深圳致开科技有限公司',
-        owQrcodePath: 'http://localhost:8089/admin/storage/fetch/sl9q336i0u1ew2p7kv8m.jpg',
-        owPhoneName: '全国统一咨询热线',
-        owPhone: '0755-2720-2606',
-        owTel: '13530108906',
-        owWoekTime: '周一至周日 9:00-18:00 (节假日除外)',
-        owInternetcp: '深圳致开科技有限公司 版权所有 Copyright © 2015-2018 粤ICP备16004202号',
-        owMail: 'allen.cao@chiky.cn',
-        owAddress: '深圳宝安区盐田商务广场A座409、405、411、413',
-        owUrl: ' www.chikytech.com'
-      }],
+      list: [],
       total: 0,
       listLoading: false,
       listQuery: {
@@ -113,25 +101,25 @@ export default {
     }
   },
   created() {
-    // this.getList()
+    this.getList()
   },
   methods: {
-    // getList() {
-    //   this.listLoading = true
-    //   listGoods(this.listQuery).then(response => {
-    //     this.list = response.data.data.list
-    //     this.total = response.data.data.total
-    //     this.listLoading = false
-    //   }).catch(() => {
-    //     this.list = []
-    //     this.total = 0
-    //     this.listLoading = false
-    //   })
-    // },
-    // handleFilter() {
-    //   this.listQuery.page = 1
-    //   this.getList()
-    // },
+    getList() {
+      this.listLoading = true
+      listBasic(this.listQuery).then(response => {
+        this.list = response.data.data.list
+        this.total = response.data.data.total
+        this.listLoading = false
+      }).catch(() => {
+        this.list = []
+        this.total = 0
+        this.listLoading = false
+      })
+    },
+    handleFilter() {
+      this.listQuery.page = 1
+      this.getList()
+    },
     // handleCreate() {
     //   this.$router.push({ path: '/goods/create' })
     // },

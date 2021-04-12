@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xf.project.db.dao.ZkSchemeMapper">
+
+    <resultMap type="com.xf.project.db.domain.ZkScheme" id="ZkSchemeResult">
+        <result property="id"    column="id"    />
+        <result property="sName"    column="s_name"    />
+        <result property="sImagePath"    column="s_image_path"    />
+        <result property="sContent"    column="s_content"    />
+    </resultMap>
+
+    <sql id="selectZkSchemeVo">
+        select id, s_name, s_image_path, s_content from zk_scheme
+    </sql>
+
+    <select id="selectZkSchemeList" parameterType="com.xf.project.db.domain.ZkScheme" resultMap="ZkSchemeResult">
+        <include refid="selectZkSchemeVo"/>
+        <where>
+            <if test="sName != null  and sName != ''"> and s_name like concat('%', #{sName}, '%')</if>
+            <if test="sImagePath != null  and sImagePath != ''"> and s_image_path = #{sImagePath}</if>
+            <if test="sContent != null  and sContent != ''"> and s_content = #{sContent}</if>
+        </where>
+    </select>
+
+    <select id="selectZkSchemeById" parameterType="Long" resultMap="ZkSchemeResult">
+        <include refid="selectZkSchemeVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertZkScheme" parameterType="com.xf.project.db.domain.ZkScheme" useGeneratedKeys="true" keyProperty="id">
+        insert into zk_scheme
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="sName != null  and sName != ''">s_name,</if>
+            <if test="sImagePath != null  and sImagePath != ''">s_image_path,</if>
+            <if test="sContent != null  and sContent != ''">s_content,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="sName != null  and sName != ''">#{sName},</if>
+            <if test="sImagePath != null  and sImagePath != ''">#{sImagePath},</if>
+            <if test="sContent != null  and sContent != ''">#{sContent},</if>
+         </trim>
+    </insert>
+
+    <update id="updateZkScheme" parameterType="com.xf.project.db.domain.ZkScheme">
+        update zk_scheme
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="sName != null  and sName != ''">s_name = #{sName},</if>
+            <if test="sImagePath != null  and sImagePath != ''">s_image_path = #{sImagePath},</if>
+            <if test="sContent != null  and sContent != ''">s_content = #{sContent},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteZkSchemeById" parameterType="Long">
+        delete from zk_scheme where id = #{id}
+    </delete>
+
+    <delete id="deleteZkSchemeByIds" parameterType="String">
+        delete from zk_scheme where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

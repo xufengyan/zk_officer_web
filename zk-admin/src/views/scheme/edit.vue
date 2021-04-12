@@ -3,12 +3,12 @@
 
     <el-card class="box-card">
       <h3>解决方案修改</h3>
-      <el-form ref="goods" :rules="rules" :model="goods" label-width="150px">
+      <el-form ref="scheme" :rules="rules" :model="scheme" label-width="150px">
         <el-form-item label="编辑ID" prop="id">
-          <el-input v-model="goods.id" disabled />
+          <el-input v-model="scheme.id" disabled />
         </el-form-item>
         <el-form-item label="方案名称" prop="sName">
-          <el-input v-model="goods.sName" />
+          <el-input v-model="scheme.sName" />
         </el-form-item>
         <el-form-item label="方案图片">
           <el-upload
@@ -19,13 +19,13 @@
             class="avatar-uploader"
             accept=".jpg,.jpeg,.png,.gif"
           >
-            <img v-if="goods.sImagePath" :src="goods.owLogo" class="avatar">
+            <img v-if="scheme.sImagePath" :src="scheme.sImagePath" class="avatar">
             <i v-else class="el-icon-plus avatar-uploader-icon" />
           </el-upload>
         </el-form-item>
 
         <el-form-item label="方案内容">
-          <editor v-model="goods.sContent" :init="editorInit" />
+          <editor v-model="scheme.sContent" :init="editorInit" />
         </el-form-item>
         <!--        <el-form-item label="是否新品" prop="isNew">-->
         <!--          <el-radio-group v-model="goods.isNew">-->
@@ -56,7 +56,7 @@
 
     <div class="op-container">
       <el-button @click="handleCancel">取消</el-button>
-      <el-button type="primary" @click="handleEdit">添加方案</el-button>
+      <el-button type="primary" @click="handleEdit">修改方案</el-button>
     </div>
 
   </div>
@@ -104,7 +104,7 @@
 </style>
 
 <script>
-import { detailGoods, editGoods, listCatAndBrand } from '@/api/goods'
+import { readScheme, editScheme } from '@/api/scheme'
 import { createStorage, uploadPath } from '@/api/storage'
 import Editor from '@tinymce/tinymce-vue'
 import { MessageBox } from 'element-ui'
@@ -123,10 +123,7 @@ export default {
       categoryList: [],
       brandList: [],
       categoryIds: [],
-      goods: { id: '1',
-        sName: '定位测量方案',
-        sImagePath: '',
-        sContent: '' },
+      scheme: {},
       specVisiable: false,
       specForm: { specification: '', value: '', picUrl: '' },
       specifications: [{ specification: '规格', value: '标准', picUrl: '' }],
@@ -199,32 +196,10 @@ export default {
         return
       }
 
-      // const goodsId = this.$route.query.id
-      // detailGoods(goodsId).then(response => {
-      //   this.goods = response.data.data.goods
-      //   // 稍微调整一下前后端不一致
-      //   if (this.goods.brandId === 0) {
-      //     this.goods.brandId = null
-      //   }
-      //   if (this.goods.keywords === '') {
-      //     this.goods.keywords = null
-      //   }
-      //   this.specifications = response.data.data.specifications
-      //   this.products = response.data.data.products
-      //   this.attributes = response.data.data.attributes
-      //   this.categoryIds = response.data.data.categoryIds
-      //
-      //   // this.galleryFileList = []
-      //   // for (var i = 0; i < this.goods.gallery.length; i++) {
-      //   //   this.galleryFileList.push({
-      //   //     url: this.goods.gallery[i]
-      //   //   })
-      //   // }
-      //   const keywords = response.data.data.goods.keywords
-      //   if (keywords !== null) {
-      //     this.keywords = keywords.split(',')
-      //   }
-      // })
+      const schemeId = this.$route.query.id
+      readScheme(schemeId).then(response => {
+        this.scheme = response.data.data
+      })
       //
       // listCatAndBrand().then(response => {
       //   this.categoryList = response.data.data.categoryList
@@ -237,13 +212,8 @@ export default {
     },
     // 修改方法
     handleEdit: function() {
-      const finalGoods = {
-        goods: this.goods,
-        specifications: this.specifications,
-        products: this.products,
-        attributes: this.attributes
-      }
-      editGoods(finalGoods)
+      console.log(this.scheme)
+      editScheme(this.scheme)
         .then(response => {
           this.$notify.success({
             title: '成功',
@@ -261,7 +231,7 @@ export default {
     },
     // 图片上传方法
     uploadPicUrl: function(response) {
-      this.goods.picUrl = response.data.url
+      this.scheme.sImagePath = response.data.url
     }
   }
 }

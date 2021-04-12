@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xf.project.db.dao.ZkDownloadMapper">
+
+    <resultMap type="com.xf.project.db.domain.ZkDownload" id="ZkDownloadResult">
+        <result property="id"    column="id"    />
+        <result property="dMaxImageUrl"    column="d_max_image_url"    />
+        <result property="dName"    column="d_name"    />
+        <result property="dDescibe"    column="d_descibe"    />
+        <result property="dImagePath"    column="d_image_path"    />
+        <result property="dPath"    column="d_path"    />
+        <result property="dLanType"    column="d_lan_type"    />
+        <result property="addTime"    column="add_time"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectZkDownloadVo">
+        select id, d_max_image_url, d_name, d_descibe, d_image_path, d_path, d_lan_type, add_time, update_time from zk_download
+    </sql>
+
+    <select id="selectZkDownloadList" parameterType="com.xf.project.db.domain.ZkDownload" resultMap="ZkDownloadResult">
+        <include refid="selectZkDownloadVo"/>
+        <where>
+            <if test="dMaxImageUrl != null  and dMaxImageUrl != ''"> and d_max_image_url = #{dMaxImageUrl}</if>
+            <if test="dName != null  and dName != ''"> and d_name like concat('%', #{dName}, '%')</if>
+            <if test="dDescibe != null  and dDescibe != ''"> and d_descibe = #{dDescibe}</if>
+            <if test="dImagePath != null  and dImagePath != ''"> and d_image_path = #{dImagePath}</if>
+            <if test="dPath != null  and dPath != ''"> and d_path = #{dPath}</if>
+            <if test="dLanType != null  and dLanType != ''"> and d_lan_type = #{dLanType}</if>
+        </where>
+    </select>
+
+    <select id="selectZkDownloadById" parameterType="Long" resultMap="ZkDownloadResult">
+        <include refid="selectZkDownloadVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertZkDownload" parameterType="com.xf.project.db.domain.ZkDownload" useGeneratedKeys="true" keyProperty="id">
+        insert into zk_download
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="dMaxImageUrl != null  and dMaxImageUrl != ''">d_max_image_url,</if>
+            <if test="dName != null  and dName != ''">d_name,</if>
+            <if test="dDescibe != null  and dDescibe != ''">d_descibe,</if>
+            <if test="dImagePath != null  and dImagePath != ''">d_image_path,</if>
+            <if test="dPath != null  and dPath != ''">d_path,</if>
+            <if test="dLanType != null  and dLanType != ''">d_lan_type,</if>
+            <if test="addTime != null ">add_time,</if>
+            <if test="updateTime != null ">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="dMaxImageUrl != null  and dMaxImageUrl != ''">#{dMaxImageUrl},</if>
+            <if test="dName != null  and dName != ''">#{dName},</if>
+            <if test="dDescibe != null  and dDescibe != ''">#{dDescibe},</if>
+            <if test="dImagePath != null  and dImagePath != ''">#{dImagePath},</if>
+            <if test="dPath != null  and dPath != ''">#{dPath},</if>
+            <if test="dLanType != null  and dLanType != ''">#{dLanType},</if>
+            <if test="addTime != null ">#{addTime},</if>
+            <if test="updateTime != null ">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateZkDownload" parameterType="com.xf.project.db.domain.ZkDownload">
+        update zk_download
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="dMaxImageUrl != null  and dMaxImageUrl != ''">d_max_image_url = #{dMaxImageUrl},</if>
+            <if test="dName != null  and dName != ''">d_name = #{dName},</if>
+            <if test="dDescibe != null  and dDescibe != ''">d_descibe = #{dDescibe},</if>
+            <if test="dImagePath != null  and dImagePath != ''">d_image_path = #{dImagePath},</if>
+            <if test="dPath != null  and dPath != ''">d_path = #{dPath},</if>
+            <if test="dLanType != null  and dLanType != ''">d_lan_type = #{dLanType},</if>
+            <if test="addTime != null ">add_time = #{addTime},</if>
+            <if test="updateTime != null ">update_time = #{updateTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteZkDownloadById" parameterType="Long">
+        delete from zk_download where id = #{id}
+    </delete>
+
+    <delete id="deleteZkDownloadByIds" parameterType="String">
+        delete from zk_download where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

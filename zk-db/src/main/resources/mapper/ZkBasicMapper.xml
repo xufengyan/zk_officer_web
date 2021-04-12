@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xf.project.db.dao.ZkBasicMapper">
+
+    <resultMap type="com.xf.project.db.domain.ZkBasic" id="ZkBasicResult">
+        <result property="id"    column="id"    />
+        <result property="owLogo"    column="ow_logo"    />
+        <result property="owName"    column="ow_name"    />
+        <result property="owBriefIntroduction"    column="ow_brief_introduction"    />
+        <result property="owQrcodePath"    column="ow_qrcode_path"    />
+        <result property="owPhone"    column="ow_phone"    />
+        <result property="owTel"    column="ow_tel"    />
+        <result property="owWoekTime"    column="ow_woek_time"    />
+        <result property="owInternetcp"    column="ow_internetcp"    />
+        <result property="addTime"    column="add_time"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="owUrl"    column="ow_url"    />
+        <result property="owMail"    column="ow_mail"    />
+        <result property="owAddress"    column="ow_address"    />
+        <result property="owLuaType"    column="ow_lua_type"    />
+    </resultMap>
+
+    <sql id="selectZkBasicVo">
+        select id, ow_logo, ow_name, ow_brief_introduction, ow_qrcode_path, ow_phone, ow_tel, ow_woek_time, ow_internetcp, add_time, update_time, ow_url, ow_mail, ow_address, ow_lua_type from zk_basic
+    </sql>
+
+    <select id="selectZkBasicList" parameterType="com.xf.project.db.domain.ZkBasic" resultMap="ZkBasicResult">
+        <include refid="selectZkBasicVo"/>
+        <where>
+            <if test="owLogo != null  and owLogo != ''"> and ow_logo = #{owLogo}</if>
+            <if test="owName != null  and owName != ''"> and ow_name like concat('%', #{owName}, '%')</if>
+            <if test="owBriefIntroduction != null  and owBriefIntroduction != ''"> and ow_brief_introduction = #{owBriefIntroduction}</if>
+            <if test="owQrcodePath != null  and owQrcodePath != ''"> and ow_qrcode_path = #{owQrcodePath}</if>
+            <if test="owPhone != null  and owPhone != ''"> and ow_phone = #{owPhone}</if>
+            <if test="owTel != null  and owTel != ''"> and ow_tel = #{owTel}</if>
+            <if test="owWoekTime != null and owWoekTime != ''"> and ow_woek_time = #{owWoekTime}</if>
+            <if test="owInternetcp != null  and owInternetcp != ''"> and ow_internetcp = #{owInternetcp}</if>
+            <if test="owUrl != null  and owUrl != ''"> and ow_url = #{owUrl}</if>
+            <if test="owMail != null  and owMail != ''"> and ow_mail = #{owMail}</if>
+            <if test="owAddress != null  and owAddress != ''"> and ow_address = #{owAddress}</if>
+            <if test="owLuaType != null  and owLuaType != ''"> and ow_lua_type = #{owLuaType}</if>
+        </where>
+    </select>
+
+    <select id="selectZkBasicById" parameterType="Long" resultMap="ZkBasicResult">
+        <include refid="selectZkBasicVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertZkBasic" parameterType="com.xf.project.db.domain.ZkBasic" useGeneratedKeys="true" keyProperty="id">
+        insert into zk_basic
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="owLogo != null  and owLogo != ''">ow_logo,</if>
+            <if test="owName != null  and owName != ''">ow_name,</if>
+            <if test="owBriefIntroduction != null  and owBriefIntroduction != ''">ow_brief_introduction,</if>
+            <if test="owQrcodePath != null  and owQrcodePath != ''">ow_qrcode_path,</if>
+            <if test="owPhone != null  and owPhone != ''">ow_phone,</if>
+            <if test="owTel != null  and owTel != ''">ow_tel,</if>
+            <if test="owWoekTime != null and owWoekTime != ''">ow_woek_time,</if>
+            <if test="owInternetcp != null  and owInternetcp != ''">ow_internetcp,</if>
+            <if test="addTime != null ">add_time,</if>
+            <if test="updateTime != null ">update_time,</if>
+            <if test="owUrl != null  and owUrl != ''">ow_url,</if>
+            <if test="owMail != null  and owMail != ''">ow_mail,</if>
+            <if test="owAddress != null  and owAddress != ''">ow_address,</if>
+            <if test="owLuaType != null  and owLuaType != ''">ow_lua_type,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="owLogo != null  and owLogo != ''">#{owLogo},</if>
+            <if test="owName != null  and owName != ''">#{owName},</if>
+            <if test="owBriefIntroduction != null  and owBriefIntroduction != ''">#{owBriefIntroduction},</if>
+            <if test="owQrcodePath != null  and owQrcodePath != ''">#{owQrcodePath},</if>
+            <if test="owPhone != null  and owPhone != ''">#{owPhone},</if>
+            <if test="owTel != null  and owTel != ''">#{owTel},</if>
+            <if test="owWoekTime != null and owWoekTime != ''">#{owWoekTime},</if>
+            <if test="owInternetcp != null  and owInternetcp != ''">#{owInternetcp},</if>
+            <if test="addTime != null ">#{addTime},</if>
+            <if test="updateTime != null ">#{updateTime},</if>
+            <if test="owUrl != null  and owUrl != ''">#{owUrl},</if>
+            <if test="owMail != null  and owMail != ''">#{owMail},</if>
+            <if test="owAddress != null  and owAddress != ''">#{owAddress},</if>
+            <if test="owLuaType != null  and owLuaType != ''">#{owLuaType},</if>
+         </trim>
+    </insert>
+
+    <update id="updateZkBasic" parameterType="com.xf.project.db.domain.ZkBasic">
+        update zk_basic
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="owLogo != null  and owLogo != ''">ow_logo = #{owLogo},</if>
+            <if test="owName != null  and owName != ''">ow_name = #{owName},</if>
+            <if test="owBriefIntroduction != null  and owBriefIntroduction != ''">ow_brief_introduction = #{owBriefIntroduction},</if>
+            <if test="owQrcodePath != null  and owQrcodePath != ''">ow_qrcode_path = #{owQrcodePath},</if>
+            <if test="owPhone != null  and owPhone != ''">ow_phone = #{owPhone},</if>
+            <if test="owTel != null  and owTel != ''">ow_tel = #{owTel},</if>
+            <if test="owWoekTime != null and owWoekTime != ''">ow_woek_time = #{owWoekTime},</if>
+            <if test="owInternetcp != null  and owInternetcp != ''">ow_internetcp = #{owInternetcp},</if>
+            <if test="addTime != null ">add_time = #{addTime},</if>
+            <if test="updateTime != null ">update_time = #{updateTime},</if>
+            <if test="owUrl != null  and owUrl != ''">ow_url = #{owUrl},</if>
+            <if test="owMail != null  and owMail != ''">ow_mail = #{owMail},</if>
+            <if test="owAddress != null  and owAddress != ''">ow_address = #{owAddress},</if>
+            <if test="owLuaType != null  and owLuaType != ''">ow_lua_type = #{owLuaType},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteZkBasicById" parameterType="Long">
+        delete from zk_basic where id = #{id}
+    </delete>
+
+    <delete id="deleteZkBasicByIds" parameterType="String">
+        delete from zk_basic where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

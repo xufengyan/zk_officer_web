@@ -589,7 +589,7 @@ export const asyncRoutes = [
         name: 'schemeCreate',
         meta: {
           perms: ['GET /admin/scheme/create'],
-          title: '解决方案',
+          title: '添加解决方案',
           noCache: true
         },
         hidden: true
@@ -600,7 +600,7 @@ export const asyncRoutes = [
         name: 'schemeEdit',
         meta: {
           perms: ['GET /admin/scheme/edit'],
-          title: '解决方案',
+          title: '修改解决方案',
           noCache: true
         },
         hidden: true
@@ -645,7 +645,7 @@ export const asyncRoutes = [
           perms: ['GET /admin/product/edit'],
           title: '产品系列管理',
           noCache: true
-        },
+        }
       },
       {
         path: 'paragraphList',
@@ -655,8 +655,18 @@ export const asyncRoutes = [
           perms: ['GET /admin/paragraph/list'],
           title: '技术领域和优势',
           noCache: true
-        },
+        }
       },
+      {
+        path: 'dwList',
+        component: () => import('@/views/download/list'),
+        name: 'dwList',
+        meta: {
+          perms: ['GET /admin/download/List'],
+          title: '下载文件管理',
+          noCache: true
+        }
+      }
     ]
   },
   {
@@ -700,47 +710,15 @@ export const asyncRoutes = [
           noCache: true
         }
       },
-    ]
-  },
-
-  {
-    path: 'external-link',
-    component: Layout,
-    redirect: 'noredirect',
-    alwaysShow: true,
-    name: 'externalLink',
-    meta: {
-      title: '外链',
-      icon: 'link'
-    },
-    children: [
       {
-        path: 'https://cloud.tencent.com/product/cos',
-        meta: { title: '腾讯云存储', icon: 'link' }
-      },
-      {
-        path: 'https://cloud.tencent.com/product/sms',
-        meta: { title: '腾讯云短信', icon: 'link' }
-      },
-      {
-        path: 'https://pay.weixin.qq.com/index.php/core/home/login',
-        meta: { title: '微信支付', icon: 'link' }
-      },
-      {
-        path: 'https://mpkf.weixin.qq.com/',
-        meta: { title: '小程序客服', icon: 'link' }
-      },
-      {
-        path: 'https://www.alibabacloud.com/zh/product/oss',
-        meta: { title: '阿里云存储', icon: 'link' }
-      },
-      {
-        path: 'https://www.qiniu.com/products/kodo',
-        meta: { title: '七牛云存储', icon: 'link' }
-      },
-      {
-        path: 'http://www.kdniao.com/api-track',
-        meta: { title: '快递鸟', icon: 'link' }
+        path: 'honor',
+        component: () => import('@/views/imageManagement/honor'),
+        name: 'honor',
+        meta: {
+          perms: ['GET /admin/imageManagement/honor'],
+          title: '荣誉管理',
+          noCache: true
+        }
       }
     ]
   },

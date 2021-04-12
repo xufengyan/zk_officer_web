@@ -2,24 +2,24 @@
   <div class="app-container">
 
     <el-card class="box-card">
-      <h3>公司基本信息</h3>
-      <el-form ref="goods" :rules="rules" :model="goods" label-width="150px">
+      <h3>公司基本信息({{ basics.owLuaType }})</h3>
+      <el-form ref="basics" :rules="rules" :model="basics" label-width="150px">
         <el-form-item label="编辑ID" prop="id">
-          <el-input v-model="goods.id" disabled />
+          <el-input v-model="basics.id" disabled />
         </el-form-item>
         <el-form-item label="公司名称" prop="owName">
-          <el-input v-model="goods.owName" />
+          <el-input v-model="basics.owName" />
         </el-form-item>
         <el-form-item label="公司logo">
           <el-upload
             :headers="headers"
             :action="uploadPath"
             :show-file-list="false"
-            :on-success="uploadPicUrl"
+            :on-success="uploadLogoUrl"
             class="avatar-uploader"
             accept=".jpg,.jpeg,.png,.gif"
           >
-            <img v-if="goods.owLogo" :src="goods.owLogo" class="avatar">
+            <img v-if="basics.owLogo" :src="basics.owLogo" class="avatar">
             <i v-else class="el-icon-plus avatar-uploader-icon" />
           </el-upload>
         </el-form-item>
@@ -29,40 +29,40 @@
             :headers="headers"
             :action="uploadPath"
             :show-file-list="false"
-            :on-success="uploadPicUrl"
+            :on-success="uploadQrcodeUrl"
             class="avatar-uploader"
             accept=".jpg,.jpeg,.png,.gif"
           >
-            <img v-if="goods.owQrcodePath" :src="goods.owQrcodePath" class="avatar">
+            <img v-if="basics.owQrcodePath" :src="basics.owQrcodePath" class="avatar">
             <i v-else class="el-icon-plus avatar-uploader-icon" />
           </el-upload>
         </el-form-item>
 
         <el-form-item label="电话" prop="owPhone">
-          <el-input v-model="goods.owPhone" />
+          <el-input v-model="basics.owPhone" />
         </el-form-item>
         <el-form-item label="手机号" prop="owTel">
-          <el-input v-model="goods.owTel" />
+          <el-input v-model="basics.owTel" />
         </el-form-item>
         <el-form-item label="工作时间" prop="owWoekTime">
-          <el-input v-model="goods.owWoekTime" />
+          <el-input v-model="basics.owWoekTime" />
         </el-form-item>
 
         <el-form-item label="备案" prop="owInternetcp">
-          <el-input v-model="goods.owInternetcp" />
+          <el-input v-model="basics.owInternetcp" />
         </el-form-item>
         <el-form-item label="公司网址" prop="owUrl">
-          <el-input v-model="goods.owUrl" />
+          <el-input v-model="basics.owUrl" />
         </el-form-item>
         <el-form-item label="公司地址" prop="owAddress">
-          <el-input v-model="goods.owAddress" />
+          <el-input v-model="basics.owAddress" />
         </el-form-item>
         <el-form-item label="公司邮箱" prop="owMail">
-          <el-input v-model="goods.owMail" />
+          <el-input v-model="basics.owMail" />
         </el-form-item>
 
         <el-form-item label="公司简介">
-          <editor v-model="goods.detail" :init="editorInit" />
+          <editor v-model="basics.owBriefIntroduction" :init="editorInit" />
         </el-form-item>
         <!--        <el-form-item label="是否新品" prop="isNew">-->
         <!--          <el-radio-group v-model="goods.isNew">-->
@@ -141,7 +141,7 @@
 </style>
 
 <script>
-import { detailGoods, editGoods, listCatAndBrand } from '@/api/goods'
+import { readBasic, editBasic } from '@/api/basic'
 import { createStorage, uploadPath } from '@/api/storage'
 import Editor from '@tinymce/tinymce-vue'
 import { MessageBox } from 'element-ui'
@@ -160,18 +160,20 @@ export default {
       categoryList: [],
       brandList: [],
       categoryIds: [],
-      goods: { id: '1',
-        owLogo: 'http://localhost:8089/admin/storage/fetch/sl9q336i0u1ew2p7kv8m.jpg',
-        owName: '深圳致开科技有限公司',
-        owQrcodePath: 'http://localhost:8089/admin/storage/fetch/sl9q336i0u1ew2p7kv8m.jpg',
-        owPhoneName: '全国统一咨询热线',
-        owPhone: '0755-2720-2606',
-        owTel: '13530108906',
-        owWoekTime: '周一至周日 9:00-18:00 (节假日除外)',
-        owInternetcp: '深圳致开科技有限公司 版权所有 Copyright © 2015-2018 粤ICP备16004202号',
-        owMail: 'allen.cao@chiky.cn',
-        owAddress: '深圳宝安区盐田商务广场A座409、405、411、413',
-        owUrl: ' www.chikytech.com' },
+      basics: {
+        // id: '1',
+        // owLogo: 'http://localhost:8089/admin/storage/fetch/sl9q336i0u1ew2p7kv8m.jpg',
+        // owName: '深圳致开科技有限公司',
+        // owQrcodePath: 'http://localhost:8089/admin/storage/fetch/sl9q336i0u1ew2p7kv8m.jpg',
+        // owPhoneName: '全国统一咨询热线',
+        // owPhone: '0755-2720-2606',
+        // owTel: '13530108906',
+        // owWoekTime: '周一至周日 9:00-18:00 (节假日除外)',
+        // owInternetcp: '深圳致开科技有限公司 版权所有 Copyright © 2015-2018 粤ICP备16004202号',
+        // owMail: 'allen.cao@chiky.cn',
+        // owAddress: '深圳宝安区盐田商务广场A座409、405、411、413',
+        // owUrl: ' www.chikytech.com'
+      },
       specVisiable: false,
       specForm: { specification: '', value: '', picUrl: '' },
       specifications: [{ specification: '规格', value: '标准', picUrl: '' }],
@@ -244,37 +246,10 @@ export default {
         return
       }
 
-      // const goodsId = this.$route.query.id
-      // detailGoods(goodsId).then(response => {
-      //   this.goods = response.data.data.goods
-      //   // 稍微调整一下前后端不一致
-      //   if (this.goods.brandId === 0) {
-      //     this.goods.brandId = null
-      //   }
-      //   if (this.goods.keywords === '') {
-      //     this.goods.keywords = null
-      //   }
-      //   this.specifications = response.data.data.specifications
-      //   this.products = response.data.data.products
-      //   this.attributes = response.data.data.attributes
-      //   this.categoryIds = response.data.data.categoryIds
-      //
-      //   // this.galleryFileList = []
-      //   // for (var i = 0; i < this.goods.gallery.length; i++) {
-      //   //   this.galleryFileList.push({
-      //   //     url: this.goods.gallery[i]
-      //   //   })
-      //   // }
-      //   const keywords = response.data.data.goods.keywords
-      //   if (keywords !== null) {
-      //     this.keywords = keywords.split(',')
-      //   }
-      // })
-      //
-      // listCatAndBrand().then(response => {
-      //   this.categoryList = response.data.data.categoryList
-      //   this.brandList = response.data.data.brandList
-      // })
+      const id = this.$route.query.id
+      readBasic(id).then(response => {
+        this.basics = response.data.data
+      })
     },
     handleCancel: function() {
       this.$store.dispatch('tagsView/delView', this.$route)
@@ -283,12 +258,12 @@ export default {
     // 修改方法
     handleEdit: function() {
       const finalGoods = {
-        goods: this.goods,
-        specifications: this.specifications,
-        products: this.products,
-        attributes: this.attributes
+        zkBasics: this.basics
+        // specifications: this.specifications,
+        // products: this.products,
+        // attributes: this.attributes
       }
-      editGoods(finalGoods)
+      editBasic(this.basics)
         .then(response => {
           this.$notify.success({
             title: '成功',
@@ -305,8 +280,11 @@ export default {
         })
     },
     // 图片上传方法
-    uploadPicUrl: function(response) {
-      this.goods.picUrl = response.data.url
+    uploadLogoUrl: function(response) {
+      this.basics.owLogo = response.data.url
+    },
+    uploadQrcodeUrl: function(response) {
+      this.basics.owQrcodePath = response.data.url
     }
   }
 }

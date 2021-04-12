@@ -117,7 +117,7 @@ public class AdminStorageController {
         return ResponseEntity.ok().contentType(mediaType).body(file);
     }
     /**
-     * 访问存储对象
+     * 下载存储对象
      *
      * @param key 存储对象key
      * @return

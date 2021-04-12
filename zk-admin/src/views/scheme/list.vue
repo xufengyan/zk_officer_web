@@ -32,7 +32,7 @@
         </template>
       </el-table-column>
 
-      <el-table-column align="center" min-width="100" label="方案内容" prop="sContent" />
+      <!--      <el-table-column align="center" min-width="100" label="方案内容" prop="sContent" />-->
       <!--      <el-table-column align="center" min-width="100" label="手机" prop="owTel" />-->
       <!--      <el-table-column align="center" min-width="100" label="工作时间" prop="owWoekTime" />-->
       <!--      <el-table-column align="center" min-width="100" label="备案" prop="owInternetcp" />-->
@@ -79,7 +79,7 @@
 </style>
 
 <script>
-// import { listGoods, deleteGoods } from '@/api/basic'
+import { listScheme } from '@/api/scheme'
 import BackToTop from '@/components/BackToTop'
 import Pagination from '@/components/Pagination' // Secondary package based on el-pagination
 
@@ -88,12 +88,7 @@ export default {
   components: { BackToTop, Pagination },
   data() {
     return {
-      list: [{
-        id: '1',
-        sName: '定位测量方案',
-        sImagePath: '',
-        sContent: ''
-      }],
+      list: [],
       total: 0,
       listLoading: false,
       listQuery: {
@@ -110,21 +105,21 @@ export default {
     }
   },
   created() {
-    // this.getList()
+    this.getList()
   },
   methods: {
-    // getList() {
-    //   this.listLoading = true
-    //   listGoods(this.listQuery).then(response => {
-    //     this.list = response.data.data.list
-    //     this.total = response.data.data.total
-    //     this.listLoading = false
-    //   }).catch(() => {
-    //     this.list = []
-    //     this.total = 0
-    //     this.listLoading = false
-    //   })
-    // },
+    getList() {
+      this.listLoading = true
+      listScheme(this.listQuery).then(response => {
+        this.list = response.data.data.list
+        this.total = response.data.data.total
+        this.listLoading = false
+      }).catch(() => {
+        this.list = []
+        this.total = 0
+        this.listLoading = false
+      })
+    },
     // handleFilter() {
     //   this.listQuery.page = 1
     //   this.getList()

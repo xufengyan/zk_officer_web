@@ -25,7 +25,7 @@
 
       <el-table-column align="center" label="ID" prop="id" />
 
-      <el-table-column align="center" label="链接" prop="visitUrl" />
+      <!--      <el-table-column align="center" label="链接" prop="visitUrl" />-->
 
       <el-table-column align="center" property="iconUrl" label="图片">
         <template slot-scope="scope">
@@ -62,10 +62,10 @@
     <!-- 添加对话框 -->
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="createDialogVisible">
       <el-form ref="dataForm" :rules="rules" :model="category" status-icon label-position="left" label-width="100px" style="width: 400px; margin-left:50px;">
-        <el-form-item label="链接" prop="lable">
-          <el-input v-model="category.lable" />
-        </el-form-item>
-        <el-form-item label="合作伙伴图片">
+        <!--        <el-form-item label="链接" prop="lable">-->
+        <!--          <el-input v-model="category.lable" />-->
+        <!--        </el-form-item>-->
+        <el-form-item label="荣誉图片">
           <el-upload
             :action="uploadPath"
             :show-file-list="false"
@@ -138,121 +138,121 @@
 </style>
 
 <script>
-  // import { listGoods, deleteGoods } from '@/api/basic'
-  import BackToTop from '@/components/BackToTop'
-  import Pagination from '@/components/Pagination' // Secondary package based on el-pagination
-  import { createStorage, uploadPath } from '@/api/storage'
-  import { getToken } from '@/utils/auth'
+// import { listGoods, deleteGoods } from '@/api/basic'
+import BackToTop from '@/components/BackToTop'
+import Pagination from '@/components/Pagination' // Secondary package based on el-pagination
+import { createStorage, uploadPath } from '@/api/storage'
+import { getToken } from '@/utils/auth'
 
-  export default {
-    name: 'GoodsList',
-    components: { BackToTop, Pagination },
-    data() {
-      return {
-        uploadPath,
-        dataForm:{
-          lable:'',
-        },
-        createDialogVisible: false,
-        list: [{
-          id: '1',
-          imageUrl:'http://localhost:8089/admin/storage/fetch/lurdfr7w7wo2itgimhgu.jpg',
-          visitUrl:'ssssss',
-          lable:'zk1000系列'
-        }],
-        collaborate:{
-          id:null,
-          visitUrl:null,
-          imageUrl:null,
-          image_type:3,
-        },
-        total: 1,
-        listLoading: false,
-        listQuery: {
-          page: 1,
-          limit: 20,
-          goodsSn: undefined,
-          name: undefined,
-          sort: 'add_time',
-          order: 'desc'
-        },
-        goodsDetail: '',
-        detailDialogVisible: false,
-        downloadLoading: false,
-        rules: {
-          lable: [
-            { required: true, message: '角色名称不能为空', trigger: 'blur' }
-          ]
-        },
-        textMap: {
-          update: '编辑',
-          create: '创建'
-        },
-        dialogStatus:'create',
-        category:{
-          id:null,
-          value:null,
-          lable:''
-        }
+export default {
+  name: 'GoodsList',
+  components: { BackToTop, Pagination },
+  data() {
+    return {
+      uploadPath,
+      dataForm: {
+        lable: ''
+      },
+      createDialogVisible: false,
+      list: [{
+        id: '1',
+        imageUrl: 'http://localhost:8089/admin/storage/fetch/lurdfr7w7wo2itgimhgu.jpg',
+        visitUrl: 'ssssss',
+        lable: 'zk1000系列'
+      }],
+      collaborate: {
+        id: null,
+        visitUrl: null,
+        imageUrl: null,
+        image_type: 3
+      },
+      total: 1,
+      listLoading: false,
+      listQuery: {
+        page: 1,
+        limit: 20,
+        goodsSn: undefined,
+        name: undefined,
+        sort: 'add_time',
+        order: 'desc'
+      },
+      goodsDetail: '',
+      detailDialogVisible: false,
+      downloadLoading: false,
+      rules: {
+        lable: [
+          { required: true, message: '角色名称不能为空', trigger: 'blur' }
+        ]
+      },
+      textMap: {
+        update: '编辑',
+        create: '创建'
+      },
+      dialogStatus: 'create',
+      category: {
+        id: null,
+        value: null,
+        lable: ''
       }
-    },
-    computed: {
-      headers() {
-        return {
-          'X-ZK-Admin-Token': getToken()
-        }
-      }
-    },
-    created() {
-      // this.getList()
-    },
-    methods: {
-      // getList() {
-      //   this.listLoading = true
-      //   listGoods(this.listQuery).then(response => {
-      //     this.list = response.data.data.list
-      //     this.total = response.data.data.total
-      //     this.listLoading = false
-      //   }).catch(() => {
-      //     this.list = []
-      //     this.total = 0
-      //     this.listLoading = false
-      //   })
-      // },
-      // handleFilter() {
-      //   this.listQuery.page = 1
-      //   this.getList()
-      // },
-      // handleCreate() {
-      //   this.$router.push({ path: '/goods/create' })
-      // },
-      uploadPicUrl: function(response) {
-        this.collaborate.imageUrl = response.data.url
-      },
-      handleUpdate(row) {
-        // this.$router.push({ path: '/basic/categoryEdit', query: { id: row.id }})
-        this.dialogStatus = 'update'
-        this.createDialogVisible = true
-        //
-        this.category.id = row.id
-        this.category.value = row.value
-        this.category.lable = row.lable
-      },
-      handleCreate() {
-        // this.$router.push({ path: '/basic/categoryCreate' })
-        this.dialogStatus = 'create'
-        this.createDialogVisible = true
-      },
-      createData(){
-        console.log(this.category)
-      },
-      updateData(){
-        console.log(this.category)
-      }
-      // showDetail(detail) {
-      //   this.goodsDetail = detail
-      //   this.detailDialogVisible = true
-      // },
     }
+  },
+  computed: {
+    headers() {
+      return {
+        'X-ZK-Admin-Token': getToken()
+      }
+    }
+  },
+  created() {
+    // this.getList()
+  },
+  methods: {
+    // getList() {
+    //   this.listLoading = true
+    //   listGoods(this.listQuery).then(response => {
+    //     this.list = response.data.data.list
+    //     this.total = response.data.data.total
+    //     this.listLoading = false
+    //   }).catch(() => {
+    //     this.list = []
+    //     this.total = 0
+    //     this.listLoading = false
+    //   })
+    // },
+    // handleFilter() {
+    //   this.listQuery.page = 1
+    //   this.getList()
+    // },
+    // handleCreate() {
+    //   this.$router.push({ path: '/goods/create' })
+    // },
+    uploadPicUrl: function(response) {
+      this.collaborate.imageUrl = response.data.url
+    },
+    handleUpdate(row) {
+      // this.$router.push({ path: '/basic/categoryEdit', query: { id: row.id }})
+      this.dialogStatus = 'update'
+      this.createDialogVisible = true
+      //
+      this.category.id = row.id
+      this.category.value = row.value
+      this.category.lable = row.lable
+    },
+    handleCreate() {
+      // this.$router.push({ path: '/basic/categoryCreate' })
+      this.dialogStatus = 'create'
+      this.createDialogVisible = true
+    },
+    createData() {
+      console.log(this.category)
+    },
+    updateData() {
+      console.log(this.category)
+    }
+    // showDetail(detail) {
+    //   this.goodsDetail = detail
+    //   this.detailDialogVisible = true
+    // },
   }
+}
 </script>

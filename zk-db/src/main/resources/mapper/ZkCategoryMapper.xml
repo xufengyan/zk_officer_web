@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xf.project.db.dao.ZkCategoryMapper">
+
+    <resultMap type="com.xf.project.db.domain.ZkCategory" id="ZkCategoryResult">
+        <result property="id"    column="id"    />
+        <result property="value"    column="value"    />
+        <result property="label"    column="label"    />
+    </resultMap>
+
+    <sql id="selectZkCategoryVo">
+        select id, value, label from zk_category
+    </sql>
+
+    <select id="selectZkCategoryList" parameterType="com.xf.project.db.domain.ZkCategory" resultMap="ZkCategoryResult">
+        <include refid="selectZkCategoryVo"/>
+        <where>
+            <if test="value != null "> and value = #{value}</if>
+            <if test="label != null  and label != ''"> and label = #{label}</if>
+        </where>
+    </select>
+
+    <select id="selectZkCategoryById" parameterType="Long" resultMap="ZkCategoryResult">
+        <include refid="selectZkCategoryVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertZkCategory" parameterType="com.xf.project.db.domain.ZkCategory" useGeneratedKeys="true" keyProperty="id">
+        insert into zk_category
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="value != null ">value,</if>
+            <if test="label != null  and label != ''">label,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="value != null ">#{value},</if>
+            <if test="label != null  and label != ''">#{label},</if>
+         </trim>
+    </insert>
+
+    <update id="updateZkCategory" parameterType="com.xf.project.db.domain.ZkCategory">
+        update zk_category
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="value != null ">value = #{value},</if>
+            <if test="label != null  and label != ''">label = #{label},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteZkCategoryById" parameterType="Long">
+        delete from zk_category where id = #{id}
+    </delete>
+
+    <delete id="deleteZkCategoryByIds" parameterType="String">
+        delete from zk_category where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

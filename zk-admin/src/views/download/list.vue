@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
+    <h2>合作伙伴管理</h2>
     <!-- 查询和其他操作 -->
-    <h2>招聘管理</h2>
     <div class="filter-container">
       <!--      <el-input v-model="listQuery.goodsId" clearable class="filter-item" style="width: 160px;" placeholder="请输入商品ID" />-->
       <!--      <el-input v-model="listQuery.goodsSn" clearable class="filter-item" style="width: 160px;" placeholder="请输入商品编号" />-->
@@ -62,21 +62,29 @@
     <!-- 添加对话框 -->
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="createDialogVisible">
       <el-form ref="dataForm" :rules="rules" :model="category" status-icon label-position="left" label-width="100px" style="width: 400px; margin-left:50px;">
-        <el-form-item label="链接" prop="lable">
+        <el-form-item label="文件名" prop="lable">
           <el-input v-model="category.lable" />
         </el-form-item>
-        <el-form-item label="招聘网站图片">
-          <el-upload
-            :action="uploadPath"
-            :show-file-list="false"
-            :headers="headers"
-            :on-success="uploadPicUrl"
-            class="avatar-uploader"
-            accept=".jpg,.jpeg,.png,.gif"
-          >
-            <img v-if="collaborate.imageUrl" :src="collaborate.imageUrl" class="avatar">
-            <i v-else class="el-icon-plus avatar-uploader-icon" />
+        <el-form-item label="文件描述" prop="lable">
+          <el-input v-model="category.lable" />
+        </el-form-item>
+        <el-form-item label="文件">
+          <!--          <el-upload ref="upload" :limit="1" :http-request="handleUpload" action="#" list-type="picture" :file-list="fileList">-->
+          <!--          <el-button type="primary">点击上传</el-button>-->
+          <!--          </el-upload>-->
+          <el-upload ref="upload" :limit="1" :http-request="handleUpload" action="#" list-type="picture" :file-list="fileList">
+            <el-button type="primary">点击上传</el-button>
           </el-upload>
+          <!--          <el-upload-->
+          <!--            class="upload-demo"-->
+          <!--            action="https://jsonplaceholder.typicode.com/posts/"-->
+          <!--            :on-change="handleChange"-->
+          <!--            :file-list="fileList">-->
+          <!--            <el-button size="small" type="primary">点击上传</el-button>-->
+          <!--            <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>-->
+          <!--          </el-upload>-->
+          <!--            <img v-if="collaborate.imageUrl" :src="collaborate.imageUrl" class="avatar">-->
+          <!--            <i v-else class="el-icon-plus avatar-uploader-icon" />-->
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -158,14 +166,18 @@ export default {
         id: '1',
         imageUrl: 'http://localhost:8089/admin/storage/fetch/lurdfr7w7wo2itgimhgu.jpg',
         visitUrl: 'ssssss',
-        lable: 'zk1000系列'
+        image_type: 1
       }],
       collaborate: {
         id: null,
         visitUrl: null,
         imageUrl: null,
-        image_type: 2
+        image_type: 1
       },
+      fileList: [{
+        name: 'ffff.sql',
+        url: ''
+      }],
       total: 1,
       listLoading: false,
       listQuery: {
@@ -248,6 +260,21 @@ export default {
     },
     updateData() {
       console.log(this.category)
+    },
+    handleUpload(item) {
+      this.$refs.upload.clearFiles()
+      const formData = new FormData()
+      formData.append('file', item.file)
+      createStorage(formData).then(response => {
+        this.list.unshift(response.data.data)
+        this.createDialogVisible = false
+        this.$notify.success({
+          title: '成功',
+          message: '上传成功'
+        })
+      }).catch(() => {
+        this.$message.error('上传失败，请重新上传')
+      })
     }
     // showDetail(detail) {
     //   this.goodsDetail = detail
