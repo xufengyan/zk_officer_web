@@ -25,7 +25,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="imageType != null "> and image_type = #{imageType}</if>
             <if test="visitUrl != null  and visitUrl != ''"> and visit_url = #{visitUrl}</if>
             <if test="addTime != null "> and add_time = #{addTime}</if>
-            <if test="delType != null "> and del_type = #{delType}</if>
+            and del_type = 0
         </where>
     </select>
 

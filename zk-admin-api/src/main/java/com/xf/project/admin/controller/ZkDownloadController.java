@@ -35,7 +35,7 @@ public class ZkDownloadController
     @RequiresPermissions("admin:download:list")
     @RequiresPermissionsDesc(menu = {"官网管理","说明文件下载"} ,button = "查询")
     @GetMapping("/list")
-    public Object list(@RequestBody ZkDownload zkDownload)
+    public Object list(ZkDownload zkDownload)
     {
         PageHelper.startPage(zkDownload.getPage(), zkDownload.getLimit());
         List<ZkDownload> list = zkDownloadService.selectZkDownloadList(zkDownload);

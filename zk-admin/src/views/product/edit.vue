@@ -257,7 +257,7 @@ export default {
     },
     // 图片上传方法
     uploadPicUrl: function(response) {
-      this.product.picUrl = response.data.url
+      this.$set(this.product, 'pImagePath', response.data.url)
     }
   }
 }

@@ -61,8 +61,19 @@ public class AdminStorageController {
     @RequiresPermissions("admin:storage:read")
     @RequiresPermissionsDesc(menu = {"系统管理", "对象存储"}, button = "详情")
     @PostMapping("/read")
-    public Object read(@NotNull Integer id) {
-        ZkStorage storageInfo = zkStorageService.findById(id);
+    public Object read(@NotNull String key) {
+        ZkStorage storageInfo = zkStorageService.findByKey(key);
+        if (storageInfo == null) {
+            return ResponseUtil.badArgumentValue();
+        }
+        return ResponseUtil.ok(storageInfo);
+    }
+
+    @RequiresPermissions("admin:storage:read")
+    @RequiresPermissionsDesc(menu = {"系统管理", "对象存储"}, button = "详情")
+    @GetMapping("/read/{key}")
+    public Object readBykey(@PathVariable("key") String key) {
+        ZkStorage storageInfo = zkStorageService.findByKey(key);
         if (storageInfo == null) {
             return ResponseUtil.badArgumentValue();
         }

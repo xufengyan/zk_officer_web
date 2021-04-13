@@ -56,9 +56,9 @@
     </el-tooltip>
     <!-- 添加对话框 -->
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="createDialogVisible">
-      <el-form ref="dataForm" :rules="rules" :model="category" status-icon label-position="left" label-width="100px" style="width: 400px; margin-left:50px;">
+      <el-form ref="dataForm" :rules="rules" :model="dataForm" status-icon label-position="left" label-width="100px" style="width: 400px; margin-left:50px;">
         <el-form-item label="系列名称" prop="name">
-          <el-input v-model="category.label" />
+          <el-input v-model="dataForm.label" />
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -160,50 +160,65 @@ export default {
     // handleCreate() {
     //   this.$router.push({ path: '/goods/create' })
     // },
+    resetForm() {
+      this.dataForm = {
+        value: undefined,
+        label: undefined
+      }
+    },
     handleUpdate(row) {
+      this.dataForm = Object.assign({}, row)
       // this.$router.push({ path: '/basic/categoryEdit', query: { id: row.id }})
       this.dialogStatus = 'update'
       this.createDialogVisible = true
-      //
-      this.category.id = row.id
-      this.category.value = row.value
-      this.category.label = row.label
+      this.$nextTick(() => {
+        this.$refs['dataForm'].clearValidate()
+      })
     },
     handleCreate() {
-      // this.$router.push({ path: '/basic/categoryCreate' })
+      this.resetForm()
       this.dialogStatus = 'create'
       this.createDialogVisible = true
+      this.$nextTick(() => {
+        this.$refs['dataForm'].clearValidate()
+      })
     },
     createData() {
-      console.log(this.category)
-      createCategory(this.category).then(response => {
-        this.list.unshift(response.data.data)
-        this.$notify.success({
-          title: '成功',
-          message: '添加成功'
-        })
-        this.createDialogVisible = false
-      }).catch(response => {
-        MessageBox.alert('业务错误：' + response.data.errmsg, '警告', {
-          confirmButtonText: '确定',
-          type: 'error'
-        })
+      this.$refs['dataForm'].validate(valid => {
+        if (valid) {
+          createCategory(this.dataForm).then(response => {
+            this.list.unshift(response.data.data)
+            this.$notify.success({
+              title: '成功',
+              message: '添加成功'
+            })
+            this.createDialogVisible = false
+          }).catch(response => {
+            MessageBox.alert('业务错误：' + response.data.errmsg, '警告', {
+              confirmButtonText: '确定',
+              type: 'error'
+            })
+          })
+        }
       })
     },
     updateData() {
-      console.log(this.category)
-      editCategory(this.category).then(response => {
-        this.$notify.success({
-          title: '成功',
-          message: '修改成功'
-        })
-        this.getList()
-        this.createDialogVisible = false
-      }).catch(response => {
-        MessageBox.alert('业务错误：' + response.data.errmsg, '警告', {
-          confirmButtonText: '确定',
-          type: 'error'
-        })
+      this.$refs['dataForm'].validate(valid => {
+        if (valid) {
+          editCategory(this.dataForm).then(response => {
+            this.$notify.success({
+              title: '成功',
+              message: '修改成功'
+            })
+            this.getList()
+            this.createDialogVisible = false
+          }).catch(response => {
+            MessageBox.alert('业务错误：' + response.data.errmsg, '警告', {
+              confirmButtonText: '确定',
+              type: 'error'
+            })
+          })
+        }
       })
     }
     // showDetail(detail) {

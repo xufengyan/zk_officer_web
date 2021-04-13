@@ -1,8 +1,13 @@
 <template>
   <div class="app-container">
-    <h2>合作伙伴管理</h2>
+    <h2>下载文件管理</h2>
     <!-- 查询和其他操作 -->
     <div class="filter-container">
+      <el-form ref="download" label-width="150px">
+        <el-form-item label="类型" prop="luaIds">
+          <el-cascader :value="luaIds" :options="luaList" expand-trigger="hover" @change="handleLuaChange" />
+        </el-form-item>
+      </el-form>
       <!--      <el-input v-model="listQuery.goodsId" clearable class="filter-item" style="width: 160px;" placeholder="请输入商品ID" />-->
       <!--      <el-input v-model="listQuery.goodsSn" clearable class="filter-item" style="width: 160px;" placeholder="请输入商品编号" />-->
       <!--      <el-input v-model="listQuery.name" clearable class="filter-item" style="width: 160px;" placeholder="请输入商品名称" />-->
@@ -25,11 +30,15 @@
 
       <el-table-column align="center" label="ID" prop="id" />
 
-      <el-table-column align="center" label="链接" prop="visitUrl" />
+      <el-table-column align="center" label="文件名" prop="dName" />
+
+      <el-table-column align="center" label="文件描述" prop="dDescibe" />
+
+      <el-table-column align="center" label="文件语言" prop="dLanType" />
 
       <el-table-column align="center" property="iconUrl" label="图片">
         <template slot-scope="scope">
-          <img :src="scope.row.imageUrl" width="100">
+          <img :src="scope.row.dImagePath" width="100">
         </template>
       </el-table-column>
       <!--      <el-table-column align="center" property="iconUrl" label="产品图片">-->
@@ -61,30 +70,40 @@
     </el-tooltip>
     <!-- 添加对话框 -->
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="createDialogVisible">
-      <el-form ref="dataForm" :rules="rules" :model="category" status-icon label-position="left" label-width="100px" style="width: 400px; margin-left:50px;">
-        <el-form-item label="文件名" prop="lable">
-          <el-input v-model="category.lable" />
+      <el-form ref="dataForm" :rules="rules" :model="dataForm" status-icon label-position="left" label-width="100px" style="width: 400px; margin-left:50px;">
+        <el-form-item label="文件名" prop="dname">
+          <el-input v-model="dataForm.dName" />
         </el-form-item>
-        <el-form-item label="文件描述" prop="lable">
-          <el-input v-model="category.lable" />
+        <el-form-item label="文件描述" prop="content">
+          <el-input v-model="dataForm.dDescibe" />
         </el-form-item>
-        <el-form-item label="文件">
-          <!--          <el-upload ref="upload" :limit="1" :http-request="handleUpload" action="#" list-type="picture" :file-list="fileList">-->
-          <!--          <el-button type="primary">点击上传</el-button>-->
-          <!--          </el-upload>-->
-          <el-upload ref="upload" :limit="1" :http-request="handleUpload" action="#" list-type="picture" :file-list="fileList">
+        <el-form-item label="图片">
+          <el-upload
+            :headers="headers"
+            :action="uploadPath"
+            :show-file-list="false"
+            :on-success="uploadPicUrl"
+            class="avatar-uploader"
+            accept=".jpg,.jpeg,.png,.gif"
+          >
+            <img v-if="dataForm.dImagePath" :src="dataForm.dImagePath" class="avatar">
+            <i v-else class="el-icon-plus avatar-uploader-icon" />
+          </el-upload>
+        </el-form-item>
+
+        <el-form-item label="文件" prop="dPath">
+          <el-upload
+            ref="upload"
+            :limit="1"
+            :http-request="handleUpload"
+            :on-remove="handelRemove"
+            action="#"
+            list-type="text"
+            :file-list="fileList"
+            :on-exceed="handleExceed"
+          >
             <el-button type="primary">点击上传</el-button>
           </el-upload>
-          <!--          <el-upload-->
-          <!--            class="upload-demo"-->
-          <!--            action="https://jsonplaceholder.typicode.com/posts/"-->
-          <!--            :on-change="handleChange"-->
-          <!--            :file-list="fileList">-->
-          <!--            <el-button size="small" type="primary">点击上传</el-button>-->
-          <!--            <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>-->
-          <!--          </el-upload>-->
-          <!--            <img v-if="collaborate.imageUrl" :src="collaborate.imageUrl" class="avatar">-->
-          <!--            <i v-else class="el-icon-plus avatar-uploader-icon" />-->
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -146,10 +165,10 @@
 </style>
 
 <script>
-// import { listGoods, deleteGoods } from '@/api/basic'
+import { listDownload, createDownload, editDownload } from '@/api/download'
 import BackToTop from '@/components/BackToTop'
 import Pagination from '@/components/Pagination' // Secondary package based on el-pagination
-import { createStorage, uploadPath } from '@/api/storage'
+import { createStorage, uploadPath, readStorageBykey } from '@/api/storage'
 import { getToken } from '@/utils/auth'
 
 export default {
@@ -159,32 +178,27 @@ export default {
     return {
       uploadPath,
       dataForm: {
-        lable: ''
+        dName: undefined,
+        dDescibe: undefined,
+        dImagePath: undefined,
+        dPath: undefined,
+        dLanType: undefined
       },
       createDialogVisible: false,
-      list: [{
-        id: '1',
-        imageUrl: 'http://localhost:8089/admin/storage/fetch/lurdfr7w7wo2itgimhgu.jpg',
-        visitUrl: 'ssssss',
-        image_type: 1
-      }],
+      list: [],
       collaborate: {
         id: null,
         visitUrl: null,
         imageUrl: null,
         image_type: 1
       },
-      fileList: [{
-        name: 'ffff.sql',
-        url: ''
-      }],
+      fileList: [],
       total: 1,
       listLoading: false,
       listQuery: {
         page: 1,
         limit: 20,
-        goodsSn: undefined,
-        name: undefined,
+        dLanType: 'zh-CN',
         sort: 'add_time',
         order: 'desc'
       },
@@ -192,7 +206,7 @@ export default {
       detailDialogVisible: false,
       downloadLoading: false,
       rules: {
-        lable: [
+        dPath: [
           { required: true, message: '角色名称不能为空', trigger: 'blur' }
         ]
       },
@@ -201,6 +215,17 @@ export default {
         create: '创建'
       },
       dialogStatus: 'create',
+      download: {},
+      luaIds: 'zh-CN',
+      luaList: [{
+        value: 'zh-CN',
+        label: '中文'
+      },
+      {
+        value: 'en',
+        label: '英文'
+      }
+      ],
       category: {
         id: null,
         value: null,
@@ -216,21 +241,21 @@ export default {
     }
   },
   created() {
-    // this.getList()
+    this.getList()
   },
   methods: {
-    // getList() {
-    //   this.listLoading = true
-    //   listGoods(this.listQuery).then(response => {
-    //     this.list = response.data.data.list
-    //     this.total = response.data.data.total
-    //     this.listLoading = false
-    //   }).catch(() => {
-    //     this.list = []
-    //     this.total = 0
-    //     this.listLoading = false
-    //   })
-    // },
+    getList() {
+      this.listLoading = true
+      listDownload(this.listQuery).then(response => {
+        this.list = response.data.data.list
+        this.total = response.data.data.total
+        this.listLoading = false
+      }).catch(() => {
+        this.list = []
+        this.total = 0
+        this.listLoading = false
+      })
+    },
     // handleFilter() {
     //   this.listQuery.page = 1
     //   this.getList()
@@ -239,35 +264,97 @@ export default {
     //   this.$router.push({ path: '/goods/create' })
     // },
     uploadPicUrl: function(response) {
-      this.collaborate.imageUrl = response.data.url
+      this.dataForm.dImagePath = response.data.url
     },
     handleUpdate(row) {
-      // this.$router.push({ path: '/basic/categoryEdit', query: { id: row.id }})
+      this.fileList = []
+      this.dataForm = Object.assign({}, row)
+      // this.fileList[0].name = row.dName
+      // this.fileList[0].url = row.dPath
+      // this.fileList.push({name: row.dName,url: row.dPath})
+      readStorageBykey(row.dPath).then(response => {
+        this.fileList.push({ name: response.data.data.name, url: response.data.data.url })
+      })
+
       this.dialogStatus = 'update'
       this.createDialogVisible = true
-      //
-      this.category.id = row.id
-      this.category.value = row.value
-      this.category.lable = row.lable
+      this.$nextTick(() => {
+        this.$refs['dataForm'].clearValidate()
+      })
+    },
+    resetForm() {
+      this.fileList = []
+      this.dataForm = {
+        dName: undefined,
+        dDescibe: undefined,
+        dImagePath: undefined,
+        dPath: undefined,
+        dLanType: this.luaIds
+      }
     },
     handleCreate() {
       // this.$router.push({ path: '/basic/categoryCreate' })
+      this.resetForm()
       this.dialogStatus = 'create'
       this.createDialogVisible = true
+      this.$nextTick(() => {
+        this.$refs['dataForm'].clearValidate()
+      })
     },
     createData() {
-      console.log(this.category)
+      if (this.fileList.length != 1) {
+        return this.$message.error('请上传文件，或者文件上传数量大于1')
+      }
+      this.$refs['dataForm'].validate(valid => {
+        if (valid) {
+          createDownload(this.dataForm).then(response => {
+            this.$notify.success({
+              title: '成功',
+              message: '添加成功'
+            })
+            this.getList()
+            this.createDialogVisible = false
+          }).catch(response => {
+            MessageBox.alert('业务错误：' + response.data.errmsg, '警告', {
+              confirmButtonText: '确定',
+              type: 'error'
+            })
+          })
+        }
+      })
+      console.log(this.dataForm)
     },
     updateData() {
-      console.log(this.category)
+      if (this.fileList.length != 1) {
+        return this.$message.error('请上传文件，或者文件上传数量大于1')
+      }
+      this.$refs['dataForm'].validate(valid => {
+        if (valid) {
+          editDownload(this.dataForm).then(response => {
+            this.$notify.success({
+              title: '成功',
+              message: '添加成功'
+            })
+            this.getList()
+            this.createDialogVisible = false
+          }).catch(response => {
+            MessageBox.alert('业务错误：' + response.data.errmsg, '警告', {
+              confirmButtonText: '确定',
+              type: 'error'
+            })
+          })
+        }
+      })
     },
     handleUpload(item) {
       this.$refs.upload.clearFiles()
       const formData = new FormData()
       formData.append('file', item.file)
       createStorage(formData).then(response => {
-        this.list.unshift(response.data.data)
-        this.createDialogVisible = false
+        // this.list.unshift(response.data.data)
+        // this.createDialogVisible = false
+        this.fileList.push({ name: response.data.data.name, url: response.data.data.name.url })
+        this.dataForm.dPath = response.data.data.key
         this.$notify.success({
           title: '成功',
           message: '上传成功'
@@ -275,11 +362,23 @@ export default {
       }).catch(() => {
         this.$message.error('上传失败，请重新上传')
       })
+    },
+    handleExceed() {
+      this.$notify.error('上传失败！ 超出最大文件上传数，最大文件上传数为1')
+    },
+    handleLuaChange(value) {
+      this.luaIds = value[value.length - 1]
+      this.listQuery.dLanType = value[value.length - 1]
+      this.getList()
+    },
+    handelRemove() {
+      this.fileList = []
     }
     // showDetail(detail) {
     //   this.goodsDetail = detail
     //   this.detailDialogVisible = true
     // },
   }
+
 }
 </script>

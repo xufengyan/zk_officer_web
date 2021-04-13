@@ -9,9 +9,11 @@ import com.xf.project.db.service.ZkImageManagementService;
 import com.xf.project.framework.util.ResponseUtil;
 import com.xf.project.framework.util.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.jboss.logging.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -83,16 +85,20 @@ public class ZkImageManagementController
 
     /**
      * 删除轮播，荣誉等管理
+     * 逻辑删除
      */
     @RequiresPermissions("admin:management:remove")
     @RequiresPermissionsDesc(menu = {"官网管理","图片管理"} , button = "删除")
-    @PostMapping( "/remove")
-    public Object remove(@RequestBody Long id)
+    @GetMapping("/remove/{id}")
+    public Object remove(@PathVariable("id") Long id)
     {
         if (id == null) {
         return ResponseUtil.badArgument();
         }
-        zkImageManagementService.deleteZkImageManagementById(id);
+        ZkImageManagement zkImageManagement = new ZkImageManagement();
+        zkImageManagement.setId(id);
+        zkImageManagement.setDelType(1L);
+        zkImageManagementService.updateZkImageManagement(zkImageManagement);
         return ResponseUtil.ok();
     }
 }

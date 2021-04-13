@@ -22,20 +22,13 @@ import org.springframework.web.bind.annotation.*;
  * @date 2021-04-12
  */
 @RestController
-@RequestMapping("/admin/list")
+@RequestMapping("/admin/paragraph")
 public class ZkListController
 {
-    private String prefix = "admin/list";
+    private String prefix = "admin/paragraph";
 
     @Autowired
     private ZkListService zkListService;
-
-    @RequiresPermissions("admin:list:view")
-    @GetMapping()
-    public String list()
-    {
-        return prefix + "/list";
-    }
 
     /**
      * 查询技术领域和优势段落列表

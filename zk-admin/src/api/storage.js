@@ -19,8 +19,15 @@ export function createStorage(data) {
 export function readStorage(data) {
   return request({
     url: '/storage/read',
-    method: 'get',
+    method: 'post',
     data
+  })
+}
+
+export function readStorageBykey(data) {
+  return request({
+    url: '/storage/read/' + data,
+    method: 'get'
   })
 }
 

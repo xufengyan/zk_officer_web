@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
-    <!-- 查询和其他操作 -->
     <h2>荣誉管理</h2>
+    <!-- 查询和其他操作 -->
     <div class="filter-container">
       <!--      <el-input v-model="listQuery.goodsId" clearable class="filter-item" style="width: 160px;" placeholder="请输入商品ID" />-->
       <!--      <el-input v-model="listQuery.goodsSn" clearable class="filter-item" style="width: 160px;" placeholder="请输入商品编号" />-->
@@ -25,7 +25,7 @@
 
       <el-table-column align="center" label="ID" prop="id" />
 
-      <!--      <el-table-column align="center" label="链接" prop="visitUrl" />-->
+      <el-table-column align="center" label="链接" prop="visitUrl" />
 
       <el-table-column align="center" property="iconUrl" label="图片">
         <template slot-scope="scope">
@@ -61,10 +61,7 @@
     </el-tooltip>
     <!-- 添加对话框 -->
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="createDialogVisible">
-      <el-form ref="dataForm" :rules="rules" :model="category" status-icon label-position="left" label-width="100px" style="width: 400px; margin-left:50px;">
-        <!--        <el-form-item label="链接" prop="lable">-->
-        <!--          <el-input v-model="category.lable" />-->
-        <!--        </el-form-item>-->
+      <el-form ref="dataForm" :rules="rules" :model="dataForm" status-icon label-position="left" label-width="100px" style="width: 400px; margin-left:50px;">
         <el-form-item label="荣誉图片">
           <el-upload
             :action="uploadPath"
@@ -74,7 +71,7 @@
             class="avatar-uploader"
             accept=".jpg,.jpeg,.png,.gif"
           >
-            <img v-if="collaborate.imageUrl" :src="collaborate.imageUrl" class="avatar">
+            <img v-if="dataForm.imageUrl" :src="dataForm.imageUrl" class="avatar">
             <i v-else class="el-icon-plus avatar-uploader-icon" />
           </el-upload>
         </el-form-item>
@@ -143,9 +140,10 @@ import BackToTop from '@/components/BackToTop'
 import Pagination from '@/components/Pagination' // Secondary package based on el-pagination
 import { createStorage, uploadPath } from '@/api/storage'
 import { getToken } from '@/utils/auth'
+import { listImageManagement, createImageManagement, editImageManagement } from '@/api/imageManagement'
 
 export default {
-  name: 'GoodsList',
+  name: 'EmploymentList',
   components: { BackToTop, Pagination },
   data() {
     return {
@@ -158,7 +156,7 @@ export default {
         id: '1',
         imageUrl: 'http://localhost:8089/admin/storage/fetch/lurdfr7w7wo2itgimhgu.jpg',
         visitUrl: 'ssssss',
-        lable: 'zk1000系列'
+        image_type: 1
       }],
       collaborate: {
         id: null,
@@ -171,17 +169,20 @@ export default {
       listQuery: {
         page: 1,
         limit: 20,
-        goodsSn: undefined,
-        name: undefined,
-        sort: 'add_time',
-        order: 'desc'
+        imageType: 3
+      },
+      dataForm: {
+        id: null,
+        visitUrl: null,
+        imageUrl: null,
+        image_type: 2
       },
       goodsDetail: '',
       detailDialogVisible: false,
       downloadLoading: false,
       rules: {
-        lable: [
-          { required: true, message: '角色名称不能为空', trigger: 'blur' }
+        visitUrl: [
+          { required: true, message: '链接不能为空', trigger: 'blur' }
         ]
       },
       textMap: {
@@ -204,55 +205,86 @@ export default {
     }
   },
   created() {
-    // this.getList()
+    this.getList()
   },
   methods: {
-    // getList() {
-    //   this.listLoading = true
-    //   listGoods(this.listQuery).then(response => {
-    //     this.list = response.data.data.list
-    //     this.total = response.data.data.total
-    //     this.listLoading = false
-    //   }).catch(() => {
-    //     this.list = []
-    //     this.total = 0
-    //     this.listLoading = false
-    //   })
-    // },
-    // handleFilter() {
-    //   this.listQuery.page = 1
-    //   this.getList()
-    // },
-    // handleCreate() {
-    //   this.$router.push({ path: '/goods/create' })
-    // },
+    getList() {
+      this.listLoading = true
+      listImageManagement(this.listQuery).then(response => {
+        this.list = response.data.data.list
+        this.total = response.data.data.total
+        this.listLoading = false
+      }).catch(() => {
+        this.list = []
+        this.total = 0
+        this.listLoading = false
+      })
+    },
+    resetForm() {
+      this.dataForm = {
+        id: undefined,
+        imageUrl: undefined,
+        imageType: 3
+      }
+    },
     uploadPicUrl: function(response) {
-      this.collaborate.imageUrl = response.data.url
+      this.dataForm.imageUrl = response.data.url
     },
     handleUpdate(row) {
-      // this.$router.push({ path: '/basic/categoryEdit', query: { id: row.id }})
+      this.dataForm = Object.assign({}, row)
       this.dialogStatus = 'update'
       this.createDialogVisible = true
-      //
-      this.category.id = row.id
-      this.category.value = row.value
-      this.category.lable = row.lable
+      this.$nextTick(() => {
+        this.$refs['dataForm'].clearValidate()
+      })
     },
     handleCreate() {
-      // this.$router.push({ path: '/basic/categoryCreate' })
+      this.resetForm()
       this.dialogStatus = 'create'
       this.createDialogVisible = true
+      this.$nextTick(() => {
+        this.$refs['dataForm'].clearValidate()
+      })
     },
     createData() {
-      console.log(this.category)
+      this.$refs['dataForm'].validate(valid => {
+        if (valid) {
+          createImageManagement(this.dataForm).then(res => {
+            this.$notify.success({
+              title: '成功',
+              message: '添加成功'
+            })
+            this.getList()
+            this.createDialogVisible = false
+          }).catch(response => {
+            MessageBox.alert('业务错误：' + response.data.errmsg, '警告', {
+              confirmButtonText: '确定',
+              type: 'error'
+            })
+          })
+        }
+      })
     },
     updateData() {
-      console.log(this.category)
+      this.$refs['dataForm'].validate(valid => {
+        if (valid) {
+          editImageManagement(this.dataForm).then(res => {
+            this.$notify.success({
+              title: '成功',
+              message: '添加成功'
+            })
+            this.getList()
+            this.createDialogVisible = false
+          }).catch(response => {
+            MessageBox.alert('业务错误：' + response.data.errmsg, '警告', {
+              confirmButtonText: '确定',
+              type: 'error'
+            })
+          })
+        }
+      })
     }
-    // showDetail(detail) {
-    //   this.goodsDetail = detail
-    //   this.detailDialogVisible = true
-    // },
+
   }
 }
 </script>
