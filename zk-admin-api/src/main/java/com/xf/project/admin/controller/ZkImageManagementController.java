@@ -45,6 +45,14 @@ public class ZkImageManagementController
         return ResponseUtil.okList(list);
     }
 
+    @GetMapping("/list.html")
+    public Object listHtml(ZkImageManagement zkImageManagement)
+    {
+//        PageHelper.startPage(zkImageManagement.getPage(), zkImageManagement.getLimit());
+        List<ZkImageManagement> list = zkImageManagementService.selectZkImageManagementList(zkImageManagement);
+        return ResponseUtil.ok(list);
+    }
+
     /**
      * 新增保存轮播，荣誉等管理
      */
