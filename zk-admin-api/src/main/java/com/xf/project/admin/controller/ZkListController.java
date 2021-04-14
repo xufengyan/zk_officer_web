@@ -42,15 +42,6 @@ public class ZkListController
         List<ZkList> list = zkListService.selectZkListList(zkList);
         return ResponseUtil.okList(list);
     }
-    /**
-     * 查询技术领域和优势段落列表
-     */
-    @GetMapping("/list.html")
-    public Object listHtml(ZkList zkList)
-    {
-        List<ZkList> list = zkListService.selectZkListList(zkList);
-        return ResponseUtil.ok(list);
-    }
 
     /**
      * 新增保存技术领域和优势段落

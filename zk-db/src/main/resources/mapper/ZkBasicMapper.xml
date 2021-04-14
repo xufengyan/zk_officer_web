@@ -19,11 +19,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="owUrl"    column="ow_url"    />
         <result property="owMail"    column="ow_mail"    />
         <result property="owAddress"    column="ow_address"    />
-        <result property="owLuaType"    column="ow_lua_type"    />
+        <result property="lan"    column="lan"    />
     </resultMap>
 
     <sql id="selectZkBasicVo">
-        select id, ow_logo, ow_name, ow_brief_introduction, ow_qrcode_path, ow_phone, ow_tel, ow_woek_time, ow_internetcp, add_time, update_time, ow_url, ow_mail, ow_address, ow_lua_type from zk_basic
+        select id, ow_logo, ow_name, ow_brief_introduction, ow_qrcode_path, ow_phone, ow_tel, ow_woek_time, ow_internetcp, add_time, update_time, ow_url, ow_mail, ow_address, lan from zk_basic
     </sql>
 
     <select id="selectZkBasicList" parameterType="com.xf.project.db.domain.ZkBasic" resultMap="ZkBasicResult">
@@ -40,7 +40,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="owUrl != null  and owUrl != ''"> and ow_url = #{owUrl}</if>
             <if test="owMail != null  and owMail != ''"> and ow_mail = #{owMail}</if>
             <if test="owAddress != null  and owAddress != ''"> and ow_address = #{owAddress}</if>
-            <if test="owLuaType != null  and owLuaType != ''"> and ow_lua_type = #{owLuaType}</if>
+            <if test="lan != null  and lan != ''"> and lan = #{lan}</if>
         </where>
     </select>
 
@@ -65,7 +65,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="owUrl != null  and owUrl != ''">ow_url,</if>
             <if test="owMail != null  and owMail != ''">ow_mail,</if>
             <if test="owAddress != null  and owAddress != ''">ow_address,</if>
-            <if test="owLuaType != null  and owLuaType != ''">ow_lua_type,</if>
+            <if test="lan != null  and lan != ''">lan,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="owLogo != null  and owLogo != ''">#{owLogo},</if>
@@ -81,7 +81,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="owUrl != null  and owUrl != ''">#{owUrl},</if>
             <if test="owMail != null  and owMail != ''">#{owMail},</if>
             <if test="owAddress != null  and owAddress != ''">#{owAddress},</if>
-            <if test="owLuaType != null  and owLuaType != ''">#{owLuaType},</if>
+            <if test="lan != null  and lan != ''">#{lan},</if>
          </trim>
     </insert>
 
@@ -101,7 +101,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="owUrl != null  and owUrl != ''">ow_url = #{owUrl},</if>
             <if test="owMail != null  and owMail != ''">ow_mail = #{owMail},</if>
             <if test="owAddress != null  and owAddress != ''">ow_address = #{owAddress},</if>
-            <if test="owLuaType != null  and owLuaType != ''">ow_lua_type = #{owLuaType},</if>
+            <if test="lan != null  and lan != ''">lan = #{lan},</if>
         </trim>
         where id = #{id}
     </update>

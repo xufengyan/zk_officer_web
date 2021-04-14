@@ -34,7 +34,7 @@
       <el-table-column align="center" min-width="100" label="公司网址" prop="owUrl" />
       <el-table-column align="center" min-width="100" label="公司地址" prop="owAddress" />
       <el-table-column align="center" min-width="100" label="公司邮箱" prop="owMail" />
-      <el-table-column align="center" min-width="100" label="语言类型" prop="owLuaType" />
+      <el-table-column align="center" min-width="100" label="语言类型" prop="lan" />
 
       <el-table-column align="center" label="操作" width="100" class-name="small-padding fixed-width">
         <template slot-scope="scope">

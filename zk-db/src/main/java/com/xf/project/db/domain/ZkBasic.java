@@ -48,7 +48,7 @@ public class ZkBasic extends BaseEntity
     private String owAddress;
 
     /** 语言类型 */
-    private String owLuaType;
+    private String lan;
 
     public void setId(Long id)
     {
@@ -158,14 +158,14 @@ public class ZkBasic extends BaseEntity
     {
         return owAddress;
     }
-    public void setOwLuaType(String owLuaType)
+    public void setLan(String lan)
     {
-        this.owLuaType = owLuaType;
+        this.lan = lan;
     }
 
-    public String getOwLuaType()
+    public String getLan()
     {
-        return owLuaType;
+        return lan;
     }
 
 

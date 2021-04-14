@@ -2,7 +2,7 @@
   <div class="app-container">
 
     <el-card class="box-card">
-      <h3>公司基本信息({{ basics.owLuaType }})</h3>
+      <h3>公司基本信息({{ basics.lan }})</h3>
       <el-form ref="basics" :rules="rules" :model="basics" label-width="150px">
         <el-form-item label="编辑ID" prop="id">
           <el-input v-model="basics.id" disabled />
