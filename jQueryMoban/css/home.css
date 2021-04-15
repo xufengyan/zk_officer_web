@@ -1,0 +1,27 @@
+/* .navbar-default .navbar-nav>.open>a,
+.navbar-default .navbar-nav>.open>a:focus,
+.navbar-default .navbar-nav>.open>a:hover{
+	background-color: transparent;
+	color: #fff;
+}
+.dropdown-menu{
+	min-width: 93px;
+	padding: 15px;
+	 background-color:rgba(202,202,202,0.2);
+}
+.navLink{
+	display: block;
+	font-size: 14px;
+	color: #fff;
+	padding: 8px 0;
+}
+.navLink:focus, .navLink:hover{
+	color: #ff6400;
+	text-decoration: none;
+}
+.changeLanger{
+	color: #fff !important;
+}
+.activeColor{
+	color: #ff6400 !important;
+} */
