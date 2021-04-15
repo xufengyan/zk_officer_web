@@ -184,7 +184,7 @@ function addSchemeList(callback) {
         }
     });
 }
-function addDownloadList() {
+function addDownloadList(callback) {
     var str = "";
     $.ajax({
         url: "http://localhost:8089/html/download/list.html",
@@ -201,6 +201,7 @@ function addDownloadList() {
             })
             str+="<li><a href=\"#\">更多</a></li>\n"
             $("#download").html(str)
+            callback(res)
         },
         error: function (error) {
             alert(error);
