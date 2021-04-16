@@ -92,7 +92,7 @@ function addProductList(callback) {
         // contentType : 'application/json',
         // async: true,
         dataType: 'json',
-        data: {cType: 2,lan: lan},
+        data: {lan: lan},
         success: function (res) {
             console.log(res)
             res.data.forEach(function (item,index) {

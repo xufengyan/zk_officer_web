@@ -24,7 +24,8 @@
 
 </head>
 <body data-scrolling-animations="true">
-
+<!--<div class="container">-->
+<!--</div>-->
 <div id="page-preloader"><span class="spinner"></span></div>
 
 <!-- ========================== -->
@@ -94,6 +95,7 @@
 <!-- ========================== -->
 <!-- SERVICES - STEPS  -->
 <!-- ========================== -->
+
 <section class="core-features-section">
     <div class="container">
         <div class="section-heading">
@@ -103,28 +105,27 @@
         </div>
     </div>
 
-    <div class="container">
-        <div style="width: 180px">
-            <form role="form">
-                <div class="form-group">
-                    <label for="name">选择列表</label>
-                    <select class="form-control" style="border: 1px">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
-                    <label for="name">可多选的选择列表</label>
-                    <select multiple class="form-control">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
-                </div>
-            </form>
+    <div class="container" style="margin-bottom: 30px">
+        <div class="row">
+            <div class="col-md-9">
+                <form role="form">
+                    <div class="form-inline">
+                        <label for="name">选择产品：</label>
+                        <select class="form-control" id="selectProduct">
+                            <option value="1">测亩仪</option>
+                            <option value="2">喷码机</option>
+                        </select>
+                        <label for="name">选择系列：</label>
+                        <select class="form-control" id="series">
+                            <option>ZK3701系列</option>
+                            <option>ZK3701系列</option>
+                            <option>ZK3701系列</option>
+                            <option>ZK3701系列</option>
+                            <option>ZK3701系列</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 <!--    </div>-->
@@ -372,13 +373,16 @@
 <script src="js/jquery.i18n.properties-min.js"></script>
 <script src="js/language.js"></script>
 <script src="js/request.js"></script>
+
 <script >
     // var lan
+    var categoryList = [];
+    var productList = [];
     $(document).ready(function (){
+
 
         // $("#sel1").selectpicker({});
         // $("#sel2").selectpicker({});
-
 
         lan = getCookie("userLanguage");
         console.log(lan)
@@ -391,9 +395,12 @@
 
         })
         addCategoryList(function (res1) {
-            var categoryList = res1.data.list
+
+            categoryList = res1.data.list
+            viewCategory(1);
             addProductList(function (res) {
                 var str = "";
+                productList = res.data
                 res.data.forEach(function (item,index) {
                     var category ;
                     categoryList.forEach(function (categoryItem) {
@@ -401,7 +408,6 @@
                             category = categoryItem.label
                         }
                     })
-
                     str += "<div class=\"col-sm-4 col-md-3 \"style=\"\">\n" +
                         "                                <div class=\"thumbnail productNav\" style=\"padding: 0; margin: 0 5px 20px 5px;\">\n" +
                         "                                    <a href=\"productRead.html?id="+item.id+"&category="+category+"\" style=\"margin: 10px;text-decoration:none;color: #9b9b9b;font-family: PingFangSC-Regular\">\n" +
@@ -425,7 +431,81 @@
         addDownloadList(function (res) {
             console.log(res)
         })
+
+        $("#selectProduct").change(function () {
+            //更换 series中的内容，更新页面数据
+            var val = $(this).val()
+            console.log($(this).val())
+            viewCategory(val)
+        })
+        $("#series").change(function () {
+            //更新页面数据
+            var val = $(this).val()
+            var str;
+            console.log($(this).val())
+            viewProduct(val)
+            // productList.forEach(function (item,index) {
+            //     if(val === item.pType){
+            //         str += "<div class=\"col-sm-4 col-md-3 \"style=\"\">\n" +
+            //             "                                <div class=\"thumbnail productNav\" style=\"padding: 0; margin: 0 5px 20px 5px;\">\n" +
+            //             "                                    <a href=\"productRead.html?id="+item.id+"&category="+category+"\" style=\"margin: 10px;text-decoration:none;color: #9b9b9b;font-family: PingFangSC-Regular\">\n" +
+            //             "                                        <img style=\"width: 160px;height: 160px\" src=\""+item.pImagePath+"\">\n" +
+            //             "                                        <div style=\"margin-top: 10px\">\n" +
+            //             "                                            <div style=\"font-size: 18px\">"+item.pName+"</div>\n" +
+            //             "                                            <div style=\"font-size: 14px;\">"+category+"</div>\n" +
+            //             "                                        </div>\n" +
+            //             "                                    </a>\n" +
+            //             "                                </div>\n" +
+            //             "                            </div>"
+            //     }
+            // })
+            // $("#productList").html(str)
+
+
+        })
     })
+    function viewProduct(val) {
+        var str = "";
+        productList.forEach(function (item,index) {
+            console.log(parseInt(val)+item.pType)
+            if(parseInt(val) === item.pType){
+                var category ;
+                categoryList.forEach(function (categoryItem) {
+                    if(categoryItem.value === item.pType){
+                        category = categoryItem.label
+                    }
+                })
+                str += "<div class=\"col-sm-4 col-md-3 \"style=\"\">\n" +
+                    "                                <div class=\"thumbnail productNav\" style=\"padding: 0; margin: 0 5px 20px 5px;\">\n" +
+                    "                                    <a href=\"productRead.html?id="+item.id+"&category="+category+"\" style=\"margin: 10px;text-decoration:none;color: #9b9b9b;font-family: PingFangSC-Regular\">\n" +
+                    "                                        <img style=\"width: 160px;height: 160px\" src=\""+item.pImagePath+"\">\n" +
+                    "                                        <div style=\"margin-top: 10px\">\n" +
+                    "                                            <div style=\"font-size: 18px\">"+item.pName+"</div>\n" +
+                    "                                            <div style=\"font-size: 14px;\">"+category+"</div>\n" +
+                    "                                        </div>\n" +
+                    "                                    </a>\n" +
+                    "                                </div>\n" +
+                    "                            </div>"
+            }
+        })
+        $("#productList").html(str)
+    }
+
+    function viewCategory(val) {
+        var str=""
+        var num = 0;
+        categoryList.forEach(function (item) {
+            if(val==1){
+                str+="<option value='"+item.value+"'>"+item.label+"</option>\n";
+                if(num === 0){
+                    viewProduct(item.value)
+                    num = 1
+                }
+            }
+        })
+        $("#series").html(str)
+
+    }
 </script>
 </body>
 </html>

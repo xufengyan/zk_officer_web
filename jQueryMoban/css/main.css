@@ -89,8 +89,8 @@ a[href^="https://maps.google.com/maps"] { display: none !important; }
 
 textarea { max-width: 100%; }
 
-.form-control { background: none; box-shadow: none !important; outline: none; border: none; border-bottom: 1px solid #dddddd; border-radius: 0; border-radius: none; font-size: 12px; padding-left: 0; height: 50px; font-size: 11px; color: #999; }
-.form-control:focus, .form-control:active { border-color: #dddddd; }
+/*.form-control { background: none; box-shadow: none !important; outline: none; border: none; border-bottom: 1px solid #dddddd; border-radius: 0; border-radius: none; font-size: 12px; padding-left: 0; height: 50px; font-size: 11px; color: #999; }*/
+/*.form-control:focus, .form-control:active { border-color: #dddddd; }*/
 
 .form-control-feedback { top: 8px; }
 
