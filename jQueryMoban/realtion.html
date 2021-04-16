@@ -19,11 +19,20 @@
     <link href="vendor/slider-pro/dist/css/slider-pro.min.css" rel="stylesheet" type="text/css" />
     <link href="vendor/slick-carousel/slick/slick.css" rel="stylesheet" type="text/css" />
     <link href="vendor/animate.css/animate.min.css" rel="stylesheet" type="text/css" />
-
+    <link rel="stylesheet" type="text/css"  href="css/iconfont.css" />
     <link href="css/main.css" rel="stylesheet" type="text/css" />
-    <link href="http://at.alicdn.com/t/font_817605_2l7du6oi6g6.css" type="text/css">
-    <link herf="css/iconfont.css" rel="stylesheet" type="text/css"/>
+<!--    <link href="https://at.alicdn.com/t/font_817605_2l7du6oi6g6.css" type="text/css">-->
+    <style>
+        /*#allmap {width: 100% !important;height: 100% !important;overflow: hidden;margin:0;font-family:"微软雅黑";}*/
+        #allmap {
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            font-family: "微软雅黑";
+        }
 
+    </style>
 
 </head>
 <body data-scrolling-animations="true">
@@ -107,35 +116,34 @@
 <!--    </div>-->
 
     <div class="container tab-content wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
-        <div role="tabpanel" class="tab-pane" id="tabWeb">
-            <div class="row">
-                <div class="col-md-12">
-<!--                    <h5 class="italic-title">Every customer is importany to us!</h5>-->
-                    <h4>深圳致开科技有限责任公司
-                        <span class="iconfont icon-wangzhi"></span>
-                    </h4>
-<!--                    <p>-->
-<!--                        Amco laboris nisi ut aliquip xea commodo consequt. Duis aute irure dolor reprehenderit voluptate velit esse cillum dolore-->
-<!--                        fugiat lore ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna-->
-<!--                        aliqua ut enim ad mid veniam quis nostrud exercitation ullamco laboris nisid.-->
-<!--                    </p>-->
+<!--        <div role="tabpanel" class="tab-pane" id="tabWeb">-->
+<!--            <div class="row">-->
+<!--                <div class="col-md-12">-->
+<!--&lt;!&ndash;                    <h5 class="italic-title">Every customer is importany to us!</h5>&ndash;&gt;-->
+<!--                    <h4>深圳致开科技有限责任公司-->
+<!--                        <span class="iconfont icon-wangzhi"></span>-->
+<!--                    </h4>-->
+<!--&lt;!&ndash;                    <p>&ndash;&gt;-->
+<!--&lt;!&ndash;                        Amco laboris nisi ut aliquip xea commodo consequt. Duis aute irure dolor reprehenderit voluptate velit esse cillum dolore&ndash;&gt;-->
+<!--&lt;!&ndash;                        fugiat lore ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna&ndash;&gt;-->
+<!--&lt;!&ndash;                        aliqua ut enim ad mid veniam quis nostrud exercitation ullamco laboris nisid.&ndash;&gt;-->
+<!--&lt;!&ndash;                    </p>&ndash;&gt;-->
 
-                    <ul class="marker-list">
-                        <li><span class="icon icon-"></span>Commodo consequt. Duis aute irure dolor reprehenderit </li>
-                        <li>Atetur adipisicing elit sed do eiusmod tempor incididunt ut labore dolore</li>
-                        <li>Pliqua ut enim ad mid veniam quis nostrud exercitation ullamco</li>
-                        <li>Voluptate velit esse cillum dolore fugiat lore ipsum dolor sit amet </li>
-                        <li>Amco laboris nisi ut aliquip xea commodo consequt </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div role="tabpanel" class="tab-pane active" id="tabMobile">
+<!--                    <ul class="marker-list">-->
+<!--                        <li><span class="icon icon-"></span>Commodo consequt. Duis aute irure dolor reprehenderit </li>-->
+<!--                        <li>Atetur adipisicing elit sed do eiusmod tempor incididunt ut labore dolore</li>-->
+<!--                        <li>Pliqua ut enim ad mid veniam quis nostrud exercitation ullamco</li>-->
+<!--                        <li>Voluptate velit esse cillum dolore fugiat lore ipsum dolor sit amet </li>-->
+<!--                        <li>Amco laboris nisi ut aliquip xea commodo consequt </li>-->
+<!--                    </ul>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+        <div role="tabpanel" class="tab-pane active">
             <div class="row">
-
-                <div class="col-md-8 ">
+                <div class="col-md-5 ">
 <!--                    <h5 class="italic-title">Every customer is importany to us!</h5>-->
-                    <h4>深圳致开科技有限责任公司</h4>
+                    <h4 style="font-size: 32px;font-family: '宋体'">深圳致开科技有限责任公司</h4>
 <!--                    <p>-->
 <!--                        Amco laboris nisi ut aliquip xea commodo consequt. Duis aute irure dolor reprehenderit voluptate velit esse cillum dolore-->
 <!--                        fugiat lore ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna-->
@@ -147,72 +155,74 @@
                         <li>
                             <span class="icon icon-Timer" style="font-size: 18px;margin-right: 8px"></span>
                             <span>工作时间：</span>
-                            <span>周一至周日 9:00-18:00 (节假日除外)</span>
+                            <span id="liWoekTime">周一至周日 9:00-18:00 (节假日除外)</span>
                         </li>
                         <li>
                             <span class="icon icon-Pointer" style="font-size: 18px;margin-right: 8px"></span>
                             <span>地址：</span>
-                            <span>周一至周日 9:00-18:00 (节假日除外)</span>
+                            <span id="liAddres">周一至周日 9:00-18:00 (节假日除外)</span>
                         </li>
                         <li>
                             <span class="icon icon-Phone" style="font-size: 18px;margin-right: 8px"></span>
                             <span>电话：</span>
-                            <span>周一至周日 9:00-18:00 (节假日除外)</span>
+                            <span id="liPhone">周一至周日 9:00-18:00 (节假日除外)</span>
                         </li>
                         <li>
-                            <span class="icon icon-wangzhi" style="font-size: 18px;margin-right: 8px"></span>
+                            <span class="iconfont icon-wangzhi_huaban" style="font-size: 18px;margin-right: 8px"></span>
                             <span>网址：</span>
-                            <span>周一至周日 9:00-18:00 (节假日除外)</span>
+                            <span id="liUrl">周一至周日 9:00-18:00 (节假日除外)</span>
                         </li>
                         <li>
                             <span class="icon icon-Mail" style="font-size: 18px;margin-right: 8px"></span>
                             <span>邮箱：</span>
-                            <span>周一至周日 9:00-18:00 (节假日除外)</span>
+                            <span id="liEmail">周一至周日 9:00-18:00 (节假日除外)</span>
                         </li>
                     </ul>
                 </div>
-                <div class="col-md-4 iphone-image">
-                    <img src="img/iphone-ipad.jpg" alt="">
+                <div class="col-md-7 ">
+                    <div style="width: 100%;height: 400px; ">
+                        <div id="allmap"></div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div role="tabpanel" class="tab-pane" id="tabPhoto">
-            <div class="row">
-                <div class="col-md-12 ">
-                    <h5 class="italic-title">Every customer is importany to us!</h5>
-                    <h4>深圳致开科技有限责任公司</h4>
+<!--        <div role="tabpanel" class="tab-pane" id="tabPhoto">-->
+<!--            <div class="row">-->
+<!--                <div class="col-md-12 ">-->
+<!--                    <h5 class="italic-title">Every customer is importany to us!</h5>-->
+<!--                    <h4>深圳致开科技有限责任公司</h4>-->
 
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </p>
-                    <p>
-                        Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet nec, commodo eget, consequat quis, neque. Aliquam faucibus, elit ut dictum aliquet, felis nisl adipiscing sapien, sed malesuada diam lacus eget erat. Cras mollis scelerisque nunc. Nullam arcu. Aliquam consequat. Curabitur augue lorem, dapibus quis, laoreet et, pretium ac, nisi. Aenean magna nisl, mollis quis, molestie eu, feugiat in, orci. In hac habitasse platea dictumst.
-                    </p>
-                    <p>
-                        Fusce convallis, mauris imperdiet gravida bibendum, nisl turpis suscipit mauris, sed placerat ipsum urna sed risus. In convallis tellus a mauris. Curabitur non elit ut libero tristique sodales. Mauris a lacus. Donec mattis semper leo. In hac habitasse platea dictumst. Vivamus facilisis diam at odio. Mauris dictum, nisi eget consequat elementum, lacus ligula molestie metus, non feugiat orci magna ac sem. Donec turpis. Donec vitae metus. Morbi tristique neque eu mauris. Quisque gravida ipsum non sapien. Proin turpis lacus, scelerisque vitae, elementum at, lobortis ac, quam. Aliquam dictum eleifend risus. In hac habitasse platea dictumst. Etiam sit amet diam. Suspendisse odio. Suspendisse nunc. In semper bibendum libero.
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div role="tabpanel" class="tab-pane" id="tabDesign">
-            <div class="row">
-                <div class="col-md-12 ">
-                    <h5 class="italic-title">Every customer is importany to us!</h5>
-                    <h4>深圳致开科技有限责任公司</h4>
-                    <p>
-                        Amco laboris nisi ut aliquip xea commodo consequt. Duis aute irure dolor reprehenderit voluptate velit esse cillum dolore
-                        aliqua ut enim ad mid veniam quis nostrud exercitation ullamco laboris nisid. Lorem ipsum dolor sit amet consectetur adip
-                        isicing elit sed eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    </p>
+<!--                    <p>-->
+<!--                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.-->
+<!--                    </p>-->
+<!--                    <p>-->
+<!--                        Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet nec, commodo eget, consequat quis, neque. Aliquam faucibus, elit ut dictum aliquet, felis nisl adipiscing sapien, sed malesuada diam lacus eget erat. Cras mollis scelerisque nunc. Nullam arcu. Aliquam consequat. Curabitur augue lorem, dapibus quis, laoreet et, pretium ac, nisi. Aenean magna nisl, mollis quis, molestie eu, feugiat in, orci. In hac habitasse platea dictumst.-->
+<!--                    </p>-->
+<!--                    <p>-->
+<!--                        Fusce convallis, mauris imperdiet gravida bibendum, nisl turpis suscipit mauris, sed placerat ipsum urna sed risus. In convallis tellus a mauris. Curabitur non elit ut libero tristique sodales. Mauris a lacus. Donec mattis semper leo. In hac habitasse platea dictumst. Vivamus facilisis diam at odio. Mauris dictum, nisi eget consequat elementum, lacus ligula molestie metus, non feugiat orci magna ac sem. Donec turpis. Donec vitae metus. Morbi tristique neque eu mauris. Quisque gravida ipsum non sapien. Proin turpis lacus, scelerisque vitae, elementum at, lobortis ac, quam. Aliquam dictum eleifend risus. In hac habitasse platea dictumst. Etiam sit amet diam. Suspendisse odio. Suspendisse nunc. In semper bibendum libero.-->
+<!--                    </p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div role="tabpanel" class="tab-pane" id="tabDesign">-->
+<!--            <div class="row">-->
+<!--                <div class="col-md-12 ">-->
+<!--                    <h5 class="italic-title">Every customer is importany to us!</h5>-->
+<!--                    <h4>深圳致开科技有限责任公司</h4>-->
+<!--                    <p>-->
+<!--                        Amco laboris nisi ut aliquip xea commodo consequt. Duis aute irure dolor reprehenderit voluptate velit esse cillum dolore-->
+<!--                        aliqua ut enim ad mid veniam quis nostrud exercitation ullamco laboris nisid. Lorem ipsum dolor sit amet consectetur adip-->
+<!--                        isicing elit sed eiusmod tempor incididunt ut labore et dolore magna aliqua.-->
+<!--                    </p>-->
 
-                    <ul class="marker-list">
-                        <li>Commodo consequt. Duis aute irure dolor reprehenderit </li>
-                        <li>Atetur adipisicing elit sed do eiusmod tempor incididunt ut labore dolore</li>
-                        <li>Pliqua ut enim ad mid veniam quis nostrud exercitation ullamco</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+<!--                    <ul class="marker-list">-->
+<!--                        <li>Commodo consequt. Duis aute irure dolor reprehenderit </li>-->
+<!--                        <li>Atetur adipisicing elit sed do eiusmod tempor incididunt ut labore dolore</li>-->
+<!--                        <li>Pliqua ut enim ad mid veniam quis nostrud exercitation ullamco</li>-->
+<!--                    </ul>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
 
     </div>
 </section>
@@ -399,6 +409,7 @@
 <script src="js/jquery.i18n.properties-min.js"></script>
 <script src="js/language.js"></script>
 <script src="js/request.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?type=webgl&v=1.0&ak=tPrM2awjRveinK1GGTvZh7rtayf2CHcc"></script>
 
 <script>
     // var lan
@@ -409,7 +420,15 @@
         })
         addParagraphList()
         addProductList()
-        addBasic(function () {
+        addBasic(function (res) {
+            badiMap(res.data)
+            $("#liAddres").html(res.data.owAddress)
+            $("#liEmail").html(res.data.owMail)
+            $("#liUrl").html(res.data.owUrl)
+            $("#liPhone").html(res.data.owPhone+"/"+res.data.owTel)
+            $("#liWoekTime").html(res.data.owWoekTime)
+
+
         })
         addCategoryList()
         addSchemeList(function (res) {
@@ -438,6 +457,27 @@
         addDownloadList(function () {
 
         })
+
+        function badiMap(data) {
+            var map = new BMapGL.Map('allmap');
+            var point = new BMapGL.Point(113.86649344048922,22.590904972835258);
+            map.centerAndZoom(point, 18);
+            map.enableScrollWheelZoom(true);
+            var marker = new BMapGL.Marker(point);
+            map.addOverlay(marker);
+            var opts = {
+                width: 300,
+                height: 100,
+                title: ''+data.owName
+            };
+            if (lan!="zh-CN"){
+                var infoWindow = new BMapGL.InfoWindow('address：'+data.owAddress, opts);
+            }else{
+                var infoWindow = new BMapGL.InfoWindow('地址：'+data.owAddress, opts);
+            }
+            map.openInfoWindow(infoWindow, point);
+        }
+
     })
 </script>
 </body>

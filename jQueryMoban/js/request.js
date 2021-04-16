@@ -1,4 +1,5 @@
 var lan
+var requestUrl = "http://localhost:8089/html"
 //轮播
 function addBanner(callback) {
     let str = ""
@@ -83,7 +84,7 @@ function addParagraphList() {
         }
     });
 }
-function addProductList() {
+function addProductList(callback) {
     let str = ""
     $.ajax({
         url: "http://localhost:8089/html/product/list.html",
@@ -103,6 +104,7 @@ function addProductList() {
                     "                    </div>"
             })
             $("#productList").html(str)
+            callback(res)
         },
         error: function (error) {
             alert(error);
@@ -138,7 +140,7 @@ function addBasic(callback) {
     });
 }
 //产品系列
-function addCategoryList() {
+function addCategoryList(callback) {
     var str = "";
     $.ajax({
         url: "http://localhost:8089/html/category/list.html",
@@ -154,6 +156,7 @@ function addCategoryList() {
                 }
             })
             $("#Category").html(str)
+            callback(res)
         },
         error: function (error) {
             alert(error);
@@ -207,4 +210,15 @@ function addDownloadList(callback) {
             alert(error);
         }
     });
+}
+//获取地址参数
+function getQueryVariable(variable)
+{
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i=0;i<vars.length;i++) {
+        var pair = vars[i].split("=");
+        if(pair[0] == variable){return pair[1];}
+    }
+    return(false);
 }
