@@ -19,6 +19,7 @@ public class ZkCategory extends BaseEntity {
     /** 类型名称 */
     private String label;
 
+    private Integer type;
     public void setId(Long id)
     {
         this.id = id;
@@ -47,4 +48,11 @@ public class ZkCategory extends BaseEntity {
         return label;
     }
 
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
 }

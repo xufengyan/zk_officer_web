@@ -4,7 +4,7 @@
     <!-- 查询和其他操作 -->
     <div class="filter-container">
       <el-form ref="download" label-width="150px">
-        <el-form-item label="类型" prop="luaIds">
+        <el-form-item label="语言类型" prop="luaIds">
           <el-cascader :value="luaIds" :options="luaList" expand-trigger="hover" @change="handleLuaChange" />
         </el-form-item>
       </el-form>

@@ -395,7 +395,6 @@
 
         })
         addCategoryList(function (res1) {
-
             categoryList = res1.data.list
             viewCategory(1);
             addProductList(function (res) {
@@ -495,7 +494,7 @@
         var str=""
         var num = 0;
         categoryList.forEach(function (item) {
-            if(val==1){
+            if(val==item.type){
                 str+="<option value='"+item.value+"'>"+item.label+"</option>\n";
                 if(num === 0){
                     viewProduct(item.value)

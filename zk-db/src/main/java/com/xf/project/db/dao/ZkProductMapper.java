@@ -59,4 +59,6 @@ public interface ZkProductMapper
      * @return 结果
      */
     public int deleteZkProductByIds(String[] ids);
+
+    List<ZkProduct> selectZkProductListByType(ZkProduct zkProduct, String type);
 }

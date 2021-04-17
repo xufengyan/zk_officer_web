@@ -91,4 +91,8 @@ public class ZkProductService
     {
         return zkProductMapper.deleteZkProductById(id);
     }
+
+    public List<ZkProduct> selectZkProductListByType(ZkProduct zkProduct, String type) {
+        return zkProductMapper.selectZkProductListByType(zkProduct,type);
+    }
 }

@@ -11,6 +11,7 @@ public class BaseEntity {
     private Long id;
     private int limit;
     private int page;
+    private String lua;
     private LocalDateTime addTime;
     private LocalDateTime updateTime;
 
@@ -52,5 +53,13 @@ public class BaseEntity {
 
     public void setUpdateTime(LocalDateTime updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getLua() {
+        return lua;
+    }
+
+    public void setLua(String lua) {
+        this.lua = lua;
     }
 }

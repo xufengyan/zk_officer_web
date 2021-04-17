@@ -2,6 +2,11 @@
   <div class="app-container">
     <!-- 查询和其他操作 -->
     <div class="filter-container">
+      <el-form ref="download" label-width="150px">
+        <el-form-item label="语言类型" prop="luaIds">
+          <el-cascader :value="luaIds" :options="luaList" expand-trigger="hover" @change="handleLuaChange" />
+        </el-form-item>
+      </el-form>
       <!--      <el-input v-model="listQuery.goodsId" clearable class="filter-item" style="width: 160px;" placeholder="请输入商品ID" />-->
       <!--      <el-input v-model="listQuery.goodsSn" clearable class="filter-item" style="width: 160px;" placeholder="请输入商品编号" />-->
       <!--      <el-input v-model="listQuery.name" clearable class="filter-item" style="width: 160px;" placeholder="请输入商品名称" />-->
@@ -99,6 +104,15 @@ export default {
         sort: 'add_time',
         order: 'desc'
       },
+      luaIds: 'zh-CN',
+      luaList: [{
+        value: 'zh-CN',
+        label: '中文'
+      },
+      {
+        value: 'en',
+        label: '英文'
+      }],
       goodsDetail: '',
       detailDialogVisible: false,
       downloadLoading: false
@@ -131,12 +145,13 @@ export default {
       this.$router.push({ path: '/basic/schemeEdit', query: { id: row.id }})
     },
     handleCreate() {
-      this.$router.push({ path: '/basic/schemeCreate' })
+      this.$router.push({ path: '/basic/schemeCreate', query: { lua: this.luIds }})
+    },
+    handleLuaChange(value) {
+      this.luaIds = value[value.length - 1]
+      this.listQuery.lua = value[value.length - 1]
+      this.getList()
     }
-    // showDetail(detail) {
-    //   this.goodsDetail = detail
-    //   this.detailDialogVisible = true
-    // },
   }
 }
 </script>

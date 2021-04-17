@@ -34,10 +34,11 @@ public class ZkProductController
     @RequiresPermissions("admin:product:list")
     @RequiresPermissionsDesc(menu = {"网站管理","展示产品"},button = "查询")
     @GetMapping("/list")
-    public Object list( ZkProduct zkProduct)
+    public Object list( ZkProduct zkProduct,String type)
     {
         PageHelper.startPage(zkProduct.getPage(), zkProduct.getLimit());
-        List<ZkProduct> list = zkProductService.selectZkProductList(zkProduct);
+//        List<ZkProduct> list = zkProductService.selectZkProductList(zkProduct);
+        List<ZkProduct> list = zkProductService.selectZkProductListByType(zkProduct,type);
         return ResponseUtil.okList(list);
     }
 

@@ -4,14 +4,17 @@
     <el-card class="box-card">
       <h3>展示产品添加</h3>
       <el-form ref="product" :rules="rules" :model="product" label-width="150px">
-        <el-form-item label="编辑ID" prop="id">
-          <el-input v-model="product.id" disabled />
+        <el-form-item label="语言" prop="id">
+          <el-input v-model="luaName" disabled />
+        </el-form-item>
+        <el-form-item label="产品类型" prop="id">
+          <el-input v-model="typeName" disabled />
         </el-form-item>
         <el-form-item label="产品名称" prop="pName">
           <el-input v-model="product.pName" />
         </el-form-item>
         <el-form-item label="产品所属系列" prop="categoryIds">
-          <el-cascader v-model="categoryIds" :options="categoryList" expand-trigger="hover" clearable @change="handleCategoryChange" />
+          <el-cascader v-model="categoryIds" :options="categoryList" expand-trigger="hover" @change="handleCategoryChange" />
         </el-form-item>
         <el-form-item label="产品型号" prop="pModel">
           <el-input v-model="product.pModel" />
@@ -131,20 +134,11 @@ export default {
       brandList: [],
       categoryIds: 1,
       product: {},
-      specVisiable: false,
-      specForm: { specification: '', value: '', picUrl: '' },
-      specifications: [{ specification: '规格', value: '标准', picUrl: '' }],
+      type: 1,
+      typeName: '喷码机',
+      lua: 'zh-CN',
+      luaName: '中文',
       productVisiable: false,
-      productForm: {
-        id: 0,
-        specifications: [],
-        price: 0.0,
-        number: 0,
-        url: ''
-      },
-      products: [
-        { id: 0, specifications: ['标准'], price: 0.0, number: 0, url: '' }
-      ],
       attributeVisiable: false,
       attributeAdd: true,
       attributeForm: { attribute: '', value: '' },
@@ -199,8 +193,29 @@ export default {
   },
   methods: {
     init: function() {
-      listCategory().then(response => {
+      if (this.$route.query.type == null) {
+        return
+      }
+      if (this.$route.query.lua == null) {
+        return
+      }
+      const type = this.$route.query.type
+      const lua = this.$route.query.lua
+      console.log(lua)
+      console.log(type)
+
+      this.type = type
+      type === 1 ? this.typeName = '测亩仪' : this.typeName = '喷码机'
+      lua === 'zh-CN' ? this.luaName = '中文' : this.luaName = '英文'
+      this.product.lua = lua
+      const category = {
+        lua: lua,
+        type: type
+      }
+      listCategory(category).then(response => {
         this.categoryList = response.data.data.list
+        this.categoryIds = response.data.data.list[0].value
+        this.product.pType = this.categoryIds
         this.product.pType = 1
       })
     },

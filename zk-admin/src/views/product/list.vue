@@ -2,6 +2,10 @@
   <div class="app-container">
     <!-- 查询和其他操作 -->
     <div class="filter-container">
+      <el-form ref="download" label-width="150px">
+        <el-cascader :value="luaIds" :options="luaList" expand-trigger="hover" @change="handleLuaChange" />
+        <el-cascader :value="productTypeId" :options="productTypeList" expand-trigger="hover" @change="handleTypeChange" />
+      </el-form>
       <!--      <el-input v-model="listQuery.goodsId" clearable class="filter-item" style="width: 160px;" placeholder="请输入商品ID" />-->
       <!--      <el-input v-model="listQuery.goodsSn" clearable class="filter-item" style="width: 160px;" placeholder="请输入商品编号" />-->
       <!--      <el-input v-model="listQuery.name" clearable class="filter-item" style="width: 160px;" placeholder="请输入商品名称" />-->
@@ -96,14 +100,34 @@ export default {
       listQuery: {
         page: 1,
         limit: 20,
-        goodsSn: undefined,
-        name: undefined,
+        type: 1,
+        lua: 'zh-CN',
         sort: 'add_time',
         order: 'desc'
       },
       goodsDetail: '',
       detailDialogVisible: false,
-      downloadLoading: false
+      downloadLoading: false,
+      luaIds: 'zh-CN',
+      luaList: [{
+        value: 'zh-CN',
+        label: '中文'
+      },
+      {
+        value: 'en',
+        label: '英文'
+      }
+      ],
+      productTypeId: 1,
+      productTypeList: [{
+        value: 1,
+        label: '测亩仪'
+      },
+      {
+        value: 2,
+        label: '喷码机'
+      }
+      ]
     }
   },
   created() {
@@ -130,7 +154,18 @@ export default {
       this.$router.push({ path: '/basic/productEdit', query: { id: row.id }})
     },
     handleCreate() {
-      this.$router.push({ path: '/basic/productCreate' })
+      console.log(this.luaIds)
+      this.$router.push({ path: '/basic/productCreate', query: { type: this.productTypeId, lua: this.luaIds }})
+    },
+    handleLuaChange(value) {
+      this.luaIds = value[value.length - 1]
+      this.listQuery.lua = value[value.length - 1]
+      this.getList()
+    },
+    handleTypeChange(value) {
+      this.productTypeId = value[value.length - 1]
+      this.listQuery.type = value[value.length - 1]
+      this.getList()
     }
     // showDetail(detail) {
     //   this.goodsDetail = detail

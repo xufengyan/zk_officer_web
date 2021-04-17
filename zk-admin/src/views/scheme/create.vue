@@ -4,9 +4,9 @@
     <el-card class="box-card">
       <h3>解决方案添加</h3>
       <el-form ref="scheme" :rules="rules" :model="scheme" label-width="150px">
-        <!--        <el-form-item label="编辑ID" prop="id">-->
-        <!--          <el-input v-model="scheme.id" disabled />-->
-        <!--        </el-form-item>-->
+        <el-form-item label="语言类型" prop="id">
+          <el-input v-model="scheme.id" disabled />
+        </el-form-item>
         <el-form-item label="方案名称" prop="sName">
           <el-input v-model="scheme.sName" />
         </el-form-item>
