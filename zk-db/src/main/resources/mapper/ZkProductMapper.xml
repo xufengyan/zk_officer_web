@@ -11,12 +11,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="pImagePath"    column="p_image_path"    />
         <result property="pModel"    column="p_model"    />
         <result property="pIntroduce"    column="p_introduce"    />
-        <result property="lua"    column="lua"    />
+        <result property="lan"    column="lan"    />
 
     </resultMap>
 
     <sql id="selectZkProductVo">
-        select id, p_type, p_name, p_image_path, p_model, p_introduce,lua from zk_product
+        select id, p_type, p_name, p_image_path, p_model, p_introduce,lan from zk_product
     </sql>
 
     <select id="selectZkProductList" parameterType="com.xf.project.db.domain.ZkProduct" resultMap="ZkProductResult">
@@ -27,18 +27,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="pImagePath != null  and pImagePath != ''"> and p_image_path = #{pImagePath}</if>
             <if test="pModel != null  and pModel != ''"> and p_model = #{pModel}</if>
             <if test="pIntroduce != null  and pIntroduce != ''"> and p_introduce = #{pIntroduce}</if>
-            <if test="lua != null  and lua != ''"> and lua = #{lua}</if>
+            <if test="lan != null  and lan != ''"> and lan = #{lan}</if>
         </where>
     </select>
     <select id="selectZkProductListByType" parameterType="String" resultMap="ZkProductResult">
-        select id, p_type, p_name, p_image_path, p_model, p_introduce,lua
+        select id, p_type, p_name, p_image_path, p_model, p_introduce,lan
         from zk_product
         <where>
             <if test="type != null ">
                 p_type in (select c.value from zk_category c where c.type = #{type})
             </if>
 
-             <if test="zkProduct.lua != null  and zkProduct.lua != ''"> and lua = #{zkProduct.lua}</if>
+             <if test="zkProduct.lan != null  and zkProduct.lan != ''"> and lan = #{zkProduct.lan}</if>
 <!--        <where>-->
             <if test="zkProduct.pName != null  and zkProduct.pName != ''"> and p_name like concat('%', #{zkProduct.pName}, '%')</if>
 <!--            <if test="pImagePath != null  and pImagePath != ''"> and p_image_path = #{pImagePath}</if>-->
@@ -60,7 +60,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="pImagePath != null  and pImagePath != ''">p_image_path,</if>
             <if test="pModel != null  and pModel != ''">p_model,</if>
             <if test="pIntroduce != null  and pIntroduce != ''">p_introduce,</if>
-            <if test="lua != null  and lua != ''">lua,</if>
+            <if test="lan != null  and lan != ''">lan,</if>
 
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -69,7 +69,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="pImagePath != null  and pImagePath != ''">#{pImagePath},</if>
             <if test="pModel != null  and pModel != ''">#{pModel},</if>
             <if test="pIntroduce != null  and pIntroduce != ''">#{pIntroduce},</if>
-            <if test="lua != null  and lua != ''">#{lua},</if>
+            <if test="lan != null  and lan != ''">#{lan},</if>
         </trim>
     </insert>
 
@@ -81,7 +81,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="pImagePath != null  and pImagePath != ''">p_image_path = #{pImagePath},</if>
             <if test="pModel != null  and pModel != ''">p_model = #{pModel},</if>
             <if test="pIntroduce != null  and pIntroduce != ''">p_introduce = #{pIntroduce},</if>
-            <if test="lua != null  and lua != ''">lua = #{lua},</if>
+            <if test="lan != null  and lan != ''">lan = #{lan},</if>
         </trim>
         where id = #{id}
     </update>

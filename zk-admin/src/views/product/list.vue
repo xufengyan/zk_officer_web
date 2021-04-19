@@ -101,7 +101,7 @@ export default {
         page: 1,
         limit: 20,
         type: 1,
-        lua: 'zh-CN',
+        lan: 'zh-CN',
         sort: 'add_time',
         order: 'desc'
       },
@@ -151,15 +151,15 @@ export default {
     //   this.getList()
     // },
     handleUpdate(row) {
-      this.$router.push({ path: '/basic/productEdit', query: { id: row.id }})
+      this.$router.push({ path: '/basic/productEdit', query: { id: row.id, type: this.productTypeId }})
     },
     handleCreate() {
       console.log(this.luaIds)
-      this.$router.push({ path: '/basic/productCreate', query: { type: this.productTypeId, lua: this.luaIds }})
+      this.$router.push({ path: '/basic/productCreate', query: { type: this.productTypeId, lan: this.luaIds }})
     },
     handleLuaChange(value) {
       this.luaIds = value[value.length - 1]
-      this.listQuery.lua = value[value.length - 1]
+      this.listQuery.lan = value[value.length - 1]
       this.getList()
     },
     handleTypeChange(value) {

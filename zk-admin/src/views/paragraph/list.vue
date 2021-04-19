@@ -135,7 +135,7 @@ export default {
         page: 1,
         limit: 20,
         cType: 1,
-        lua: 'zh-CN',
+        lan: 'zh-CN',
         sort: 'add_time',
         order: 'desc'
       },
@@ -269,7 +269,7 @@ export default {
     },
     handleLuaChange(value) {
       this.luaIds = value[value.length - 1]
-      this.listQuery.lua = value[value.length - 1]
+      this.listQuery.lan = value[value.length - 1]
       this.getList()
     }
     // showDetail(detail) {

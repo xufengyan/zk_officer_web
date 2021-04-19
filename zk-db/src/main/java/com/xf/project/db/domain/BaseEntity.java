@@ -11,7 +11,7 @@ public class BaseEntity {
     private Long id;
     private int limit;
     private int page;
-    private String lua;
+    private String lan;
     private LocalDateTime addTime;
     private LocalDateTime updateTime;
 
@@ -55,11 +55,11 @@ public class BaseEntity {
         this.updateTime = updateTime;
     }
 
-    public String getLua() {
-        return lua;
+    public String getLan() {
+        return lan;
     }
 
-    public void setLua(String lua) {
-        this.lua = lua;
+    public void setLan(String lan) {
+        this.lan = lan;
     }
 }

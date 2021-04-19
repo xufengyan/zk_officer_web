@@ -48,8 +48,10 @@ var getCookie = function(name, value, options) {
  * @return {string} 浏览器国家语言
  */
 var getNavLanguage = function(){
+    console.log(navigator.appName)
     if(navigator.appName == "Netscape"){
         var navLanguage = navigator.language;
+        console.log(navLanguage)
         return navLanguage.substr(0,2);
     }
     return false;
@@ -63,7 +65,7 @@ var i18nLanguage = "zh-CN";
 /*
 设置一下网站支持的语言种类
  */
-var webLanguage = ['zh-CN', 'zh-TW', 'en'];
+var webLanguage = ['zh-CN','en'];
 
 /**
  * 执行页面i18n方法
@@ -83,22 +85,32 @@ var execI18n = function(){
         /*
         首先获取用户浏览器设备之前选择过的语言类型
          */
+        console.log(getCookie("userLanguage"))
+
         if (getCookie("userLanguage")) {
             i18nLanguage = getCookie("userLanguage");
         } else {
             // 获取浏览器语言
             var navLanguage = getNavLanguage();
+            console.log(navLanguage)
             if (navLanguage) {
                 // 判断是否在网站支持语言数组里
                 var charSize = $.inArray(navLanguage, webLanguage);
-                if (charSize > -1) {
+                if (charSize > -1 ) {
+                    // if(navLanguage === 'zh'){
+                    //     navLanguage = 'zh-CN'
+                    // }
                     i18nLanguage = navLanguage;
                     // 存到缓存中
                     getCookie("userLanguage",navLanguage);
                     console.log("存入缓存")
-                };
-                getCookie("userLanguage","zh-CN");
-                console.log("存入缓存")
+                }
+                //  else {
+                //     i18nLanguage = "zh-CN";
+                //     getCookie("userLanguage","zh-CN");
+                //     console.log("存入缓存")
+                // }
+
 
             } else{
                 console.log("not navigator");
@@ -172,7 +184,7 @@ $(function(){
 // 切换语言
 function changeClass(language) {
 	selectStyle(language)
-	getCookie("userLanguage",language,{
+	var v = getCookie("userLanguage",language,{
 		expires: 30,
 		path:'/'
 	});

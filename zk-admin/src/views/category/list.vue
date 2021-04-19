@@ -36,7 +36,7 @@
         </template>
       </el-table-column>
       <el-table-column align="center" min-width="100" label="系列名称" prop="label" />
-      <el-table-column align="center" min-width="100" label="语言" prop="lua" />
+      <el-table-column align="center" min-width="100" label="语言" prop="lan" />
 
       <!--      <el-table-column align="center" property="iconUrl" label="产品图片">-->
       <!--        <template slot-scope="scope">-->
@@ -130,7 +130,7 @@ export default {
         page: 1,
         limit: 20,
         type: 1,
-        lua: 'zh-CN',
+        lan: 'zh-CN',
         sort: 'add_time',
         order: 'desc'
       },
@@ -205,13 +205,13 @@ export default {
         value: undefined,
         label: undefined,
         type: 1,
-        lua: 'zh-CN'
+        lan: 'zh-CN'
       }
     },
     handleUpdate(row) {
       this.dataForm = Object.assign({}, row)
       this.typeId = row.type
-      this.luaIds = row.lua
+      this.luaIds = row.lan
       // this.$router.push({ path: '/basic/categoryEdit', query: { id: row.id }})
       this.dialogStatus = 'update'
       this.createDialogVisible = true
@@ -224,7 +224,7 @@ export default {
       // this.lua === 'zh-CN' ? this.luaName = '中文' : this.luaName = '英文'
       this.resetForm()
       this.dataForm.type = this.typeId
-      this.dataForm.lua = this.luaIds
+      this.dataForm.lan = this.luaIds
       this.dialogStatus = 'create'
       this.createDialogVisible = true
       this.$nextTick(() => {
@@ -272,8 +272,8 @@ export default {
     },
     handleLuaChange(value) {
       this.luaIds = value[value.length - 1]
-      this.dataForm.lua = value[value.length - 1]
-      this.listQuery.lua = value[value.length - 1]
+      this.dataForm.lan = value[value.length - 1]
+      this.listQuery.lan = value[value.length - 1]
       this.getList()
     },
     handleTypeChange(value) {

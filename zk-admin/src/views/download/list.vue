@@ -34,7 +34,7 @@
 
       <el-table-column align="center" label="文件描述" prop="dDescibe" />
 
-      <el-table-column align="center" label="文件语言" prop="dLanType" />
+      <el-table-column align="center" label="文件语言" prop="lan" />
 
       <el-table-column align="center" property="iconUrl" label="图片">
         <template slot-scope="scope">
@@ -182,7 +182,7 @@ export default {
         dDescibe: undefined,
         dImagePath: undefined,
         dPath: undefined,
-        dLanType: undefined
+        lan: undefined
       },
       createDialogVisible: false,
       list: [],
@@ -198,7 +198,7 @@ export default {
       listQuery: {
         page: 1,
         limit: 20,
-        dLanType: 'zh-CN',
+        lan: 'zh-CN',
         sort: 'add_time',
         order: 'desc'
       },
@@ -289,7 +289,7 @@ export default {
         dDescibe: undefined,
         dImagePath: undefined,
         dPath: undefined,
-        dLanType: this.luaIds
+        lan: this.luaIds
       }
     },
     handleCreate() {
@@ -368,7 +368,7 @@ export default {
     },
     handleLuaChange(value) {
       this.luaIds = value[value.length - 1]
-      this.listQuery.dLanType = value[value.length - 1]
+      this.listQuery.lan = value[value.length - 1]
       this.getList()
     },
     handelRemove() {

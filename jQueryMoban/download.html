@@ -53,9 +53,9 @@
             <div class="navbar-collapse collapse floated" id="navbar-collapse">
                 <ul class="nav navbar-nav navbar-with-inside clearfix navbar-right with-border">
                     <li><a href="index.html" class="i18n" name="home"></a></li>
-                    <li><a href="services.html" class="i18n" name="product"></a></li>
+                    <li><a href="product.html" class="i18n" name="product"></a></li>
                     <li><a href="scheme.html" class="i18n" name="solution"></a></li>
-                    <li><a href="download.html" class="i18n activeNav" name="download"></a></li>
+                    <li><a href="#" class="i18n activeNav" name="download"></a></li>
                     <li>
                         <a data-toggle="dropdown" href="#">
                             <span class="i18n" name="zkcloud"></span>
@@ -377,17 +377,22 @@
 <script >
     // var lan
     $(document).ready(function (){
-        lan = getCookie("userLanguage");
         console.log(lan)
         addBanner(function () {
 
         })
-        addParagraphList()
-        addProductList()
+        addParagraphList(function () {
+
+        })
+        addProductList(function () {
+
+        })
         addBasic(function () {
 
         })
-        addCategoryList()
+        addCategoryList(function () {
+
+        })
         addSchemeList(function () {
 
         })

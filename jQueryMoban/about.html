@@ -54,7 +54,7 @@
                     <div class="navbar-collapse collapse floated" id="navbar-collapse">
                         <ul class="nav navbar-nav navbar-with-inside clearfix navbar-right with-border">
                             <li><a href="index.html" class="i18n " name="home"></a></li>
-                            <li><a href="services.html" class="i18n" name="product"></a></li>
+                            <li><a href="product.html" class="i18n" name="product"></a></li>
                             <li><a href="scheme.html" class="i18n" name="solution"></a></li>
                             <li><a href="download.html" class="i18n" name="download"></a></li>
                             <li>
@@ -67,7 +67,7 @@
                                     <a class="navLink i18n" name="zkcloud" style="margin-bottom: 0;"></a>
                                 </ul>
                             </li>
-                            <li><a href="about.html" class="i18n activeNav" name="aboutUs"></a></li>
+                            <li><a href="#" class="i18n activeNav" name="aboutUs"></a></li>
 
                             <li><a href="realtion.html" class="i18n" name="contact"></a></li>
                         </ul>
@@ -438,10 +438,10 @@
         <script src="js/request.js?v=1"></script>
         <script>
 
-            var lan = getCookie("userLanguage");
-
             $(document).ready(function () {
-                addCategoryList()
+                addCategoryList(function () {
+
+                })
                 addSchemeList(function () {
 
                 })

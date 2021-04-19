@@ -99,7 +99,7 @@ export default {
       listQuery: {
         page: 1,
         limit: 20,
-        lua: 'zh-CN',
+        lan: 'zh-CN',
         sort: 'add_time',
         order: 'desc'
       },
@@ -144,11 +144,11 @@ export default {
       this.$router.push({ path: '/basic/schemeEdit', query: { id: row.id }})
     },
     handleCreate() {
-      this.$router.push({ path: '/basic/schemeCreate', query: { lua: this.luIds }})
+      this.$router.push({ path: '/basic/schemeCreate', query: { lan: this.luaIds }})
     },
     handleLuaChange(value) {
       this.luaIds = value[value.length - 1]
-      this.listQuery.lua = value[value.length - 1]
+      this.listQuery.lan = value[value.length - 1]
       this.getList()
     }
   }

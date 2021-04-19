@@ -384,7 +384,6 @@
         // $("#sel1").selectpicker({});
         // $("#sel2").selectpicker({});
 
-        lan = getCookie("userLanguage");
         console.log(lan)
 
         addBanner(function () {
@@ -466,7 +465,7 @@
     function viewProduct(val) {
         var str = "";
         productList.forEach(function (item,index) {
-            console.log(parseInt(val)+item.pType)
+            // console.log(parseInt(val)+item.pType)
             if(parseInt(val) === item.pType){
                 var category ;
                 categoryList.forEach(function (categoryItem) {
@@ -474,6 +473,7 @@
                         category = categoryItem.label
                     }
                 })
+                console.log(category)
                 str += "<div class=\"col-sm-4 col-md-3 \"style=\"\">\n" +
                     "                                <div class=\"thumbnail productNav\" style=\"padding: 0; margin: 0 5px 20px 5px;\">\n" +
                     "                                    <a href=\"productRead.html?id="+item.id+"&category="+category+"\" style=\"margin: 10px;text-decoration:none;color: #9b9b9b;font-family: PingFangSC-Regular\">\n" +

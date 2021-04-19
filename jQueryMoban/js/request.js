@@ -1,4 +1,4 @@
-var lan
+var lan = getCookie("userLanguage") === null?'zh-CN':getCookie("userLanguage")
 var requestUrl = "http://localhost:8089/html"
 //轮播
 function addBanner(callback) {
@@ -120,6 +120,7 @@ function addBasic(callback) {
         // contentType : 'application/json',
         // async: true,
         dataType: 'json',
+        data: {lan: lan},
         success: function (res) {
             //二维码
             document.getElementById("qrcode").src = res.data.owQrcodePath
@@ -148,7 +149,7 @@ function addCategoryList(callback) {
         // contentType : 'application/json',
         // async: true,
         dataType: 'json',
-        data: {cType: 2,lan: lan},
+        data: { lan: lan},
         success: function (res) {
             res.data.list.forEach(function (item,index) {
                 if (index<4) {

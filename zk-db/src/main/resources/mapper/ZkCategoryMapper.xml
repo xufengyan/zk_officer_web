@@ -9,11 +9,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="value"    column="value"    />
         <result property="label"    column="label"    />
         <result property="type"    column="type"    />
-        <result property="lua"    column="lua"    />
+        <result property="lan"    column="lan"    />
     </resultMap>
 
     <sql id="selectZkCategoryVo">
-        select id, value, label,type ,lua from zk_category
+        select id, value, label,type ,lan from zk_category
     </sql>
 
     <select id="selectZkCategoryList" parameterType="com.xf.project.db.domain.ZkCategory" resultMap="ZkCategoryResult">
@@ -21,7 +21,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <where>
             <if test="value != null "> and value = #{value}</if>
             <if test="label != null  and label != ''"> and label = #{label}</if>
-            <if test="lua != null  and lua != ''"> and lua = #{lua}</if>
+            <if test="lan != null  and lan != ''"> and lan = #{lan}</if>
             <if test="type != null"> and type = #{type}</if>
         </where>
     </select>
@@ -36,14 +36,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="value != null ">value,</if>
             <if test="label != null  and label != ''">label,</if>
-            <if test="lua != null  and lua != ''">lua,</if>
+            <if test="lan != null  and lan != ''">lan,</if>
             <if test="type != null">type,</if>
 
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="value != null ">#{value},</if>
             <if test="label != null  and label != ''">#{label},</if>
-            <if test="lua != null  and lua != ''">#{lua},</if>
+            <if test="lan != null  and lan != ''">#{lan},</if>
             <if test="type">#{type},</if>
 
         </trim>
@@ -54,7 +54,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <trim prefix="SET" suffixOverrides=",">
             <if test="value != null ">value = #{value},</if>
             <if test="label != null  and label != ''">label = #{label},</if>
-            <if test="lua != null  and lua != ''"> lua = #{lua},</if>
+            <if test="lan != null  and lan != ''"> lan = #{lan},</if>
             <if test="type != null">type = #{type},</if>
         </trim>
         where id = #{id}

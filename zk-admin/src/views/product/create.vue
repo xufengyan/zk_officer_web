@@ -136,7 +136,7 @@ export default {
       product: {},
       type: 1,
       typeName: '喷码机',
-      lua: 'zh-CN',
+      lan: 'zh-CN',
       luaName: '中文',
       productVisiable: false,
       attributeVisiable: false,
@@ -196,20 +196,20 @@ export default {
       if (this.$route.query.type == null) {
         return
       }
-      if (this.$route.query.lua == null) {
+      if (this.$route.query.lan == null) {
         return
       }
       const type = this.$route.query.type
-      const lua = this.$route.query.lua
-      console.log(lua)
+      const lan = this.$route.query.lan
+      console.log(lan)
       console.log(type)
 
       this.type = type
       type === 1 ? this.typeName = '测亩仪' : this.typeName = '喷码机'
-      lua === 'zh-CN' ? this.luaName = '中文' : this.luaName = '英文'
-      this.product.lua = lua
+      lan === 'zh-CN' ? this.luaName = '中文' : this.luaName = '英文'
+      this.product.lan = lan
       const category = {
-        lua: lua,
+        lan: lan,
         type: type
       }
       listCategory(category).then(response => {

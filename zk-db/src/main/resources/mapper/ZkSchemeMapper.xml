@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="sName"    column="s_name"    />
         <result property="sImagePath"    column="s_image_path"    />
         <result property="sContent"    column="s_content"    />
-        <result property="lua"    column="lua"    />
+        <result property="lan"    column="lan"    />
 
     </resultMap>
 
@@ -23,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="sName != null  and sName != ''"> and s_name like concat('%', #{sName}, '%')</if>
             <if test="sImagePath != null  and sImagePath != ''"> and s_image_path = #{sImagePath}</if>
             <if test="sContent != null  and sContent != ''"> and s_content = #{sContent}</if>
-            <if test="lua != null  and lua != ''"> and lua = #{lua}</if>
+            <if test="lan != null  and lan != ''"> and lan = #{lan}</if>
 
         </where>
     </select>
@@ -39,14 +39,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="sName != null  and sName != ''">s_name,</if>
             <if test="sImagePath != null  and sImagePath != ''">s_image_path,</if>
             <if test="sContent != null  and sContent != ''">s_content,</if>
-            <if test="lua != null  and lua != ''">lua,</if>
+            <if test="lan != null  and lan != ''">lan,</if>
 
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="sName != null  and sName != ''">#{sName},</if>
             <if test="sImagePath != null  and sImagePath != ''">#{sImagePath},</if>
             <if test="sContent != null  and sContent != ''">#{sContent},</if>
-            <if test="lua != null  and lua != ''">#{lua},</if>
+            <if test="lan != null  and lan != ''">#{lan},</if>
 
         </trim>
     </insert>
@@ -57,7 +57,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="sName != null  and sName != ''">s_name = #{sName},</if>
             <if test="sImagePath != null  and sImagePath != ''">s_image_path = #{sImagePath},</if>
             <if test="sContent != null  and sContent != ''">s_content = #{sContent},</if>
-            <if test="lua != null  and lua != ''">lua = #{lua},</if>
+            <if test="lan != null  and lan != ''">lan = #{lan},</if>
 
         </trim>
         where id = #{id}

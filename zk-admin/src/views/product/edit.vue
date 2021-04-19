@@ -7,6 +7,12 @@
         <el-form-item label="编辑ID" prop="id">
           <el-input v-model="product.id" disabled />
         </el-form-item>
+        <el-form-item label="语言" prop="lan">
+          <el-input v-model="luaName" disabled />
+        </el-form-item>
+        <el-form-item label="产品类型" prop="id">
+          <el-input v-model="typeName" disabled />
+        </el-form-item>
         <el-form-item label="产品名称" prop="pName">
           <el-input v-model="product.pName" />
         </el-form-item>
@@ -106,15 +112,11 @@ export default {
       newKeyword: '',
       keywords: [],
       galleryFileList: [],
-      categoryList: [{
-        value: '1',
-        label: '上海'
-      }, {
-        value: '2',
-        label: '北京'
-      }],
+      categoryList: [],
       brandList: [],
       categoryIds: [],
+      luaName: '中文',
+      typeName: '',
       product: {
         id: '1',
         pType: 1,
@@ -193,39 +195,25 @@ export default {
       if (this.$route.query.id == null) {
         return
       }
+      if (this.$route.query.type == null) {
+        return
+      }
+      const type = this.$route.query.type
+      type === 1 ? this.typeName = '测亩仪' : this.typeName = '喷码机'
 
       const productId = this.$route.query.id
       readProduct(productId).then(response => {
         this.product = response.data.data
+        // this.product.type === 1 ? this.typeName = '测亩仪' : this.typeName = '喷码机'
+        this.product.lan === 'zh-CN' ? this.luaName = '中文' : this.luaName = '英文'
+
         this.categoryIds = response.data.data.pType
 
-        //   // 稍微调整一下前后端不一致
-      //   if (this.product.brandId === 0) {
-      //     this.product.brandId = null
-      //   }
-      //   if (this.product.keywords === '') {
-      //     this.product.keywords = null
-      //   }
-      //   this.specifications = response.data.data.specifications
-      //   this.products = response.data.data.products
-      //   this.attributes = response.data.data.attributes
-      //   this.categoryIds = response.data.data.categoryIds
-      //
-      //   // this.galleryFileList = []
-      //   // for (var i = 0; i < this.product.gallery.length; i++) {
-      //   //   this.galleryFileList.push({
-      //   //     url: this.product.gallery[i]
-      //   //   })
-      //   // }
-      //   const keywords = response.data.data.product.keywords
-      //   if (keywords !== null) {
-      //     this.keywords = keywords.split(',')
-      //   }
-      })
-      //
-      listCategory().then(response => {
-        this.categoryList = response.data.data.list
-        // this.brandList = response.data.data.brandList
+        const c = { lan: this.product.lan, type: type }
+        listCategory(c).then(response => {
+          this.categoryList = response.data.data.list
+          // this.brandList = response.data.data.brandList
+        })
       })
     },
     // 选择不同的系列
