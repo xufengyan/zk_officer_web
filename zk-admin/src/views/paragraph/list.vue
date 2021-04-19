@@ -3,9 +3,10 @@
     <!-- 查询和其他操作 -->
     <div class="filter-container">
       <el-form ref="paragraph" label-width="150px">
-        <el-form-item label="类型" prop="typeIds">
+<!--        <el-form-item label="" prop="typeIds">-->
+          <el-cascader :value="luaIds" :options="luaList" expand-trigger="hover" @change="handleLuaChange" />
           <el-cascader :value="typeIds" :options="typeList" expand-trigger="hover" @change="handleCategoryChange" />
-        </el-form-item>
+<!--        </el-form-item>-->
       </el-form>
       <!--      <el-input v-model="listQuery.goodsSn" clearable class="filter-item" style="width: 160px;" placeholder="请输入商品编号" />-->
       <!--      <el-input v-model="listQuery.name" clearable class="filter-item" style="width: 160px;" placeholder="请输入商品名称" />-->
@@ -134,6 +135,7 @@ export default {
         page: 1,
         limit: 20,
         cType: 1,
+        lua: 'zh-CN',
         sort: 'add_time',
         order: 'desc'
       },
@@ -162,6 +164,15 @@ export default {
       }, {
         value: 2,
         label: '我们的优势'
+      }],
+      luaIds: 'zh-CN',
+      luaList: [{
+        value: 'zh-CN',
+        label: '中文'
+      },
+      {
+        value: 'en',
+        label: '英文'
       }]
     }
   },
@@ -254,6 +265,11 @@ export default {
       // this.paragraph.cType = value[value.length - 1]
       this.typeIds = value[value.length - 1]
       this.listQuery.cType = value[value.length - 1]
+      this.getList()
+    },
+    handleLuaChange(value) {
+      this.luaIds = value[value.length - 1]
+      this.listQuery.lua = value[value.length - 1]
       this.getList()
     }
     // showDetail(detail) {

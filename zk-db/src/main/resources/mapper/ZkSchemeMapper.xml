@@ -9,6 +9,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="sName"    column="s_name"    />
         <result property="sImagePath"    column="s_image_path"    />
         <result property="sContent"    column="s_content"    />
+        <result property="lua"    column="lua"    />
+
     </resultMap>
 
     <sql id="selectZkSchemeVo">
@@ -21,6 +23,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="sName != null  and sName != ''"> and s_name like concat('%', #{sName}, '%')</if>
             <if test="sImagePath != null  and sImagePath != ''"> and s_image_path = #{sImagePath}</if>
             <if test="sContent != null  and sContent != ''"> and s_content = #{sContent}</if>
+            <if test="lua != null  and lua != ''"> and lua = #{lua}</if>
+
         </where>
     </select>
 
@@ -35,12 +39,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="sName != null  and sName != ''">s_name,</if>
             <if test="sImagePath != null  and sImagePath != ''">s_image_path,</if>
             <if test="sContent != null  and sContent != ''">s_content,</if>
-         </trim>
+            <if test="lua != null  and lua != ''">lua,</if>
+
+        </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="sName != null  and sName != ''">#{sName},</if>
             <if test="sImagePath != null  and sImagePath != ''">#{sImagePath},</if>
             <if test="sContent != null  and sContent != ''">#{sContent},</if>
-         </trim>
+            <if test="lua != null  and lua != ''">#{lua},</if>
+
+        </trim>
     </insert>
 
     <update id="updateZkScheme" parameterType="com.xf.project.db.domain.ZkScheme">
@@ -49,6 +57,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="sName != null  and sName != ''">s_name = #{sName},</if>
             <if test="sImagePath != null  and sImagePath != ''">s_image_path = #{sImagePath},</if>
             <if test="sContent != null  and sContent != ''">s_content = #{sContent},</if>
+            <if test="lua != null  and lua != ''">lua = #{lua},</if>
+
         </trim>
         where id = #{id}
     </update>

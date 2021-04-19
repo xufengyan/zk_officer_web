@@ -12,10 +12,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="addTime"    column="add_time"    />
         <result property="updateTime"    column="update_time"    />
         <result property="delType"    column="del_type"    />
+        <result property="lua"    column="lua"    />
+
     </resultMap>
 
     <sql id="selectZkListVo">
-        select id, name, content, c_type, add_time, update_time, del_type from zk_list
+        select id, name, content, c_type, add_time, update_time, del_type, lua from zk_list
     </sql>
 
     <select id="selectZkListList" parameterType="com.xf.project.db.domain.ZkList" resultMap="ZkListResult">
@@ -26,6 +28,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="cType != null "> and c_type = #{cType}</if>
             <if test="addTime != null "> and add_time = #{addTime}</if>
             <if test="delType != null "> and del_type = #{delType}</if>
+            <if test="lua != null and lua !=''"> and lua = #{lua}</if>
+
         </where>
     </select>
 
@@ -43,7 +47,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="addTime != null ">add_time,</if>
             <if test="updateTime != null ">update_time,</if>
             <if test="delType != null ">del_type,</if>
-         </trim>
+            <if test="lua != null and lua != ''">lua,</if>
+
+        </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="name != null  and name != ''">#{name},</if>
             <if test="content != null  and content != ''">#{content},</if>
@@ -51,7 +57,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="addTime != null ">#{addTime},</if>
             <if test="updateTime != null ">#{updateTime},</if>
             <if test="delType != null ">#{delType},</if>
-         </trim>
+            <if test="lua != null and lua != ''">#{lua},</if>
+
+        </trim>
     </insert>
 
     <update id="updateZkList" parameterType="com.xf.project.db.domain.ZkList">
@@ -63,6 +71,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="addTime != null ">add_time = #{addTime},</if>
             <if test="updateTime != null ">update_time = #{updateTime},</if>
             <if test="delType != null ">del_type = #{delType},</if>
+            <if test="lua != null and lua != ''">lua = #{lua},</if>
+
         </trim>
         where id = #{id}
     </update>

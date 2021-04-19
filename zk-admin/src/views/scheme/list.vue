@@ -99,8 +99,7 @@ export default {
       listQuery: {
         page: 1,
         limit: 20,
-        goodsSn: undefined,
-        name: undefined,
+        lua: 'zh-CN',
         sort: 'add_time',
         order: 'desc'
       },
