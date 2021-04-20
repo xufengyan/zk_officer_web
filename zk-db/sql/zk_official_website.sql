@@ -11,7 +11,7 @@
  Target Server Version : 50733
  File Encoding         : 65001
 
- Date: 13/04/2021 17:42:39
+ Date: 20/04/2021 17:31:41
 */
 
 SET NAMES utf8mb4;
@@ -38,7 +38,7 @@ CREATE TABLE `zk_admin`  (
 -- ----------------------------
 -- Records of zk_admin
 -- ----------------------------
-INSERT INTO `zk_admin` VALUES (1, 'admin123', '$2a$10$.rEfyBb/GURD9P2p0fRg/OAJGloGNDkJS4lY0cQHeqDgsbdTylBpu', '0:0:0:0:0:0:0:1', '2021-04-13 17:12:32', 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif', '2018-02-01 00:00:00', '2021-04-13 17:12:32', 0, '[1]');
+INSERT INTO `zk_admin` VALUES (1, 'admin123', '$2a$10$.rEfyBb/GURD9P2p0fRg/OAJGloGNDkJS4lY0cQHeqDgsbdTylBpu', '0:0:0:0:0:0:0:1', '2021-04-20 17:19:23', 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif', '2018-02-01 00:00:00', '2021-04-20 17:19:23', 0, '[1]');
 INSERT INTO `zk_admin` VALUES (4, 'promotion123', '$2a$10$wDZLOLLnzZ1EFZ3ldZ1XFOUWDEX6TnQCUFdJz4g.PoMaLTzS8TjWq', '0:0:0:0:0:0:0:1', '2021-04-08 10:59:55', 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif', '2019-01-07 15:16:59', '2021-04-08 10:59:55', 0, '[3]');
 INSERT INTO `zk_admin` VALUES (5, 'mall123', '$2a$10$aCtsc4rG6KmxQ59.IkYse.oRyKuwQoU2CPCmxSdB.d5nXq6aw/z4O', '0:0:0:0:0:0:0:1', '2021-04-08 11:14:25', 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif', '2019-01-07 15:17:25', '2021-04-08 11:14:25', 0, '[2]');
 INSERT INTO `zk_admin` VALUES (6, 'mall1234', '$2a$10$aCtsc4rG6KmxQ59.IkYse.oRyKuwQoU2CPCmxSdB.d5nXq6aw/z4O', '0:0:0:0:0:0:0:1', '2021-04-08 10:52:11', 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif', '2019-01-07 15:17:25', '2021-04-08 10:52:11', 0, '[3]');
@@ -62,15 +62,15 @@ CREATE TABLE `zk_basic`  (
   `ow_url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '公司网址',
   `ow_mail` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '邮箱地址',
   `ow_address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '公司地址',
-  `ow_lua_type` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '语言类型（zh-CN：中文；en：英文）',
+  `lan` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '语言类型（zh-CN：中文；en：英文）',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '官网基本信息表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of zk_basic
 -- ----------------------------
-INSERT INTO `zk_basic` VALUES (1, 'http://localhost:8089/admin/storage/fetch/wrdallmxe2coftnwmt92.png', '深圳致开科技有限公司', '<h2 style=\"text-align: center;\">公司简介</h2>\n<h4 style=\"text-align: center;\">致力于做最专业的北斗GPS定位测量解决方案提供商</h4>\n<hr />\n<p>公司是有着丰富实践经验和前沿理论知识的电子工程师发起的，秉承了工程师勤奋，务实，程序的优良品质。 我们始终坚持以客户为中心，坚持创新，致力于为客户提供最优质的产品和服务，帮助合作伙伴以正确的方法制造正确的产品，不仅能够以更低的成本 、更快的速度创新新产品，而且还提高了产品质量和可靠性。</p>\n<p>公司及其前身-众成电子工作室历经数年的磨合、模式、实践、最终决定定位测量领域，公司推出的北斗/GPS土地面积测系统已在工业、农业 交通等各行各业得到广泛应用，由本公司提供技术方案的，GPS/北斗测录在市场上已取得约100K台/年的成绩。</p>\n<p>借助一流的工程能力和优质的服务能力，我们赢得了GPS/北斗测亩仪市场的主导地位，获得合作伙伴的肯定。展望未来，致开 科技坚持创新，客户导向，一如既往的向市场提供稳定的电子产品。</p>\n<p><img src=\"http://ruinianda.com/wp-content/themes/chikytech_theme_v3.6/assets/img/about/qiant.jpg\" width=\"653\" height=\"381\" /></p>', 'http://localhost:8089/admin/storage/fetch/sxw2vy1rqmm7oyj1r35q.jpg', '0755-2720-2606', '13530108906', '周一至周日 9:00-18:00 (节假日除外)', '深圳致开科技有限公司 版权所有 Copyright © 2015-2018 粤ICP备16004202号', '2021-04-12 16:00:37', '2021-04-12 17:39:37', 'www.chikytech.com', 'allen.cao@chiky.cn', '深圳宝安区盐田商务广场A座409、405、411、413', 'zh-CN');
-INSERT INTO `zk_basic` VALUES (2, 'http://localhost:8089/admin/storage/fetch/sl9q336i0u1ew2p7kv8m.jpg', '深圳致开科技有限公司', NULL, 'http://localhost:8089/admin/storage/fetch/sl9q336i0u1ew2p7kv8m.jpg', '0755-2720-2606', '13530108906', '周一至周日 9:00-18:00 (节假日除外)', '深圳致开科技有限公司 版权所有 Copyright © 2015-2018 粤ICP备16004202号', '2021-04-12 16:00:37', '2021-04-12 16:00:40', 'www.chikytech.com', 'allen.cao@chiky.cn', '深圳宝安区盐田商务广场A座409、405、411、413', 'en');
+INSERT INTO `zk_basic` VALUES (1, 'http://localhost:8089/admin/storage/fetch/wrdallmxe2coftnwmt92.png', '深圳致开科技有限公司', '<h2 style=\"text-align: center;\">公司简介</h2>\n<h4 style=\"text-align: center;\">致力于做最专业的北斗GPS定位测量解决方案提供商</h4>\n<hr />\n<p>公司是有着丰富实践经验和前沿理论知识的电子工程师发起的，秉承了工程师勤奋，务实，程序的优良品质。 我们始终坚持以客户为中心，坚持创新，致力于为客户提供最优质的产品和服务，帮助合作伙伴以正确的方法制造正确的产品，不仅能够以更低的成本 、更快的速度创新新产品，而且还提高了产品质量和可靠性。</p>\n<p>公司及其前身-众成电子工作室历经数年的磨合、模式、实践、最终决定定位测量领域，公司推出的北斗/GPS土地面积测系统已在工业、农业 交通等各行各业得到广泛应用，由本公司提供技术方案的，GPS/北斗测录在市场上已取得约100K台/年的成绩。</p>\n<p>借助一流的工程能力和优质的服务能力，我们赢得了GPS/北斗测亩仪市场的主导地位，获得合作伙伴的肯定。展望未来，致开 科技坚持创新，客户导向，一如既往的向市场提供稳定的电子产品。</p>\n<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"http://ruinianda.com/wp-content/themes/chikytech_theme_v3.6/assets/img/about/qiant.jpg\" width=\"653\" height=\"381\" /></p>', 'http://localhost:8089/admin/storage/fetch/sxw2vy1rqmm7oyj1r35q.jpg', '0755-2720-2606', '13530108906', '周一至周日 9:00-18:00 (节假日除外)', '深圳致开科技有限公司 版权所有 Copyright © 2015-2018 粤ICP备16004202号', '2021-04-12 16:00:37', '2021-04-14 16:29:21', 'www.chikytech.com', 'allen.cao@chiky.cn', '深圳宝安区盐田商务广场A座409、405、411、413', 'zh-CN');
+INSERT INTO `zk_basic` VALUES (2, 'http://localhost:8089/admin/storage/fetch/sl9q336i0u1ew2p7kv8m.jpg', 'chikytech', '<h2 style=\"text-align: center;\">公司简介</h2>\n<h4 style=\"text-align: center;\">致力于做最专业的北斗GPS定位测量解决方案提供商</h4>\n<hr />\n<p>公司是有着丰富实践经验和前沿理论知识的电子工程师发起的，秉承了工程师勤奋，务实，程序的优良品质。 我们始终坚持以客户为中心，坚持创新，致力于为客户提供最优质的产品和服务，帮助合作伙伴以正确的方法制造正确的产品，不仅能够以更低的成本 、更快的速度创新新产品，而且还提高了产品质量和可靠性。</p>\n<p>公司及其前身-众成电子工作室历经数年的磨合、模式、实践、最终决定定位测量领域，公司推出的北斗/GPS土地面积测系统已在工业、农业 交通等各行各业得到广泛应用，由本公司提供技术方案的，GPS/北斗测录在市场上已取得约100K台/年的成绩。</p>\n<p>借助一流的工程能力和优质的服务能力，我们赢得了GPS/北斗测亩仪市场的主导地位，获得合作伙伴的肯定。展望未来，致开 科技坚持创新，客户导向，一如既往的向市场提供稳定的电子产品。</p>\n<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"http://ruinianda.com/wp-content/themes/chikytech_theme_v3.6/assets/img/about/qiant.jpg\" width=\"653\" height=\"381\" /></p>', 'http://localhost:8089/admin/storage/fetch/sl9q336i0u1ew2p7kv8m.jpg', '0755-2720-2606', '13530108906', '周一至周日 9:00-18:00 (节假日除外)', '深圳致开科技有限公司 版权所有 Copyright © 2015-2018 粤ICP备16004202号', '2021-04-12 16:00:37', '2021-04-20 16:01:47', 'www.chikytech.com', 'allen.cao@chiky.cn', '深圳宝安区盐田商务广场A座409、405、411、413', 'en');
 
 -- ----------------------------
 -- Table structure for zk_category
@@ -80,14 +80,20 @@ CREATE TABLE `zk_category`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `value` int(10) NULL DEFAULT NULL COMMENT 'key',
   `label` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '类型名称',
+  `lan` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '语言类型',
+  `type` int(2) NULL DEFAULT NULL COMMENT '产品类型2：喷码机，1：测亩仪',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of zk_category
 -- ----------------------------
-INSERT INTO `zk_category` VALUES (1, 1, 'zk1000系列3');
-INSERT INTO `zk_category` VALUES (2, 2, 'zk2000系列1');
+INSERT INTO `zk_category` VALUES (1, 1, 'zk1000系列3', 'zh-CN', 1);
+INSERT INTO `zk_category` VALUES (2, 2, 'zk2000系列1', 'zh-CN', 2);
+INSERT INTO `zk_category` VALUES (3, 3, 'zk1000', 'en', 1);
+INSERT INTO `zk_category` VALUES (4, 4, 'zk2000', 'en', 2);
+INSERT INTO `zk_category` VALUES (5, 5, 'zk3000', 'en', 1);
+INSERT INTO `zk_category` VALUES (6, 6, 'zk2500', 'en', 2);
 
 -- ----------------------------
 -- Table structure for zk_download
@@ -100,17 +106,18 @@ CREATE TABLE `zk_download`  (
   `d_descibe` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '文件描述',
   `d_image_path` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '展示图片地址',
   `d_path` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '下载地址',
-  `d_lan_type` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '语言类型（zh_CN中文说明书，en英文说明书）',
+  `lan` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '语言类型（zh-CN中文说明书，en英文说明书）',
   `add_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '说明文件下载表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '说明文件下载表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of zk_download
 -- ----------------------------
-INSERT INTO `zk_download` VALUES (2, NULL, '测试文件', '测试文件的描述', 'http://localhost:8089/admin/storage/fetch/aihtjynvvuqfmy0gzvwk.jpg', '523lrn5p28oiy5bela0z.txt', 'zh-CN', '2021-04-13 15:04:32', '2021-04-13 15:33:26');
+INSERT INTO `zk_download` VALUES (2, NULL, '测试文件', '测亩仪数据导出软件，支持本公司及其合作伙伴的大部分测亩仪', 'http://localhost:8089/admin/storage/fetch/if8zl18kp32l47kkw7qr.png', '523lrn5p28oiy5bela0z.txt', 'zh-CN', '2021-04-13 15:04:32', '2021-04-16 11:26:11');
 INSERT INTO `zk_download` VALUES (3, NULL, '测试文件2', '这个是测试文件2的描述', 'http://localhost:8089/admin/storage/fetch/6fh66bdbcl0nbufs96ef.jpg', 'pw8gdsq4jpi6cyaaa7rb.txt', 'zh-CN', '2021-04-13 15:33:12', NULL);
+INSERT INTO `zk_download` VALUES (4, NULL, 'Test Download File', 'Test Download FileTest Download File', 'http://localhost:8089/admin/storage/fetch/f64ttlyyei8qr10ecsis.png', 'hh0bp4emuc3by234xogj.txt', 'en', '2021-04-20 13:45:46', NULL);
 
 -- ----------------------------
 -- Table structure for zk_image_management
@@ -125,23 +132,43 @@ CREATE TABLE `zk_image_management`  (
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   `del_type` int(255) NULL DEFAULT 0 COMMENT '删除状态0正常,1删除',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 33 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of zk_image_management
 -- ----------------------------
 INSERT INTO `zk_image_management` VALUES (1, 'http://localhost:8089/admin/storage/fetch/m7sk3wfo7wr8kwmbtn3u.jpg', 0, NULL, NULL, '2021-04-13 16:41:02', 0);
 INSERT INTO `zk_image_management` VALUES (2, 'http://localhost:8089/admin/storage/fetch/tef6lcj49ss5xs7lob98.jpg', 0, NULL, NULL, '2021-04-13 16:43:46', 1);
-INSERT INTO `zk_image_management` VALUES (3, 'http://localhost:8089/admin/storage/fetch/ywx53068gsljnipzcjx5.jpg', 0, NULL, NULL, NULL, 0);
+INSERT INTO `zk_image_management` VALUES (3, 'http://localhost:8089/admin/storage/fetch/ywx53068gsljnipzcjx5.jpg', 0, NULL, NULL, '2021-04-14 10:39:14', 1);
 INSERT INTO `zk_image_management` VALUES (4, 'http://localhost:8089/admin/storage/fetch/uehjurak4djhan9pz3q4.jpg', 0, NULL, NULL, '2021-04-13 16:43:39', 1);
 INSERT INTO `zk_image_management` VALUES (5, 'http://localhost:8089/admin/storage/fetch/mz2w094g047zxtv965o2.jpg', 0, NULL, NULL, '2021-04-13 16:44:00', 1);
-INSERT INTO `zk_image_management` VALUES (6, 'http://localhost:8089/admin/storage/fetch/l4ry3kn5ck922fvlew3f.jpg', 0, NULL, NULL, NULL, 0);
+INSERT INTO `zk_image_management` VALUES (6, 'http://localhost:8089/admin/storage/fetch/l4ry3kn5ck922fvlew3f.jpg', 0, NULL, NULL, '2021-04-14 10:34:23', 1);
 INSERT INTO `zk_image_management` VALUES (7, 'http://localhost:8089/admin/storage/fetch/bzxmrzdq5gwk2sos8p63.jpg', 0, NULL, NULL, '2021-04-13 17:39:15', 1);
-INSERT INTO `zk_image_management` VALUES (8, 'http://localhost:8089/admin/storage/fetch/92hpony8invaitgijpau.jpg', 1, '生死时速222', NULL, '2021-04-13 17:28:29', 0);
-INSERT INTO `zk_image_management` VALUES (9, 'http://localhost:8089/admin/storage/fetch/49jujrg83mjbddg5iqnd.jpg', 1, 'http://www.baidu.com', NULL, NULL, 0);
-INSERT INTO `zk_image_management` VALUES (10, 'http://localhost:8089/admin/storage/fetch/ykfqengj699ivwvxrc0l.jpg', 2, 'https://www.lagou.com/jobs', NULL, '2021-04-13 17:33:10', 0);
-INSERT INTO `zk_image_management` VALUES (11, 'http://localhost:8089/admin/storage/fetch/a83lf52mbrjxzix1x9dc.jpg', 3, NULL, NULL, NULL, 0);
+INSERT INTO `zk_image_management` VALUES (8, 'http://localhost:8089/admin/storage/fetch/92hpony8invaitgijpau.jpg', 1, '生死时速222', NULL, '2021-04-13 17:28:29', 1);
+INSERT INTO `zk_image_management` VALUES (9, 'http://localhost:8089/admin/storage/fetch/49jujrg83mjbddg5iqnd.jpg', 1, 'http://www.baidu.com', NULL, NULL, 1);
+INSERT INTO `zk_image_management` VALUES (10, 'http://localhost:8089/admin/storage/fetch/ykfqengj699ivwvxrc0l.jpg', 2, 'https://www.lagou.com/jobs', NULL, '2021-04-13 17:33:10', 1);
+INSERT INTO `zk_image_management` VALUES (11, 'http://localhost:8089/admin/storage/fetch/8qv5hawhjj910kmoas39.jpg', 1, '#', NULL, '2021-04-15 09:56:27', 0);
 INSERT INTO `zk_image_management` VALUES (12, 'http://localhost:8089/admin/storage/fetch/xnvcta7pmcjr2yhwd1yw.jpg', 0, NULL, NULL, NULL, 0);
+INSERT INTO `zk_image_management` VALUES (13, 'http://localhost:8089/admin/storage/fetch/kl17lcy4rmo13slryvys.jpg', 1, '#', NULL, '2021-04-15 09:56:41', 0);
+INSERT INTO `zk_image_management` VALUES (14, 'http://localhost:8089/admin/storage/fetch/irxciyu6ewhtab95lcwr.jpg', 1, '#', NULL, '2021-04-15 09:56:56', 0);
+INSERT INTO `zk_image_management` VALUES (15, 'http://localhost:8089/admin/storage/fetch/fq3m0kvknb3n1lhgczff.jpg', 1, '#', NULL, '2021-04-15 09:57:08', 0);
+INSERT INTO `zk_image_management` VALUES (16, 'http://localhost:8089/admin/storage/fetch/v2adjhs5ntttw57bcskq.jpg', 1, '#', NULL, '2021-04-15 09:57:21', 0);
+INSERT INTO `zk_image_management` VALUES (17, 'http://localhost:8089/admin/storage/fetch/fzemqllyvgq6kxgnbhih.jpg', 1, '#', NULL, '2021-04-15 09:57:38', 0);
+INSERT INTO `zk_image_management` VALUES (18, 'http://localhost:8089/admin/storage/fetch/dl9204fclznz6v6fjxqw.jpg', 1, '#', NULL, '2021-04-15 09:57:47', 0);
+INSERT INTO `zk_image_management` VALUES (19, 'http://localhost:8089/admin/storage/fetch/3phnz6x06aqbbjdahw4o.jpg', 1, '#', NULL, '2021-04-15 09:57:59', 0);
+INSERT INTO `zk_image_management` VALUES (20, 'http://localhost:8089/admin/storage/fetch/zct637mbsq3p1lqyaotu.jpg', 3, NULL, NULL, NULL, 0);
+INSERT INTO `zk_image_management` VALUES (21, 'http://localhost:8089/admin/storage/fetch/9aptfuz0s6oybttmtw01.jpg', 3, NULL, NULL, NULL, 0);
+INSERT INTO `zk_image_management` VALUES (22, 'http://localhost:8089/admin/storage/fetch/bva0spdste5xn7879w60.jpg', 3, NULL, NULL, NULL, 0);
+INSERT INTO `zk_image_management` VALUES (23, 'http://localhost:8089/admin/storage/fetch/prsmke3p65u1pa3fpoob.jpg', 3, NULL, NULL, NULL, 0);
+INSERT INTO `zk_image_management` VALUES (24, 'http://localhost:8089/admin/storage/fetch/8nwyqqeb3exf0a2mfmd3.jpg', 3, NULL, NULL, NULL, 0);
+INSERT INTO `zk_image_management` VALUES (25, 'http://localhost:8089/admin/storage/fetch/wi2sd054854fwv401d3i.jpg', 3, NULL, NULL, NULL, 0);
+INSERT INTO `zk_image_management` VALUES (26, 'http://localhost:8089/admin/storage/fetch/9sr6i4zwkd3bya1krubx.jpg', 3, NULL, NULL, NULL, 0);
+INSERT INTO `zk_image_management` VALUES (27, 'http://localhost:8089/admin/storage/fetch/0bjp9l3ht23bol74xrp7.jpg', 3, NULL, NULL, NULL, 0);
+INSERT INTO `zk_image_management` VALUES (28, 'http://localhost:8089/admin/storage/fetch/iqzwjqqpzhi6ac4vakns.jpg', 1, '#', NULL, NULL, 0);
+INSERT INTO `zk_image_management` VALUES (29, 'http://localhost:8089/admin/storage/fetch/zcaxp4xcfsam1pdj3wjf.png', 2, '#', NULL, NULL, 0);
+INSERT INTO `zk_image_management` VALUES (30, 'http://localhost:8089/admin/storage/fetch/nyhbw3cx9flevpuq7oal.png', 2, '#', NULL, NULL, 0);
+INSERT INTO `zk_image_management` VALUES (31, 'http://localhost:8089/admin/storage/fetch/6flox6e57ss2qizvzzit.png', 2, '#', NULL, NULL, 0);
+INSERT INTO `zk_image_management` VALUES (32, 'http://localhost:8089/admin/storage/fetch/es42zfmlacledcvmoqk0.png', 2, '#', NULL, NULL, 0);
 
 -- ----------------------------
 -- Table structure for zk_list
@@ -155,18 +182,22 @@ CREATE TABLE `zk_list`  (
   `add_time` datetime NULL DEFAULT NULL,
   `update_time` datetime NULL DEFAULT NULL,
   `del_type` int(1) NULL DEFAULT 0 COMMENT '0正常，1删除',
+  `lan` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '语言类型',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of zk_list
 -- ----------------------------
-INSERT INTO `zk_list` VALUES (1, '客户与创新', '我们始终以客户为中心，坚持创新致力于为客户提供优质的产品与服务', 1, NULL, NULL, 0);
-INSERT INTO `zk_list` VALUES (2, '理论与实践', '我们公司有着丰富的经验', 1, NULL, NULL, 0);
-INSERT INTO `zk_list` VALUES (3, '理论与实践', '我们公司以客户为目标', 2, NULL, NULL, 0);
-INSERT INTO `zk_list` VALUES (6, 'sad', '阿萨德', 1, NULL, NULL, 0);
-INSERT INTO `zk_list` VALUES (7, '收到', '是多少', 1, NULL, NULL, 0);
-INSERT INTO `zk_list` VALUES (8, '测试少时诵诗书', '测试测试', 1, NULL, '2021-04-13 11:33:42', 0);
+INSERT INTO `zk_list` VALUES (1, '客户与创新', '我们始终以客户为中心，坚持创新致力于为客户提供优质的产品与服务', 1, NULL, NULL, 0, 'zh-CN');
+INSERT INTO `zk_list` VALUES (2, '理论与实践', '我们公司有着丰富的经验', 1, NULL, NULL, 0, 'zh-CN');
+INSERT INTO `zk_list` VALUES (3, '理论与实践', '我们公司以客户为目标', 2, NULL, NULL, 0, 'zh-CN');
+INSERT INTO `zk_list` VALUES (6, 'sad', '阿萨德', 1, NULL, NULL, 0, 'zh-CN');
+INSERT INTO `zk_list` VALUES (7, '收到', '是多少', 1, NULL, NULL, 0, 'zh-CN');
+INSERT INTO `zk_list` VALUES (8, 'Field of Testing Technology', 'Field of Testing TechnologyField of Testing TechnologyField of Testing TeField of Testing TechnologyField of Testing TechnologyField of Testing TechnologyField of Testing TechnologychnologyField of Testing Technology', 1, NULL, '2021-04-20 13:46:39', 0, 'en');
+INSERT INTO `zk_list` VALUES (9, 'Test the advantage00001', 'Test the advantageTest the advantageTest the advantageTest the advantage', 2, NULL, '2021-04-20 11:43:45', 0, 'en');
+INSERT INTO `zk_list` VALUES (10, 'Test the advantage00002', 'Test the advantage00001\nTest the advantage00001\nTest the advantage00001\nTest the advantage00001\n', 2, NULL, '2021-04-20 11:43:55', 0, 'en');
+INSERT INTO `zk_list` VALUES (11, 'Test the advantage00003', 'Test the advantage00001Test the advantage00001\nTest the advantage00001\n', 2, NULL, '2021-04-20 11:44:06', 0, 'en');
 
 -- ----------------------------
 -- Table structure for zk_log
@@ -185,7 +216,7 @@ CREATE TABLE `zk_log`  (
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) NULL DEFAULT 0 COMMENT '逻辑删除',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 111 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '操作日志表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 124 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '操作日志表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of zk_log
@@ -259,6 +290,19 @@ INSERT INTO `zk_log` VALUES (107, 'admin123', '0:0:0:0:0:0:0:1', 1, '登录', 1,
 INSERT INTO `zk_log` VALUES (108, 'admin123', '0:0:0:0:0:0:0:1', 1, '登录', 1, '', '', '2021-04-13 16:38:21', '2021-04-13 16:38:21', 0);
 INSERT INTO `zk_log` VALUES (109, 'admin123', '0:0:0:0:0:0:0:1', 1, '登录', 1, '', '', '2021-04-13 16:40:58', '2021-04-13 16:40:58', 0);
 INSERT INTO `zk_log` VALUES (110, 'admin123', '0:0:0:0:0:0:0:1', 1, '登录', 1, '', '', '2021-04-13 17:12:32', '2021-04-13 17:12:32', 0);
+INSERT INTO `zk_log` VALUES (111, 'admin123', '0:0:0:0:0:0:0:1', 1, '登录', 1, '', '', '2021-04-14 09:15:37', '2021-04-14 09:15:37', 0);
+INSERT INTO `zk_log` VALUES (112, 'admin123', '0:0:0:0:0:0:0:1', 1, '登录', 1, '', '', '2021-04-14 10:29:05', '2021-04-14 10:29:05', 0);
+INSERT INTO `zk_log` VALUES (113, 'admin123', '0:0:0:0:0:0:0:1', 1, '登录', 1, '', '', '2021-04-14 10:39:11', '2021-04-14 10:39:11', 0);
+INSERT INTO `zk_log` VALUES (114, 'admin123', '0:0:0:0:0:0:0:1', 1, '登录', 1, '', '', '2021-04-14 11:04:23', '2021-04-14 11:04:23', 0);
+INSERT INTO `zk_log` VALUES (115, 'admin123', '0:0:0:0:0:0:0:1', 1, '登录', 1, '', '', '2021-04-14 14:34:43', '2021-04-14 14:34:43', 0);
+INSERT INTO `zk_log` VALUES (116, 'admin123', '0:0:0:0:0:0:0:1', 1, '登录', 1, '', '', '2021-04-14 16:04:55', '2021-04-14 16:04:55', 0);
+INSERT INTO `zk_log` VALUES (117, 'admin123', '0:0:0:0:0:0:0:1', 1, '登录', 1, '', '', '2021-04-14 16:09:07', '2021-04-14 16:09:07', 0);
+INSERT INTO `zk_log` VALUES (118, 'admin123', '0:0:0:0:0:0:0:1', 1, '登录', 1, '', '', '2021-04-14 16:39:19', '2021-04-14 16:39:19', 0);
+INSERT INTO `zk_log` VALUES (119, 'admin123', '0:0:0:0:0:0:0:1', 1, '登录', 1, '', '', '2021-04-15 09:19:29', '2021-04-15 09:19:29', 0);
+INSERT INTO `zk_log` VALUES (120, 'admin123', '0:0:0:0:0:0:0:1', 1, '登录', 1, '', '', '2021-04-16 11:24:42', '2021-04-16 11:24:42', 0);
+INSERT INTO `zk_log` VALUES (121, 'admin123', '0:0:0:0:0:0:0:1', 1, '登录', 1, '', '', '2021-04-20 09:09:52', '2021-04-20 09:09:52', 0);
+INSERT INTO `zk_log` VALUES (122, 'admin123', '0:0:0:0:0:0:0:1', 1, '登录', 1, '', '', '2021-04-20 16:01:21', '2021-04-20 16:01:21', 0);
+INSERT INTO `zk_log` VALUES (123, 'admin123', '0:0:0:0:0:0:0:1', 1, '登录', 1, '', '', '2021-04-20 17:19:23', '2021-04-20 17:19:23', 0);
 
 -- ----------------------------
 -- Table structure for zk_permission
@@ -346,13 +390,22 @@ CREATE TABLE `zk_product`  (
   `p_image_path` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '产品图片地址',
   `p_model` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '产品型号',
   `p_introduce` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '产品介绍',
+  `lan` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '语言类型',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '产品表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '产品表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of zk_product
 -- ----------------------------
-INSERT INTO `zk_product` VALUES (1, 1, '测亩仪', 'http://localhost:8089/admin/storage/fetch/v9w8hmgkmzqear4vliqa.png', 'zk900', '<p><img src=\"http://localhost:8089/admin/storage/fetch/ioyq7shvhcv7hbkda9b4.jpg\" alt=\"\" width=\"1000\" height=\"563\" /></p>');
+INSERT INTO `zk_product` VALUES (1, 1, '测亩仪', 'http://localhost:8089/admin/storage/fetch/gr7kh071q2e0z9jtkbgr.jpg', 'zk900', '<p><img src=\"http://localhost:8089/admin/storage/fetch/ioyq7shvhcv7hbkda9b4.jpg\" alt=\"\" width=\"1000\" height=\"563\" /></p>', 'zh-CN');
+INSERT INTO `zk_product` VALUES (2, 1, '测亩仪测试', 'http://localhost:8089/admin/storage/fetch/16nxrv5o5hwahtirp6yw.jpg', 'zk900', NULL, 'zh-CN');
+INSERT INTO `zk_product` VALUES (3, 1, '测试商品', 'http://localhost:8089/admin/storage/fetch/dy1ls89tpd2xcuyey7mu.png', 'zk1901', NULL, 'zh-CN');
+INSERT INTO `zk_product` VALUES (4, 1, '测试商品', 'http://localhost:8089/admin/storage/fetch/i556vqwl4ijvvsxlu2b1.jpg', 'zk555', NULL, 'zh-CN');
+INSERT INTO `zk_product` VALUES (5, 1, '测亩仪0111', 'http://localhost:8089/admin/storage/fetch/xdi1z0j0lve0ohprz1si.jpg', 'zk1777', '<h1 style=\"text-align: center;\">测亩仪</h1>\n<p>测亩仪</p>', 'zh-CN');
+INSERT INTO `zk_product` VALUES (6, 2, '喷码机0012', 'http://localhost:8089/admin/storage/fetch/tqf4hivkunhpcosjyhfp.jpg', 'zk1999', '<h1 style=\"text-align: center;\">喷码机</h1>\n<p>喷码机喷码机喷码机喷码机喷码机喷码机喷码机喷码机</p>', 'zh-CN');
+INSERT INTO `zk_product` VALUES (7, 3, 'Mu meter001', 'http://localhost:8089/admin/storage/fetch/74jui8h2ife17xbc3nhv.jpg', '900', '<h1 style=\"text-align: center;\">Mu meter</h1>\n<p>Mu meterMu meterMu meterMu meterMu meterMu meterMu meter</p>', 'en');
+INSERT INTO `zk_product` VALUES (8, 4, 'Spurt the code machine', 'http://localhost:8089/admin/storage/fetch/13dasaiflcq2znnhq6fk.jpg', '10001A series of', '<h1 style=\"text-align: center;\">Spurt the code machine</h1>\n<p>Spurt the code machineSpurt the code machineSpurt the code machineSpurt the code machine</p>', 'en');
+INSERT INTO `zk_product` VALUES (9, 3, 'Mu meter002', 'http://localhost:8089/admin/storage/fetch/ftza326ez77f9q1hvvzx.jpg', '998A series of', '<h1 style=\"text-align: center;\">Mu meter002</h1>\n<p>Mu meter002Mu meter002Mu meter002Mu meter002Mu meter002Mu meter002Mu meter002</p>', 'en');
 
 -- ----------------------------
 -- Table structure for zk_role
@@ -368,7 +421,7 @@ CREATE TABLE `zk_role`  (
   `deleted` tinyint(1) NULL DEFAULT 0 COMMENT '逻辑删除',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `name_UNIQUE`(`name`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '角色表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '角色表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of zk_role
@@ -386,14 +439,21 @@ CREATE TABLE `zk_scheme`  (
   `s_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '方案名称',
   `s_image_path` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '方案宣传图',
   `s_content` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '方案内容',
+  `lan` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '解决方案表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '解决方案表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of zk_scheme
 -- ----------------------------
-INSERT INTO `zk_scheme` VALUES (1, '定位测量方案1', 'http://localhost:8089/admin/storage/fetch/1sauzzzvcin173ncjyja.jpg', '<h2 style=\"text-align: center;\">公司简介1</h2>\n<h4 style=\"text-align: center;\">致力于做最专业的北斗GPS定位测量解决方案提供商</h4>\n<hr />\n<p>公司是有着丰富实践经验和前沿理论知识的电子工程师发起的，秉承了工程师勤奋，务实，程序的优良品质。 我们始终坚持以客户为中心，坚持创新，致力于为客户提供最优质的产品和服务，帮助合作伙伴以正确的方法制造正确的产品，不仅能够以更低的成本 、更快的速度创新新产品，而且还提高了产品质量和可靠性。</p>\n<p>公司及其前身-众成电子工作室历经数年的磨合、模式、实践、最终决定定位测量领域，公司推出的北斗/GPS土地面积测系统已在工业、农业 交通等各行各业得到广泛应用，由本公司提供技术方案的，GPS/北斗测录在市场上已取得约100K台/年的成绩。</p>\n<p>借助一流的工程能力和优质的服务能力，我们赢得了GPS/北斗测亩仪市场的主导地位，获得合作伙伴的肯定。展望未来，致开 科技坚持创新，客户导向，一如既往的向市场提供稳定的电子产品。</p>\n<p><img src=\"http://ruinianda.com/wp-content/themes/chikytech_theme_v3.6/assets/img/about/qiant.jpg\" width=\"653\" height=\"381\" /></p>');
-INSERT INTO `zk_scheme` VALUES (2, '测量定位方案2', NULL, '<h2 style=\"text-align: center;\">公司简介2</h2>\n<h4 style=\"text-align: center;\">致力于做最专业的北斗GPS定位测量解决方案提供商</h4>\n<hr />\n<p>公司是有着丰富实践经验和前沿理论知识的电子工程师发起的，秉承了工程师勤奋，务实，程序的优良品质。 我们始终坚持以客户为中心，坚持创新，致力于为客户提供最优质的产品和服务，帮助合作伙伴以正确的方法制造正确的产品，不仅能够以更低的成本 、更快的速度创新新产品，而且还提高了产品质量和可靠性。</p>\n<p>公司及其前身-众成电子工作室历经数年的磨合、模式、实践、最终决定定位测量领域，公司推出的北斗/GPS土地面积测系统已在工业、农业 交通等各行各业得到广泛应用，由本公司提供技术方案的，GPS/北斗测录在市场上已取得约100K台/年的成绩。</p>\n<p>借助一流的工程能力和优质的服务能力，我们赢得了GPS/北斗测亩仪市场的主导地位，获得合作伙伴的肯定。展望未来，致开 科技坚持创新，客户导向，一如既往的向市场提供稳定的电子产品。</p>\n<p><img src=\"http://ruinianda.com/wp-content/themes/chikytech_theme_v3.6/assets/img/about/qiant.jpg\" width=\"653\" height=\"381\" /></p>');
+INSERT INTO `zk_scheme` VALUES (1, '定位测量方案1', 'http://localhost:8089/admin/storage/fetch/1sauzzzvcin173ncjyja.jpg', '<h2 style=\"text-align: center;\">公司简介1</h2>\n<h4 style=\"text-align: center;\">致力于做最专业的北斗GPS定位测量解决方案提供商</h4>\n<hr />\n<p>公司是有着丰富实践经验和前沿理论知识的电子工程师发起的，秉承了工程师勤奋，务实，程序的优良品质。 我们始终坚持以客户为中心，坚持创新，致力于为客户提供最优质的产品和服务，帮助合作伙伴以正确的方法制造正确的产品，不仅能够以更低的成本 、更快的速度创新新产品，而且还提高了产品质量和可靠性。</p>\n<p>公司及其前身-众成电子工作室历经数年的磨合、模式、实践、最终决定定位测量领域，公司推出的北斗/GPS土地面积测系统已在工业、农业 交通等各行各业得到广泛应用，由本公司提供技术方案的，GPS/北斗测录在市场上已取得约100K台/年的成绩。</p>\n<p>借助一流的工程能力和优质的服务能力，我们赢得了GPS/北斗测亩仪市场的主导地位，获得合作伙伴的肯定。展望未来，致开 科技坚持创新，客户导向，一如既往的向市场提供稳定的电子产品。</p>\n<p><img src=\"http://ruinianda.com/wp-content/themes/chikytech_theme_v3.6/assets/img/about/qiant.jpg\" width=\"653\" height=\"381\" /></p>', 'zh-CN');
+INSERT INTO `zk_scheme` VALUES (2, 'Test English scheme1', 'http://localhost:8089/admin/storage/fetch/n9wdip5bqght6bmf1fuy.jpg', '<h2 style=\"text-align: center;\">公司简介2</h2>\n<h4 style=\"text-align: center;\">致力于做最专业的北斗GPS定位测量解决方案提供商</h4>\n<hr />\n<p>公司是有着丰富实践经验和前沿理论知识的电子工程师发起的，秉承了工程师勤奋，务实，程序的优良品质。 我们始终坚持以客户为中心，坚持创新，致力于为客户提供最优质的产品和服务，帮助合作伙伴以正确的方法制造正确的产品，不仅能够以更低的成本 、更快的速度创新新产品，而且还提高了产品质量和可靠性。</p>\n<p>公司及其前身-众成电子工作室历经数年的磨合、模式、实践、最终决定定位测量领域，公司推出的北斗/GPS土地面积测系统已在工业、农业 交通等各行各业得到广泛应用，由本公司提供技术方案的，GPS/北斗测录在市场上已取得约100K台/年的成绩。</p>\n<p>借助一流的工程能力和优质的服务能力，我们赢得了GPS/北斗测亩仪市场的主导地位，获得合作伙伴的肯定。展望未来，致开 科技坚持创新，客户导向，一如既往的向市场提供稳定的电子产品。</p>\n<p><img src=\"http://ruinianda.com/wp-content/themes/chikytech_theme_v3.6/assets/img/about/qiant.jpg\" width=\"653\" height=\"381\" /></p>', 'en');
+INSERT INTO `zk_scheme` VALUES (3, '测试中文方案1', 'http://localhost:8089/admin/storage/fetch/vl2i3alveobjbsgcjlb0.jpg', '<h1 style=\"text-align: center;\">测试中文方案1</h1>\n<p>测试中文方案1测试中文方案1测试中文方案1测试中文方案1测试中文方案1测试中文方案1</p>\n<p>测试中文方案1测试中文方案1测试中文方案1测试中文方案1测试中文方案1测试中文方案1测试中文方案1测试中文方案1测试中文方案1</p>\n<p>测试中文方案1测试中文方案1</p>\n<p>测试中文方案1测试中文方案1测试中文方案1</p>', 'zh-CN');
+INSERT INTO `zk_scheme` VALUES (4, '测试中文方案2', 'http://localhost:8089/admin/storage/fetch/rlb3uv68nsyk4p28516w.jpg', NULL, 'zh-CN');
+INSERT INTO `zk_scheme` VALUES (5, '测试中文方案3', 'http://localhost:8089/admin/storage/fetch/vnqe9w1159uy5n25j2b0.jpg', NULL, 'zh-CN');
+INSERT INTO `zk_scheme` VALUES (6, 'Test English scheme2', 'http://localhost:8089/admin/storage/fetch/tj672hn3rhtqhym7lvdt.jpg', '<h1 style=\"text-align: center;\">Test English scheme2</h1>\n<p>Test English scheme2Test English scheme2Test English scheme2Test English scheme2Test English scheme2Test English scheme2</p>\n<p>Test English scheme2Test English scheme2Test English scheme2Test English scheme2Test English scheme2</p>\n<p>Test English scheme2Test English scheme2Test English scheme2Test English scheme2Test English scheme2</p>', 'en');
+INSERT INTO `zk_scheme` VALUES (7, 'Test English scheme3', 'http://localhost:8089/admin/storage/fetch/88wxx4e3n2qh4qw3qs6z.jpg', NULL, 'en');
+INSERT INTO `zk_scheme` VALUES (8, 'Test English scheme3', 'http://localhost:8089/admin/storage/fetch/7oxg8neung01c4enin2h.jpg', '<h1 style=\"text-align: center;\">Test English scheme</h1>\n<p>Test Englist scheme,Test Englist schemeTest Englist schemeTest Englist schemeTest Englist scheme</p>', 'en');
 
 -- ----------------------------
 -- Table structure for zk_storage
@@ -411,7 +471,7 @@ CREATE TABLE `zk_storage`  (
   `deleted` tinyint(1) NULL DEFAULT 0 COMMENT '逻辑删除',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `key`(`key`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 75 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '文件存储表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 127 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '文件存储表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of zk_storage
@@ -479,5 +539,57 @@ INSERT INTO `zk_storage` VALUES (71, '49jujrg83mjbddg5iqnd.jpg', 'section-11.jpg
 INSERT INTO `zk_storage` VALUES (72, 'ykfqengj699ivwvxrc0l.jpg', 'section-11.jpg', 'image/jpeg', 114977, 'http://localhost:8089/admin/storage/fetch/ykfqengj699ivwvxrc0l.jpg', '2021-04-13 17:32:44', '2021-04-13 17:32:44', 0);
 INSERT INTO `zk_storage` VALUES (73, 'a83lf52mbrjxzix1x9dc.jpg', '4be7415fd1d5ece71c488b144157de6.jpg', 'image/jpeg', 662400, 'http://localhost:8089/admin/storage/fetch/a83lf52mbrjxzix1x9dc.jpg', '2021-04-13 17:36:16', '2021-04-13 17:36:16', 0);
 INSERT INTO `zk_storage` VALUES (74, 'xnvcta7pmcjr2yhwd1yw.jpg', '4be7415fd1d5ece71c488b144157de6.jpg', 'image/jpeg', 662400, 'http://localhost:8089/admin/storage/fetch/xnvcta7pmcjr2yhwd1yw.jpg', '2021-04-13 17:39:21', '2021-04-13 17:39:21', 0);
+INSERT INTO `zk_storage` VALUES (75, 'gr7kh071q2e0z9jtkbgr.jpg', 'img1.jpg', 'image/jpeg', 8231, 'http://localhost:8089/admin/storage/fetch/gr7kh071q2e0z9jtkbgr.jpg', '2021-04-14 11:07:12', '2021-04-14 11:07:12', 0);
+INSERT INTO `zk_storage` VALUES (76, '16nxrv5o5hwahtirp6yw.jpg', 'img3.jpg', 'image/jpeg', 11025, 'http://localhost:8089/admin/storage/fetch/16nxrv5o5hwahtirp6yw.jpg', '2021-04-14 11:08:24', '2021-04-14 11:08:24', 0);
+INSERT INTO `zk_storage` VALUES (77, 'iuzjtntxnid7frnd16y2.png', '合作伙伴logo2.png', 'image/png', 35879, 'http://localhost:8089/admin/storage/fetch/iuzjtntxnid7frnd16y2.png', '2021-04-14 16:05:31', '2021-04-14 16:05:31', 0);
+INSERT INTO `zk_storage` VALUES (78, 'f3eqvnrazdt6k2s0jkbb.png', '合作伙伴logo1.png', 'image/png', 35990, 'http://localhost:8089/admin/storage/fetch/f3eqvnrazdt6k2s0jkbb.png', '2021-04-14 16:05:52', '2021-04-14 16:05:52', 0);
+INSERT INTO `zk_storage` VALUES (79, '264j51ed6vfxv0pppyl4.png', '合作伙伴logo3.png', 'image/png', 31862, 'http://localhost:8089/admin/storage/fetch/264j51ed6vfxv0pppyl4.png', '2021-04-14 16:05:59', '2021-04-14 16:05:59', 0);
+INSERT INTO `zk_storage` VALUES (80, '8t132izr8am4vqw3kjgo.png', '合作伙伴logo5.png', 'image/png', 38900, 'http://localhost:8089/admin/storage/fetch/8t132izr8am4vqw3kjgo.png', '2021-04-14 16:06:07', '2021-04-14 16:06:07', 0);
+INSERT INTO `zk_storage` VALUES (81, 'im4y2pxtnes9jpo2k3t8.png', '合作伙伴logo6.png', 'image/png', 24053, 'http://localhost:8089/admin/storage/fetch/im4y2pxtnes9jpo2k3t8.png', '2021-04-14 16:06:17', '2021-04-14 16:06:17', 0);
+INSERT INTO `zk_storage` VALUES (82, '3njgn8za9o9tz89f6vua.png', '合作伙伴logo7.png', 'image/png', 44745, 'http://localhost:8089/admin/storage/fetch/3njgn8za9o9tz89f6vua.png', '2021-04-14 16:06:23', '2021-04-14 16:06:23', 0);
+INSERT INTO `zk_storage` VALUES (83, 'de7aw42ann2n892c1p7c.png', '合作伙伴logo8.png', 'image/png', 34725, 'http://localhost:8089/admin/storage/fetch/de7aw42ann2n892c1p7c.png', '2021-04-14 16:06:28', '2021-04-14 16:06:28', 0);
+INSERT INTO `zk_storage` VALUES (84, 'jrk156zyh2sp4f9oa9i0.png', '合作伙伴logo9.png', 'image/png', 45075, 'http://localhost:8089/admin/storage/fetch/jrk156zyh2sp4f9oa9i0.png', '2021-04-14 16:06:34', '2021-04-14 16:06:34', 0);
+INSERT INTO `zk_storage` VALUES (85, 'zct637mbsq3p1lqyaotu.jpg', 'certify01.jpg', 'image/jpeg', 32500, 'http://localhost:8089/admin/storage/fetch/zct637mbsq3p1lqyaotu.jpg', '2021-04-14 16:39:29', '2021-04-14 16:39:29', 0);
+INSERT INTO `zk_storage` VALUES (86, '9aptfuz0s6oybttmtw01.jpg', 'certify02.jpg', 'image/jpeg', 29376, 'http://localhost:8089/admin/storage/fetch/9aptfuz0s6oybttmtw01.jpg', '2021-04-14 16:39:35', '2021-04-14 16:39:35', 0);
+INSERT INTO `zk_storage` VALUES (87, 'bva0spdste5xn7879w60.jpg', 'certify03.jpg', 'image/jpeg', 30117, 'http://localhost:8089/admin/storage/fetch/bva0spdste5xn7879w60.jpg', '2021-04-14 16:39:44', '2021-04-14 16:39:44', 0);
+INSERT INTO `zk_storage` VALUES (88, 'prsmke3p65u1pa3fpoob.jpg', 'certify04.jpg', 'image/jpeg', 30703, 'http://localhost:8089/admin/storage/fetch/prsmke3p65u1pa3fpoob.jpg', '2021-04-14 16:39:49', '2021-04-14 16:39:49', 0);
+INSERT INTO `zk_storage` VALUES (89, '8nwyqqeb3exf0a2mfmd3.jpg', 'certify05.jpg', 'image/jpeg', 29902, 'http://localhost:8089/admin/storage/fetch/8nwyqqeb3exf0a2mfmd3.jpg', '2021-04-14 16:39:54', '2021-04-14 16:39:54', 0);
+INSERT INTO `zk_storage` VALUES (90, 'wi2sd054854fwv401d3i.jpg', 'certify06.jpg', 'image/jpeg', 29923, 'http://localhost:8089/admin/storage/fetch/wi2sd054854fwv401d3i.jpg', '2021-04-14 16:40:02', '2021-04-14 16:40:02', 0);
+INSERT INTO `zk_storage` VALUES (91, '9sr6i4zwkd3bya1krubx.jpg', 'certify07.jpg', 'image/jpeg', 30181, 'http://localhost:8089/admin/storage/fetch/9sr6i4zwkd3bya1krubx.jpg', '2021-04-14 16:40:09', '2021-04-14 16:40:09', 0);
+INSERT INTO `zk_storage` VALUES (92, '0bjp9l3ht23bol74xrp7.jpg', 'certify08.jpg', 'image/jpeg', 30168, 'http://localhost:8089/admin/storage/fetch/0bjp9l3ht23bol74xrp7.jpg', '2021-04-14 16:40:14', '2021-04-14 16:40:14', 0);
+INSERT INTO `zk_storage` VALUES (93, 'acb6jbwkjcwiynag38hi.jpg', '15.jpg', 'image/jpeg', 39435, 'http://localhost:8089/admin/storage/fetch/acb6jbwkjcwiynag38hi.jpg', '2021-04-15 09:49:12', '2021-04-15 09:49:12', 0);
+INSERT INTO `zk_storage` VALUES (94, '8qv5hawhjj910kmoas39.jpg', '合作伙伴logo2.jpg', 'image/jpeg', 41056, 'http://localhost:8089/admin/storage/fetch/8qv5hawhjj910kmoas39.jpg', '2021-04-15 09:56:25', '2021-04-15 09:56:25', 0);
+INSERT INTO `zk_storage` VALUES (95, 'kl17lcy4rmo13slryvys.jpg', '合作伙伴logo1.jpg', 'image/jpeg', 44711, 'http://localhost:8089/admin/storage/fetch/kl17lcy4rmo13slryvys.jpg', '2021-04-15 09:56:32', '2021-04-15 09:56:32', 0);
+INSERT INTO `zk_storage` VALUES (96, 'irxciyu6ewhtab95lcwr.jpg', '合作伙伴logo3.jpg', 'image/jpeg', 38044, 'http://localhost:8089/admin/storage/fetch/irxciyu6ewhtab95lcwr.jpg', '2021-04-15 09:56:52', '2021-04-15 09:56:52', 0);
+INSERT INTO `zk_storage` VALUES (97, 'fq3m0kvknb3n1lhgczff.jpg', '合作伙伴logo5.jpg', 'image/jpeg', 43556, 'http://localhost:8089/admin/storage/fetch/fq3m0kvknb3n1lhgczff.jpg', '2021-04-15 09:57:04', '2021-04-15 09:57:04', 0);
+INSERT INTO `zk_storage` VALUES (98, 'v2adjhs5ntttw57bcskq.jpg', '合作伙伴logo6.jpg', 'image/jpeg', 48235, 'http://localhost:8089/admin/storage/fetch/v2adjhs5ntttw57bcskq.jpg', '2021-04-15 09:57:17', '2021-04-15 09:57:17', 0);
+INSERT INTO `zk_storage` VALUES (99, 'fzemqllyvgq6kxgnbhih.jpg', '合作伙伴logo7.jpg', 'image/jpeg', 51662, 'http://localhost:8089/admin/storage/fetch/fzemqllyvgq6kxgnbhih.jpg', '2021-04-15 09:57:32', '2021-04-15 09:57:32', 0);
+INSERT INTO `zk_storage` VALUES (100, 'dl9204fclznz6v6fjxqw.jpg', '合作伙伴logo8.jpg', 'image/jpeg', 44082, 'http://localhost:8089/admin/storage/fetch/dl9204fclznz6v6fjxqw.jpg', '2021-04-15 09:57:43', '2021-04-15 09:57:43', 0);
+INSERT INTO `zk_storage` VALUES (101, '3phnz6x06aqbbjdahw4o.jpg', '合作伙伴logo9.jpg', 'image/jpeg', 49879, 'http://localhost:8089/admin/storage/fetch/3phnz6x06aqbbjdahw4o.jpg', '2021-04-15 09:57:53', '2021-04-15 09:57:53', 0);
+INSERT INTO `zk_storage` VALUES (102, 'iqzwjqqpzhi6ac4vakns.jpg', '111.jpg', 'image/jpeg', 11467, 'http://localhost:8089/admin/storage/fetch/iqzwjqqpzhi6ac4vakns.jpg', '2021-04-15 10:04:22', '2021-04-15 10:04:22', 0);
+INSERT INTO `zk_storage` VALUES (103, 'zcaxp4xcfsam1pdj3wjf.png', '1.png', 'image/png', 3707, 'http://localhost:8089/admin/storage/fetch/zcaxp4xcfsam1pdj3wjf.png', '2021-04-15 10:12:50', '2021-04-15 10:12:50', 0);
+INSERT INTO `zk_storage` VALUES (104, 'nyhbw3cx9flevpuq7oal.png', '2.png', 'image/png', 3505, 'http://localhost:8089/admin/storage/fetch/nyhbw3cx9flevpuq7oal.png', '2021-04-15 10:12:58', '2021-04-15 10:12:58', 0);
+INSERT INTO `zk_storage` VALUES (105, '6flox6e57ss2qizvzzit.png', '3.png', 'image/png', 9059, 'http://localhost:8089/admin/storage/fetch/6flox6e57ss2qizvzzit.png', '2021-04-15 10:13:07', '2021-04-15 10:13:07', 0);
+INSERT INTO `zk_storage` VALUES (106, 'es42zfmlacledcvmoqk0.png', '4.png', 'image/png', 10358, 'http://localhost:8089/admin/storage/fetch/es42zfmlacledcvmoqk0.png', '2021-04-15 10:13:15', '2021-04-15 10:13:15', 0);
+INSERT INTO `zk_storage` VALUES (107, 'n9wdip5bqght6bmf1fuy.jpg', 's1.jpg', 'image/jpeg', 16319, 'http://localhost:8089/admin/storage/fetch/n9wdip5bqght6bmf1fuy.jpg', '2021-04-15 16:51:01', '2021-04-15 16:51:01', 0);
+INSERT INTO `zk_storage` VALUES (108, 'if8zl18kp32l47kkw7qr.png', '1.png', 'image/png', 49310, 'http://localhost:8089/admin/storage/fetch/if8zl18kp32l47kkw7qr.png', '2021-04-16 11:26:10', '2021-04-16 11:26:10', 0);
+INSERT INTO `zk_storage` VALUES (109, 'dy1ls89tpd2xcuyey7mu.png', '3701正面双星精修图.png', 'image/png', 292414, 'http://localhost:8089/admin/storage/fetch/dy1ls89tpd2xcuyey7mu.png', '2021-04-16 14:38:59', '2021-04-16 14:38:59', 0);
+INSERT INTO `zk_storage` VALUES (110, 'i556vqwl4ijvvsxlu2b1.jpg', 'img4.jpg', 'image/jpeg', 9144, 'http://localhost:8089/admin/storage/fetch/i556vqwl4ijvvsxlu2b1.jpg', '2021-04-16 14:41:27', '2021-04-16 14:41:27', 0);
+INSERT INTO `zk_storage` VALUES (111, '1l9hfojqobflth5eaw10.jpg', 'img3.jpg', 'image/jpeg', 11025, 'http://localhost:8089/admin/storage/fetch/1l9hfojqobflth5eaw10.jpg', '2021-04-20 10:06:04', '2021-04-20 10:06:04', 0);
+INSERT INTO `zk_storage` VALUES (112, 'vl2i3alveobjbsgcjlb0.jpg', 'img3.jpg', 'image/jpeg', 11025, 'http://localhost:8089/admin/storage/fetch/vl2i3alveobjbsgcjlb0.jpg', '2021-04-20 10:06:11', '2021-04-20 10:06:11', 0);
+INSERT INTO `zk_storage` VALUES (113, 'ogypb4zcw86ici1kj0xp.jpg', 'img10.jpg', 'image/jpeg', 7131, 'http://localhost:8089/admin/storage/fetch/ogypb4zcw86ici1kj0xp.jpg', '2021-04-20 10:07:38', '2021-04-20 10:07:38', 0);
+INSERT INTO `zk_storage` VALUES (114, 'fa48fbzc0bqpztd5abzi.jpg', 'img10.jpg', 'image/jpeg', 7131, 'http://localhost:8089/admin/storage/fetch/fa48fbzc0bqpztd5abzi.jpg', '2021-04-20 10:08:04', '2021-04-20 10:08:04', 0);
+INSERT INTO `zk_storage` VALUES (115, 'rlb3uv68nsyk4p28516w.jpg', 'img10.jpg', 'image/jpeg', 7131, 'http://localhost:8089/admin/storage/fetch/rlb3uv68nsyk4p28516w.jpg', '2021-04-20 10:10:14', '2021-04-20 10:10:14', 0);
+INSERT INTO `zk_storage` VALUES (116, 'vnqe9w1159uy5n25j2b0.jpg', 'image1.jpg', 'image/jpeg', 13517, 'http://localhost:8089/admin/storage/fetch/vnqe9w1159uy5n25j2b0.jpg', '2021-04-20 10:11:36', '2021-04-20 10:11:36', 0);
+INSERT INTO `zk_storage` VALUES (117, 'tj672hn3rhtqhym7lvdt.jpg', 'image2.jpg', 'image/jpeg', 15721, 'http://localhost:8089/admin/storage/fetch/tj672hn3rhtqhym7lvdt.jpg', '2021-04-20 10:14:22', '2021-04-20 10:14:22', 0);
+INSERT INTO `zk_storage` VALUES (118, '88wxx4e3n2qh4qw3qs6z.jpg', 'image3.jpg', 'image/jpeg', 13313, 'http://localhost:8089/admin/storage/fetch/88wxx4e3n2qh4qw3qs6z.jpg', '2021-04-20 10:18:14', '2021-04-20 10:18:14', 0);
+INSERT INTO `zk_storage` VALUES (119, '7oxg8neung01c4enin2h.jpg', 'image4.jpg', 'image/jpeg', 14276, 'http://localhost:8089/admin/storage/fetch/7oxg8neung01c4enin2h.jpg', '2021-04-20 10:21:09', '2021-04-20 10:21:09', 0);
+INSERT INTO `zk_storage` VALUES (120, 'xdi1z0j0lve0ohprz1si.jpg', 'img4.jpg', 'image/jpeg', 9144, 'http://localhost:8089/admin/storage/fetch/xdi1z0j0lve0ohprz1si.jpg', '2021-04-20 11:21:30', '2021-04-20 11:21:30', 0);
+INSERT INTO `zk_storage` VALUES (121, 'tqf4hivkunhpcosjyhfp.jpg', 'img4.jpg', 'image/jpeg', 9144, 'http://localhost:8089/admin/storage/fetch/tqf4hivkunhpcosjyhfp.jpg', '2021-04-20 11:24:35', '2021-04-20 11:24:35', 0);
+INSERT INTO `zk_storage` VALUES (122, '74jui8h2ife17xbc3nhv.jpg', 'img4.jpg', 'image/jpeg', 9144, 'http://localhost:8089/admin/storage/fetch/74jui8h2ife17xbc3nhv.jpg', '2021-04-20 11:28:56', '2021-04-20 11:28:56', 0);
+INSERT INTO `zk_storage` VALUES (123, '13dasaiflcq2znnhq6fk.jpg', 'img4.jpg', 'image/jpeg', 9144, 'http://localhost:8089/admin/storage/fetch/13dasaiflcq2znnhq6fk.jpg', '2021-04-20 11:29:52', '2021-04-20 11:29:52', 0);
+INSERT INTO `zk_storage` VALUES (124, 'ftza326ez77f9q1hvvzx.jpg', 'img3.jpg', 'image/jpeg', 11025, 'http://localhost:8089/admin/storage/fetch/ftza326ez77f9q1hvvzx.jpg', '2021-04-20 11:38:33', '2021-04-20 11:38:33', 0);
+INSERT INTO `zk_storage` VALUES (125, 'f64ttlyyei8qr10ecsis.png', '1.png', 'image/png', 49310, 'http://localhost:8089/admin/storage/fetch/f64ttlyyei8qr10ecsis.png', '2021-04-20 13:45:25', '2021-04-20 13:45:25', 0);
+INSERT INTO `zk_storage` VALUES (126, 'hh0bp4emuc3by234xogj.txt', '服务器nginx.txt', 'text/plain', 2160, 'http://localhost:8089/admin/storage/fetch/hh0bp4emuc3by234xogj.txt', '2021-04-20 13:45:44', '2021-04-20 13:45:44', 0);
 
 SET FOREIGN_KEY_CHECKS = 1;
