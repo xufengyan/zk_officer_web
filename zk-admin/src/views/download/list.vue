@@ -8,12 +8,7 @@
           <el-cascader :value="luaIds" :options="luaList" expand-trigger="hover" @change="handleLuaChange" />
         </el-form-item>
       </el-form>
-      <!--      <el-input v-model="listQuery.goodsId" clearable class="filter-item" style="width: 160px;" placeholder="请输入商品ID" />-->
-      <!--      <el-input v-model="listQuery.goodsSn" clearable class="filter-item" style="width: 160px;" placeholder="请输入商品编号" />-->
-      <!--      <el-input v-model="listQuery.name" clearable class="filter-item" style="width: 160px;" placeholder="请输入商品名称" />-->
-      <!--      <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">查找</el-button>-->
       <el-button class="filter-item" type="primary" icon="el-icon-edit" @click="handleCreate">添加</el-button>
-      <!--      <el-button :loading="downloadLoading" class="filter-item" type="primary" icon="el-icon-download" @click="handleDownload">导出</el-button>-->
     </div>
     <!-- 查询结果 -->
     <el-table v-loading="listLoading" :data="list" element-loading-text="正在查询中。。。" border fit highlight-current-row>
@@ -41,20 +36,6 @@
           <img :src="scope.row.dImagePath" width="100">
         </template>
       </el-table-column>
-      <!--      <el-table-column align="center" property="iconUrl" label="产品图片">-->
-      <!--        <template slot-scope="scope">-->
-      <!--          <img :src="scope.row.pImagePath" width="100">-->
-      <!--        </template>-->
-      <!--      </el-table-column>-->
-
-      <!--      <el-table-column align="center" min-width="100" label="产品展示内容" prop="pIntroduce" />-->
-      <!--      <el-table-column align="center" min-width="100" label="手机" prop="owTel" />-->
-      <!--      <el-table-column align="center" min-width="100" label="工作时间" prop="owWoekTime" />-->
-      <!--      <el-table-column align="center" min-width="100" label="备案" prop="owInternetcp" />-->
-      <!--      <el-table-column align="center" min-width="100" label="公司网址" prop="owUrl" />-->
-      <!--      <el-table-column align="center" min-width="100" label="公司地址" prop="owAddress" />-->
-      <!--      <el-table-column align="center" min-width="100" label="公司邮箱" prop="owMail" />-->
-
       <el-table-column align="center" label="操作" width="200" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button type="primary" size="mini" @click="handleUpdate(scope.row)">编辑</el-button>
@@ -172,7 +153,7 @@ import { createStorage, uploadPath, readStorageBykey } from '@/api/storage'
 import { getToken } from '@/utils/auth'
 
 export default {
-  name: 'GoodsList',
+  name: 'DpwnloadList',
   components: { BackToTop, Pagination },
   data() {
     return {
@@ -186,12 +167,6 @@ export default {
       },
       createDialogVisible: false,
       list: [],
-      collaborate: {
-        id: null,
-        visitUrl: null,
-        imageUrl: null,
-        image_type: 1
-      },
       fileList: [],
       total: 1,
       listLoading: false,
@@ -202,9 +177,6 @@ export default {
         sort: 'add_time',
         order: 'desc'
       },
-      goodsDetail: '',
-      detailDialogVisible: false,
-      downloadLoading: false,
       rules: {
         dPath: [
           { required: true, message: '角色名称不能为空', trigger: 'blur' }
@@ -226,11 +198,6 @@ export default {
         label: '英文'
       }
       ],
-      category: {
-        id: null,
-        value: null,
-        lable: ''
-      }
     }
   },
   computed: {
@@ -256,22 +223,12 @@ export default {
         this.listLoading = false
       })
     },
-    // handleFilter() {
-    //   this.listQuery.page = 1
-    //   this.getList()
-    // },
-    // handleCreate() {
-    //   this.$router.push({ path: '/goods/create' })
-    // },
     uploadPicUrl: function(response) {
       this.dataForm.dImagePath = response.data.url
     },
     handleUpdate(row) {
       this.fileList = []
       this.dataForm = Object.assign({}, row)
-      // this.fileList[0].name = row.dName
-      // this.fileList[0].url = row.dPath
-      // this.fileList.push({name: row.dName,url: row.dPath})
       readStorageBykey(row.dPath).then(response => {
         this.fileList.push({ name: response.data.data.name, url: response.data.data.url })
       })
@@ -293,7 +250,6 @@ export default {
       }
     },
     handleCreate() {
-      // this.$router.push({ path: '/basic/categoryCreate' })
       this.resetForm()
       this.dialogStatus = 'create'
       this.createDialogVisible = true
@@ -351,8 +307,6 @@ export default {
       const formData = new FormData()
       formData.append('file', item.file)
       createStorage(formData).then(response => {
-        // this.list.unshift(response.data.data)
-        // this.createDialogVisible = false
         this.fileList.push({ name: response.data.data.name, url: response.data.data.name.url })
         this.dataForm.dPath = response.data.data.key
         this.$notify.success({
@@ -374,10 +328,6 @@ export default {
     handelRemove() {
       this.fileList = []
     }
-    // showDetail(detail) {
-    //   this.goodsDetail = detail
-    //   this.detailDialogVisible = true
-    // },
   }
 
 }

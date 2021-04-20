@@ -39,7 +39,6 @@
       <el-table-column align="center" label="操作" width="100" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button type="primary" size="mini" @click="handleUpdate(scope.row)">编辑</el-button>
-          <!--          <el-button type="danger" size="mini" @click="handleDelete(scope.row)">删除</el-button>-->
         </template>
       </el-table-column>
     </el-table>
@@ -80,7 +79,7 @@ import BackToTop from '@/components/BackToTop'
 import Pagination from '@/components/Pagination' // Secondary package based on el-pagination
 
 export default {
-  name: 'GoodsList',
+  name: 'BasicList',
   components: { BackToTop, Pagination },
   data() {
     return {
@@ -95,9 +94,6 @@ export default {
         sort: 'add_time',
         order: 'desc'
       },
-      goodsDetail: '',
-      detailDialogVisible: false,
-      downloadLoading: false
     }
   },
   created() {
@@ -120,16 +116,9 @@ export default {
       this.listQuery.page = 1
       this.getList()
     },
-    // handleCreate() {
-    //   this.$router.push({ path: '/goods/create' })
-    // },
     handleUpdate(row) {
       this.$router.push({ path: '/basic/update', query: { id: row.id }})
     }
-    // showDetail(detail) {
-    //   this.goodsDetail = detail
-    //   this.detailDialogVisible = true
-    // },
   }
 }
 </script>

@@ -103,17 +103,12 @@ import { MessageBox } from 'element-ui'
 import { getToken } from '@/utils/auth'
 
 export default {
-  name: 'GoodsEdit',
+  name: 'ProductEdit',
   components: { Editor },
   data() {
     return {
       uploadPath,
-      newKeywordVisible: false,
-      newKeyword: '',
-      keywords: [],
-      galleryFileList: [],
       categoryList: [],
-      brandList: [],
       categoryIds: [],
       luaName: '中文',
       typeName: '',
@@ -124,23 +119,6 @@ export default {
         pModel: 'zk1000',
         pIntroduce: ''
       },
-      specVisiable: false,
-      specForm: { specification: '', value: '', picUrl: '' },
-      specifications: [{ specification: '规格', value: '标准', picUrl: '' }],
-      productVisiable: false,
-      productForm: {
-        id: 0,
-        specifications: [],
-        price: 0.0,
-        number: 0,
-        url: ''
-      },
-      products: [
-        { id: 0, specifications: ['标准'], price: 0.0, number: 0, url: '' }
-      ],
-      attributeVisiable: false,
-      attributeAdd: true,
-      attributeForm: { attribute: '', value: '' },
       attributes: [],
       rules: {
         name: [{ required: true, message: '商品名称不能为空', trigger: 'blur' }]

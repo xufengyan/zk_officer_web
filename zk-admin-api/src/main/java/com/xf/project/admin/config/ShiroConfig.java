@@ -38,6 +38,7 @@ public class ShiroConfig {
 //        filterChainDefinitionMap.put("/admin/management/list.html", "anon");
         filterChainDefinitionMap.put("/html/**", "anon");
         filterChainDefinitionMap.put("/admin/storage/fetch/*", "anon");
+        filterChainDefinitionMap.put("/admin/storage/download/*", "anon");
 
 
 

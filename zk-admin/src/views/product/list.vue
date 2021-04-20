@@ -6,12 +6,7 @@
         <el-cascader :value="luaIds" :options="luaList" expand-trigger="hover" @change="handleLuaChange" />
         <el-cascader :value="productTypeId" :options="productTypeList" expand-trigger="hover" @change="handleTypeChange" />
       </el-form>
-      <!--      <el-input v-model="listQuery.goodsId" clearable class="filter-item" style="width: 160px;" placeholder="请输入商品ID" />-->
-      <!--      <el-input v-model="listQuery.goodsSn" clearable class="filter-item" style="width: 160px;" placeholder="请输入商品编号" />-->
-      <!--      <el-input v-model="listQuery.name" clearable class="filter-item" style="width: 160px;" placeholder="请输入商品名称" />-->
-      <!--      <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">查找</el-button>-->
       <el-button class="filter-item" type="primary" icon="el-icon-edit" @click="handleCreate">添加</el-button>
-      <!--      <el-button :loading="downloadLoading" class="filter-item" type="primary" icon="el-icon-download" @click="handleDownload">导出</el-button>-->
     </div>
     <!-- 查询结果 -->
     <el-table v-loading="listLoading" :data="list" element-loading-text="正在查询中。。。" border fit highlight-current-row>
@@ -37,14 +32,6 @@
           <img :src="scope.row.pImagePath" width="100">
         </template>
       </el-table-column>
-
-      <!--      <el-table-column align="center" min-width="100" label="产品展示内容" prop="pIntroduce" />-->
-      <!--      <el-table-column align="center" min-width="100" label="手机" prop="owTel" />-->
-      <!--      <el-table-column align="center" min-width="100" label="工作时间" prop="owWoekTime" />-->
-      <!--      <el-table-column align="center" min-width="100" label="备案" prop="owInternetcp" />-->
-      <!--      <el-table-column align="center" min-width="100" label="公司网址" prop="owUrl" />-->
-      <!--      <el-table-column align="center" min-width="100" label="公司地址" prop="owAddress" />-->
-      <!--      <el-table-column align="center" min-width="100" label="公司邮箱" prop="owMail" />-->
 
       <el-table-column align="center" label="操作" width="200" class-name="small-padding fixed-width">
         <template slot-scope="scope">
@@ -90,7 +77,7 @@ import BackToTop from '@/components/BackToTop'
 import Pagination from '@/components/Pagination' // Secondary package based on el-pagination
 
 export default {
-  name: 'GoodsList',
+  name: 'ProductList',
   components: { BackToTop, Pagination },
   data() {
     return {
@@ -105,9 +92,6 @@ export default {
         sort: 'add_time',
         order: 'desc'
       },
-      goodsDetail: '',
-      detailDialogVisible: false,
-      downloadLoading: false,
       luaIds: 'zh-CN',
       luaList: [{
         value: 'zh-CN',
@@ -146,10 +130,6 @@ export default {
         this.listLoading = false
       })
     },
-    // handleFilter() {
-    //   this.listQuery.page = 1
-    //   this.getList()
-    // },
     handleUpdate(row) {
       this.$router.push({ path: '/basic/productEdit', query: { id: row.id, type: this.productTypeId }})
     },
@@ -167,10 +147,6 @@ export default {
       this.listQuery.type = value[value.length - 1]
       this.getList()
     }
-    // showDetail(detail) {
-    //   this.goodsDetail = detail
-    //   this.detailDialogVisible = true
-    // },
   }
 }
 </script>

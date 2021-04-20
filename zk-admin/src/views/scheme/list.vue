@@ -7,12 +7,7 @@
           <el-cascader :value="luaIds" :options="luaList" expand-trigger="hover" @change="handleLuaChange" />
         </el-form-item>
       </el-form>
-      <!--      <el-input v-model="listQuery.goodsId" clearable class="filter-item" style="width: 160px;" placeholder="请输入商品ID" />-->
-      <!--      <el-input v-model="listQuery.goodsSn" clearable class="filter-item" style="width: 160px;" placeholder="请输入商品编号" />-->
-      <!--      <el-input v-model="listQuery.name" clearable class="filter-item" style="width: 160px;" placeholder="请输入商品名称" />-->
-      <!--      <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">查找</el-button>-->
       <el-button class="filter-item" type="primary" icon="el-icon-edit" @click="handleCreate">添加</el-button>
-      <!--      <el-button :loading="downloadLoading" class="filter-item" type="primary" icon="el-icon-download" @click="handleDownload">导出</el-button>-->
     </div>
     <!-- 查询结果 -->
     <el-table v-loading="listLoading" :data="list" element-loading-text="正在查询中。。。" border fit highlight-current-row>
@@ -36,15 +31,6 @@
           <img :src="scope.row.sImagePath" width="100">
         </template>
       </el-table-column>
-
-      <!--      <el-table-column align="center" min-width="100" label="方案内容" prop="sContent" />-->
-      <!--      <el-table-column align="center" min-width="100" label="手机" prop="owTel" />-->
-      <!--      <el-table-column align="center" min-width="100" label="工作时间" prop="owWoekTime" />-->
-      <!--      <el-table-column align="center" min-width="100" label="备案" prop="owInternetcp" />-->
-      <!--      <el-table-column align="center" min-width="100" label="公司网址" prop="owUrl" />-->
-      <!--      <el-table-column align="center" min-width="100" label="公司地址" prop="owAddress" />-->
-      <!--      <el-table-column align="center" min-width="100" label="公司邮箱" prop="owMail" />-->
-
       <el-table-column align="center" label="操作" width="200" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button type="primary" size="mini" @click="handleUpdate(scope.row)">编辑</el-button>
@@ -89,7 +75,7 @@ import BackToTop from '@/components/BackToTop'
 import Pagination from '@/components/Pagination' // Secondary package based on el-pagination
 
 export default {
-  name: 'GoodsList',
+  name: 'SchemeList',
   components: { BackToTop, Pagination },
   data() {
     return {
@@ -112,9 +98,6 @@ export default {
         value: 'en',
         label: '英文'
       }],
-      goodsDetail: '',
-      detailDialogVisible: false,
-      downloadLoading: false
     }
   },
   created() {
@@ -122,26 +105,25 @@ export default {
   },
   methods: {
     getList() {
+      console.log(this.$route.query.lan)
+      if (this.$route.query.lan != null) {
+        this.luaIds = this.$route.query.lan
+        this.listQuery.lan = this.luaIds
+      }
       this.listLoading = true
       listScheme(this.listQuery).then(response => {
         this.list = response.data.data.list
         this.total = response.data.data.total
         this.listLoading = false
+        this.$route.query.lan = null;
       }).catch(() => {
         this.list = []
         this.total = 0
         this.listLoading = false
       })
     },
-    // handleFilter() {
-    //   this.listQuery.page = 1
-    //   this.getList()
-    // },
-    // handleCreate() {
-    //   this.$router.push({ path: '/goods/create' })
-    // },
     handleUpdate(row) {
-      this.$router.push({ path: '/basic/schemeEdit', query: { id: row.id }})
+      this.$router.push({ path: '/basic/schemeEdit', query: { id: row.id, lan: this.luaIds }})
     },
     handleCreate() {
       this.$router.push({ path: '/basic/schemeCreate', query: { lan: this.luaIds }})

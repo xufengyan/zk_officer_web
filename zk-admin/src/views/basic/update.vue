@@ -64,30 +64,6 @@
         <el-form-item label="公司简介">
           <editor v-model="basics.owBriefIntroduction" :init="editorInit" />
         </el-form-item>
-        <!--        <el-form-item label="是否新品" prop="isNew">-->
-        <!--          <el-radio-group v-model="goods.isNew">-->
-        <!--            <el-radio :label="true">新品</el-radio>-->
-        <!--            <el-radio :label="false">非新品</el-radio>-->
-        <!--          </el-radio-group>-->
-        <!--        </el-form-item>-->
-
-        <!--        <el-form-item label="宣传画廊">-->
-        <!--          <el-upload-->
-        <!--            :action="uploadPath"-->
-        <!--            :headers="headers"-->
-        <!--            :limit="5"-->
-        <!--            :file-list="galleryFileList"-->
-        <!--            :on-exceed="uploadOverrun"-->
-        <!--            :on-success="handleGalleryUrl"-->
-        <!--            :on-remove="handleRemove"-->
-        <!--            multiple-->
-        <!--            accept=".jpg,.jpeg,.png,.gif"-->
-        <!--            list-type="picture-card"-->
-        <!--          >-->
-        <!--            <i class="el-icon-plus" />-->
-        <!--          </el-upload>-->
-        <!--        </el-form-item>-->
-
       </el-form>
     </el-card>
 
@@ -153,44 +129,7 @@ export default {
   data() {
     return {
       uploadPath,
-      newKeywordVisible: false,
-      newKeyword: '',
-      keywords: [],
-      galleryFileList: [],
-      categoryList: [],
-      brandList: [],
-      categoryIds: [],
-      basics: {
-        // id: '1',
-        // owLogo: 'http://localhost:8089/admin/storage/fetch/sl9q336i0u1ew2p7kv8m.jpg',
-        // owName: '深圳致开科技有限公司',
-        // owQrcodePath: 'http://localhost:8089/admin/storage/fetch/sl9q336i0u1ew2p7kv8m.jpg',
-        // owPhoneName: '全国统一咨询热线',
-        // owPhone: '0755-2720-2606',
-        // owTel: '13530108906',
-        // owWoekTime: '周一至周日 9:00-18:00 (节假日除外)',
-        // owInternetcp: '深圳致开科技有限公司 版权所有 Copyright © 2015-2018 粤ICP备16004202号',
-        // owMail: 'allen.cao@chiky.cn',
-        // owAddress: '深圳宝安区盐田商务广场A座409、405、411、413',
-        // owUrl: ' www.chikytech.com'
-      },
-      specVisiable: false,
-      specForm: { specification: '', value: '', picUrl: '' },
-      specifications: [{ specification: '规格', value: '标准', picUrl: '' }],
-      productVisiable: false,
-      productForm: {
-        id: 0,
-        specifications: [],
-        price: 0.0,
-        number: 0,
-        url: ''
-      },
-      products: [
-        { id: 0, specifications: ['标准'], price: 0.0, number: 0, url: '' }
-      ],
-      attributeVisiable: false,
-      attributeAdd: true,
-      attributeForm: { attribute: '', value: '' },
+      basics: {},
       attributes: [],
       rules: {
         name: [{ required: true, message: '商品名称不能为空', trigger: 'blur' }]
@@ -259,9 +198,6 @@ export default {
     handleEdit: function() {
       const finalGoods = {
         zkBasics: this.basics
-        // specifications: this.specifications,
-        // products: this.products,
-        // attributes: this.attributes
       }
       editBasic(this.basics)
         .then(response => {

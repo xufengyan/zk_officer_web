@@ -88,7 +88,14 @@ public class ZkHtmlController {
         List<ZkProduct> list = zkProductService.selectZkProductList(zkProduct);
         return ResponseUtil.ok(list);
     }
-
+    @GetMapping("product/read.html/{id}")
+    public Object readProduct(@PathVariable("id") Long id)
+    {   if (id==null){
+        return ResponseUtil.badArgumentValue();
+    }
+        ZkProduct zkProduct = zkProductService.selectZkProductById(id);
+        return ResponseUtil.ok(zkProduct);
+    }
     /**
      * 查询技术领域和优势段落列表
      */
@@ -119,7 +126,18 @@ public class ZkHtmlController {
         List<ZkScheme> list = zkSchemeService.selectZkSchemeList(zkScheme);
         return ResponseUtil.okList(list);
     }
-
+    /**
+     * 修改解决方案
+     */
+    @GetMapping("scheme/read.html/{id}")
+    public Object read(@PathVariable("id") Long id)
+    {
+        if (id==null){
+            return ResponseUtil.badArgumentValue();
+        }
+        ZkScheme zkScheme = zkSchemeService.selectZkSchemeById(id);
+        return ResponseUtil.ok(zkScheme);
+    }
     /**
      * 查询说明文件下载列表
      */

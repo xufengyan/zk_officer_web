@@ -3,12 +3,7 @@
     <h2>荣誉管理</h2>
     <!-- 查询和其他操作 -->
     <div class="filter-container">
-      <!--      <el-input v-model="listQuery.goodsId" clearable class="filter-item" style="width: 160px;" placeholder="请输入商品ID" />-->
-      <!--      <el-input v-model="listQuery.goodsSn" clearable class="filter-item" style="width: 160px;" placeholder="请输入商品编号" />-->
-      <!--      <el-input v-model="listQuery.name" clearable class="filter-item" style="width: 160px;" placeholder="请输入商品名称" />-->
-      <!--      <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">查找</el-button>-->
       <el-button class="filter-item" type="primary" icon="el-icon-edit" @click="handleCreate">添加</el-button>
-      <!--      <el-button :loading="downloadLoading" class="filter-item" type="primary" icon="el-icon-download" @click="handleDownload">导出</el-button>-->
     </div>
     <!-- 查询结果 -->
     <el-table v-loading="listLoading" :data="list" element-loading-text="正在查询中。。。" border fit highlight-current-row>
@@ -32,20 +27,6 @@
           <img :src="scope.row.imageUrl" width="100">
         </template>
       </el-table-column>
-      <!--      <el-table-column align="center" property="iconUrl" label="产品图片">-->
-      <!--        <template slot-scope="scope">-->
-      <!--          <img :src="scope.row.pImagePath" width="100">-->
-      <!--        </template>-->
-      <!--      </el-table-column>-->
-
-      <!--      <el-table-column align="center" min-width="100" label="产品展示内容" prop="pIntroduce" />-->
-      <!--      <el-table-column align="center" min-width="100" label="手机" prop="owTel" />-->
-      <!--      <el-table-column align="center" min-width="100" label="工作时间" prop="owWoekTime" />-->
-      <!--      <el-table-column align="center" min-width="100" label="备案" prop="owInternetcp" />-->
-      <!--      <el-table-column align="center" min-width="100" label="公司网址" prop="owUrl" />-->
-      <!--      <el-table-column align="center" min-width="100" label="公司地址" prop="owAddress" />-->
-      <!--      <el-table-column align="center" min-width="100" label="公司邮箱" prop="owMail" />-->
-
       <el-table-column align="center" label="操作" width="200" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button type="primary" size="mini" @click="handleUpdate(scope.row)">编辑</el-button>
@@ -143,7 +124,7 @@ import { getToken } from '@/utils/auth'
 import { listImageManagement, createImageManagement, editImageManagement } from '@/api/imageManagement'
 
 export default {
-  name: 'EmploymentList',
+  name: 'HonorList',
   components: { BackToTop, Pagination },
   data() {
     return {
@@ -158,12 +139,6 @@ export default {
         visitUrl: 'ssssss',
         image_type: 1
       }],
-      collaborate: {
-        id: null,
-        visitUrl: null,
-        imageUrl: null,
-        image_type: 3
-      },
       total: 1,
       listLoading: false,
       listQuery: {
@@ -177,9 +152,6 @@ export default {
         imageUrl: null,
         image_type: 2
       },
-      goodsDetail: '',
-      detailDialogVisible: false,
-      downloadLoading: false,
       rules: {
         visitUrl: [
           { required: true, message: '链接不能为空', trigger: 'blur' }

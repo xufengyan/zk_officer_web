@@ -8,9 +8,9 @@
 
     <!-- Styles -->
     <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
-    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Raleway:400,700,300' rel='stylesheet' type='text/css'>
+<!--    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>-->
+<!--    <link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,400italic,700,700italic' rel='stylesheet' type='text/css'>-->
+<!--    <link href='https://fonts.googleapis.com/css?family=Raleway:400,700,300' rel='stylesheet' type='text/css'>-->
     <link href="fonts/Stroke-Gap-Icons-Webfont/style.css" rel="stylesheet" type="text/css" />
 
     <!-- components -->
@@ -84,8 +84,8 @@
     <div class="header-container wow fadeInUp">
         <div class="header-title">
             <div class="header-icon"><span class="icon icon-CompactCamera"></span></div>
-            <div class="title">产品中心</div>
-            <em>致力于做最专业的北斗GPS定位测量解决方案提供商</em>
+            <div class="title i18n" name="product">产品中心</div>
+            <em class="i18n" name="slogan">致力于做最专业的北斗GPS定位测量解决方案提供商</em>
         </div>
     </div><!--container-->
 </section>
@@ -99,8 +99,8 @@
 <section class="core-features-section">
     <div class="container">
         <div class="section-heading">
-            <div class="section-title">产品中心</div>
-            <div class="section-subtitle">致力于做最专业的北斗GPS定位测量解决方案提供商</div>
+            <div class="section-title i18n" name="product">产品中心</div>
+            <div class="section-subtitle i18n" name="slogan">致力于做最专业的北斗GPS定位测量解决方案提供商</div>
             <div class="design-arrow"></div>
         </div>
     </div>
@@ -110,12 +110,12 @@
             <div class="col-md-9">
                 <form role="form">
                     <div class="form-inline">
-                        <label for="name">选择产品：</label>
+                        <label for="name" class="i18n" name="selectProduct">选择产品：</label>
                         <select class="form-control" id="selectProduct">
                             <option value="1">测亩仪</option>
                             <option value="2">喷码机</option>
                         </select>
-                        <label for="name">选择系列：</label>
+                        <label for="name" class="i18n" name="selectSeries">选择系列：</label>
                         <select class="form-control" id="series">
                             <option>ZK3701系列</option>
                             <option>ZK3701系列</option>
@@ -227,34 +227,38 @@
                             <span class="icon icon-ShoppingCart"></span>
                         </div>
                         <div class="buy-text vcenter">
-                            <div class="top-text">高精度北斗GPS测量模块+手持喷码机模块</div>
-                            <div class="bottom-text">测亩仪、手持喷码机、社区矫正手表、定位测量方案等</div>
+                            <div class="top-text i18n" name="shoppingH1">高精度北斗GPS测量模块+手持喷码机模块</div>
+                            <div class="bottom-text i18n" name="shoppingH2">测亩仪、手持喷码机、社区矫正手表、定位测量方案等</div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-3  wow fadeInRight">
-                    <a href="#" class="btn btn-info ">立即购买</a>
+                    <a href="#" class="btn btn-info i18n" name="shoppingBtn">立即购买</a>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- ========================== -->
-    <!-- FOOTER - SOCIAL -->
-    <!-- ========================== -->
-    <!--            <section class="social-section dark dark-strong">-->
-    <!--                <div class="container dark-content">-->
-    <!--                    <div class="tt">We are social 24/7 - Get in touch</div>-->
-    <!--                    <ul class="list-socials">-->
-    <!--                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>-->
-    <!--                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>-->
-    <!--                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>-->
-    <!--                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>-->
-    <!--                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>-->
-    <!--                        <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>-->
-    <!--                    </ul>-->
-    <!--                </div>-->
-    <!--            </section>-->
+    <section class="buy-section with-icon  dark dark-strong" style="background: url(./img/sections/section-2.jpg) center no-repeat;">
+        <div class="section-icon"><span class="icon icon-Umbrella"></span></div>
+        <div class="container" style="color: white; position: relative; z-index: 2;">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-1 col-sm-9 wow fadeInLeft">
+                    <div class="section-text" >
+                        <div class=" vcenter like">
+                            <span class="icon icon-Download"></span>
+                        </div>
+                        <div class="buy-text vcenter" >
+                            <div class="top-text i18n" name="dwH1">使用说明书下载</div>
+                            <div class="bottom-text i18n" name="dwH2" style="color:#ffffff">ChikyMap2019专业版、GMPlay说明书、测亩仪说明书、致开产品画册等</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3  wow fadeInRight">
+                    <a href="#" class="btn btn-info i18n" name="dwBtn">现在下载</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- ========================== -->
     <!-- FOOTER - FOOTER -->
@@ -263,19 +267,19 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-2 col-sm-2">
-                    <h5>销售渠道</h5>
+                    <h5 class="i18n" name="salesChannels">销售渠道</h5>
                     <div class="row">
                         <div class="col-md-12">
                             <ul class="footer-nav">
-                                <li><a href="#">阿里巴巴</a></li>
-                                <li><a href="#">致开企业店</a></li>
-                                <li><a href="#">捷墨标识企业店</a></li>
+                                <li><a href="https://chikytech.1688.com/" class="i18n" name="alibaba">阿里巴巴</a></li>
+                                <li><a href="https://shop188248097.taobao.com/" class="i18n" name="BusinessShop">致开企业店</a></li>
+                                <li><a href="https://shop341294343.taobao.com/" class="i18n" name="JetShop">捷墨标识企业店</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-2 col-sm-2">
-                    <h5>下载中心</h5>
+                    <h5 class="i18n" name="download">下载中心</h5>
                     <div class="row">
                         <div class="col-md-12">
                             <ul class="footer-nav" id="download">
@@ -288,7 +292,7 @@
                     </div>
                 </div>
                 <div class="col-md-2 col-sm-2">
-                    <h5>解决方案</h5>
+                    <h5 class="i18n" name="solution">解决方案</h5>
                     <div class="row">
                         <div class="col-md-12">
                             <ul class="footer-nav" id="scheme">
@@ -300,7 +304,7 @@
                     </div>
                 </div>
                 <div class="col-md-2 col-sm-2">
-                    <h5>产品中心</h5>
+                    <h5 class="i18n" name="product">产品中心</h5>
                     <div class="row">
                         <div class="col-md-12">
                             <ul class="footer-nav" id="Category">
@@ -312,7 +316,7 @@
                     </div>
                 </div>
                 <div class="col-md-2 col-sm-2">
-                    <h5>联系地址</h5>
+                    <h5 class="i18n" name="contact">联系地址</h5>
                     <div class="row">
                         <div class="col-md-12">
                             <ul class="contacts-list">
@@ -380,12 +384,11 @@
     var productList = [];
     $(document).ready(function (){
 
-
-        // $("#sel1").selectpicker({});
-        // $("#sel2").selectpicker({});
-
-        console.log(lan)
-
+        if(lan!='zh-CN'){
+            var str = "<option value=\"1\">Acre measuring instrument</option>\n" +
+                "<option value=\"2\">Handheld inkjet printer</option>\n"
+            $("#selectProduct").html(str)
+        }
         addBanner(function () {
 
         })
@@ -399,6 +402,7 @@
             addProductList(function (res) {
                 var str = "";
                 productList = res.data
+
                 res.data.forEach(function (item,index) {
                     var category ;
                     categoryList.forEach(function (categoryItem) {
@@ -442,30 +446,15 @@
             var str;
             console.log($(this).val())
             viewProduct(val)
-            // productList.forEach(function (item,index) {
-            //     if(val === item.pType){
-            //         str += "<div class=\"col-sm-4 col-md-3 \"style=\"\">\n" +
-            //             "                                <div class=\"thumbnail productNav\" style=\"padding: 0; margin: 0 5px 20px 5px;\">\n" +
-            //             "                                    <a href=\"productRead.html?id="+item.id+"&category="+category+"\" style=\"margin: 10px;text-decoration:none;color: #9b9b9b;font-family: PingFangSC-Regular\">\n" +
-            //             "                                        <img style=\"width: 160px;height: 160px\" src=\""+item.pImagePath+"\">\n" +
-            //             "                                        <div style=\"margin-top: 10px\">\n" +
-            //             "                                            <div style=\"font-size: 18px\">"+item.pName+"</div>\n" +
-            //             "                                            <div style=\"font-size: 14px;\">"+category+"</div>\n" +
-            //             "                                        </div>\n" +
-            //             "                                    </a>\n" +
-            //             "                                </div>\n" +
-            //             "                            </div>"
-            //     }
-            // })
-            // $("#productList").html(str)
-
-
         })
     })
+
+    //遍历产品
     function viewProduct(val) {
+        console.log(val)
         var str = "";
         productList.forEach(function (item,index) {
-            // console.log(parseInt(val)+item.pType)
+            console.log(parseInt(val)+ " " +item.pType)
             if(parseInt(val) === item.pType){
                 var category ;
                 categoryList.forEach(function (categoryItem) {
@@ -490,13 +479,14 @@
         $("#productList").html(str)
     }
 
+    //产品所属系列
     function viewCategory(val) {
         var str=""
         var num = 0;
         categoryList.forEach(function (item) {
             if(val==item.type){
                 str+="<option value='"+item.value+"'>"+item.label+"</option>\n";
-                if(num === 0){
+                if(num == 0){
                     viewProduct(item.value)
                     num = 1
                 }

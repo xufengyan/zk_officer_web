@@ -8,7 +8,7 @@
             :action="uploadPath"
             :limit="4"
             :headers="headers"
-            :file-list="galleryFileList"
+            :file-list="carouselFileList"
             :on-exceed="uploadOverrun"
             :on-success="handleGalleryUrl"
             :on-remove="handleRemove"
@@ -28,36 +28,10 @@
             </el-carousel-item>
           </el-carousel>
         </div>
-        <!--        <el-form-item label="是否新品" prop="isNew">-->
-        <!--          <el-radio-group v-model="goods.isNew">-->
-        <!--            <el-radio :label="true">新品</el-radio>-->
-        <!--            <el-radio :label="false">非新品</el-radio>-->
-        <!--          </el-radio-group>-->
-        <!--        </el-form-item>-->
-
-        <!--        <el-form-item label="宣传画廊">-->
-        <!--          <el-upload-->
-        <!--            :action="uploadPath"-->
-        <!--            :headers="headers"-->
-        <!--            :limit="5"-->
-        <!--            :file-list="galleryFileList"-->
-        <!--            :on-exceed="uploadOverrun"-->
-        <!--            :on-success="handleGalleryUrl"-->
-        <!--            :on-remove="handleRemove"-->
-        <!--            multiple-->
-        <!--            accept=".jpg,.jpeg,.png,.gif"-->
-        <!--            list-type="picture-card"-->
-        <!--          >-->
-        <!--            <i class="el-icon-plus" />-->
-        <!--          </el-upload>-->
-        <!--        </el-form-item>-->
-
       </el-form>
     </el-card>
 
     <div class="op-container">
-      <!--      <el-button @click="handleCancel">取消</el-button>-->
-      <!--      <el-button type="primary" @click="handleEdit">添加产品展示</el-button>-->
     </div>
 
   </div>
@@ -127,20 +101,12 @@ import { MessageBox } from 'element-ui'
 import { getToken } from '@/utils/auth'
 
 export default {
-  name: 'GoodsEdit',
+  name: 'CarouselEdit',
   components: { Editor },
   data() {
     return {
       uploadPath,
-      newKeywordVisible: false,
-      newKeyword: '',
-      keywords: [],
-      galleryFileList: [
-        // {name: 'food.jpg', url: 'http://localhost:8089/admin/storage/fetch/lurdfr7w7wo2itgimhgu.jpg'},
-        // {name: 'food.jpg', url: 'http://localhost:8089/admin/storage/fetch/lurdfr7w7wo2itgimhgu.jpg'},
-        // {name: 'food.jpg', url: 'http://localhost:8089/admin/storage/fetch/lurdfr7w7wo2itgimhgu.jpg'},
-        // {name: 'food.jpg', url: 'http://localhost:8089/admin/storage/fetch/lurdfr7w7wo2itgimhgu.jpg'},
-      ],
+      carouselFileList: [],
       list: {},
       listQuery: {
         page: 1,
@@ -154,8 +120,6 @@ export default {
         imageUrl: undefined,
         imageType: 0
       },
-      brandList: [],
-      categoryIds: [],
       rules: {
         name: [{ required: true, message: '商品名称不能为空', trigger: 'blur' }]
       }
@@ -184,13 +148,13 @@ export default {
   methods: {
     init: function() {
       const that = this
-      that.galleryFileList = []
+      that.carouselFileList = []
       listImageManagement(that.listQuery).then(respone => {
         that.list = respone.data.data.list
         if (that.list.length > 0) {
           that.list.forEach(function(item, index) {
             that.carouseImages.push({ id: item.id, url: item.imageUrl })
-            that.galleryFileList.push({ name: item.id, url: item.imageUrl })
+            that.carouselFileList.push({ name: item.id, url: item.imageUrl })
           })
         }
       })
@@ -210,7 +174,7 @@ export default {
     },
     handleGalleryUrl(response, file, fileList) {
       if (response.errno === 0) {
-        // this.galleryFileList.push({name: response.data.name, url: response.data.url})
+        // this.carouselFileList.push({name: response.data.name, url: response.data.url})
         this.resetForm()
         this.carouseImage.imageUrl = response.data.url
         createImageManagement(this.carouseImage).then(res => {
@@ -241,7 +205,6 @@ export default {
           break
         }
       }
-      console.log(this.carouseImages)
     }
   }
 }

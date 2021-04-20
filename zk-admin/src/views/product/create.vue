@@ -36,30 +36,6 @@
         <el-form-item label="产品介绍">
           <editor v-model="product.pIntroduce" :init="editorInit" />
         </el-form-item>
-        <!--        <el-form-item label="是否新品" prop="isNew">-->
-        <!--          <el-radio-group v-model="goods.isNew">-->
-        <!--            <el-radio :label="true">新品</el-radio>-->
-        <!--            <el-radio :label="false">非新品</el-radio>-->
-        <!--          </el-radio-group>-->
-        <!--        </el-form-item>-->
-
-        <!--        <el-form-item label="宣传画廊">-->
-        <!--          <el-upload-->
-        <!--            :action="uploadPath"-->
-        <!--            :headers="headers"-->
-        <!--            :limit="5"-->
-        <!--            :file-list="galleryFileList"-->
-        <!--            :on-exceed="uploadOverrun"-->
-        <!--            :on-success="handleGalleryUrl"-->
-        <!--            :on-remove="handleRemove"-->
-        <!--            multiple-->
-        <!--            accept=".jpg,.jpeg,.png,.gif"-->
-        <!--            list-type="picture-card"-->
-        <!--          >-->
-        <!--            <i class="el-icon-plus" />-->
-        <!--          </el-upload>-->
-        <!--        </el-form-item>-->
-
       </el-form>
     </el-card>
 
@@ -121,27 +97,18 @@ import { MessageBox } from 'element-ui'
 import { getToken } from '@/utils/auth'
 
 export default {
-  name: 'GoodsEdit',
+  name: 'ProductCreate',
   components: { Editor },
   data() {
     return {
       uploadPath,
-      newKeywordVisible: false,
-      newKeyword: '',
-      keywords: [],
-      galleryFileList: [],
       categoryList: [],
-      brandList: [],
       categoryIds: 1,
       product: {},
       type: 1,
       typeName: '喷码机',
       lan: 'zh-CN',
       luaName: '中文',
-      productVisiable: false,
-      attributeVisiable: false,
-      attributeAdd: true,
-      attributeForm: { attribute: '', value: '' },
       attributes: [],
       rules: {
         name: [{ required: true, message: '商品名称不能为空', trigger: 'blur' }]
@@ -216,7 +183,6 @@ export default {
         this.categoryList = response.data.data.list
         this.categoryIds = response.data.data.list[0].value
         this.product.pType = this.categoryIds
-        this.product.pType = 1
       })
     },
     // 选择不同的系列
@@ -230,9 +196,6 @@ export default {
     },
     // 添加方法
     handleCreate: function() {
-      // const finalGoods = {
-      //   product: this.product,
-      // }
       createProduct(this.product)
         .then(response => {
           this.$notify.success({

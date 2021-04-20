@@ -8,12 +8,7 @@
           <el-cascader :value="typeId" :options="typeList" expand-trigger="hover" @change="handleTypeChange" />
         </el-form>
       </el-form>
-      <!--      <el-input v-model="listQuery.goodsId" clearable class="filter-item" style="width: 160px;" placeholder="请输入商品ID" />-->
-      <!--      <el-input v-model="listQuery.goodsSn" clearable class="filter-item" style="width: 160px;" placeholder="请输入商品编号" />-->
-      <!--      <el-input v-model="listQuery.name" clearable class="filter-item" style="width: 160px;" placeholder="请输入商品名称" />-->
-      <!--      <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">查找</el-button>-->
-      <el-button class="filter-item" type="primary" icon="el-icon-edit" @click="handleCreate">添加</el-button>
-      <!--      <el-button :loading="downloadLoading" class="filter-item" type="primary" icon="el-icon-download" @click="handleDownload">导出</el-button>-->
+       <el-button class="filter-item" type="primary" icon="el-icon-edit" @click="handleCreate">添加</el-button>
     </div>
     <!-- 查询结果 -->
     <el-table v-loading="listLoading" :data="list" element-loading-text="正在查询中。。。" border fit highlight-current-row>
@@ -37,21 +32,6 @@
       </el-table-column>
       <el-table-column align="center" min-width="100" label="系列名称" prop="label" />
       <el-table-column align="center" min-width="100" label="语言" prop="lan" />
-
-      <!--      <el-table-column align="center" property="iconUrl" label="产品图片">-->
-      <!--        <template slot-scope="scope">-->
-      <!--          <img :src="scope.row.pImagePath" width="100">-->
-      <!--        </template>-->
-      <!--      </el-table-column>-->
-
-      <!--      <el-table-column align="center" min-width="100" label="产品展示内容" prop="pIntroduce" />-->
-      <!--      <el-table-column align="center" min-width="100" label="手机" prop="owTel" />-->
-      <!--      <el-table-column align="center" min-width="100" label="工作时间" prop="owWoekTime" />-->
-      <!--      <el-table-column align="center" min-width="100" label="备案" prop="owInternetcp" />-->
-      <!--      <el-table-column align="center" min-width="100" label="公司网址" prop="owUrl" />-->
-      <!--      <el-table-column align="center" min-width="100" label="公司地址" prop="owAddress" />-->
-      <!--      <el-table-column align="center" min-width="100" label="公司邮箱" prop="owMail" />-->
-
       <el-table-column align="center" label="操作" width="200" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button type="primary" size="mini" @click="handleUpdate(scope.row)">编辑</el-button>
@@ -115,7 +95,7 @@ import Pagination from '@/components/Pagination' // Secondary package based on e
 import { MessageBox } from 'element-ui'
 
 export default {
-  name: 'GoodsList',
+  name: 'CategoryList',
   components: { BackToTop, Pagination },
   data() {
     return {
@@ -157,9 +137,6 @@ export default {
           label: '喷码机'
         }
       ],
-      goodsDetail: '',
-      detailDialogVisible: false,
-      downloadLoading: false,
       rules: {
         label: [
           { required: true, message: '角色名称不能为空', trigger: 'blur' }
@@ -193,13 +170,6 @@ export default {
         this.listLoading = false
       })
     },
-    // handleFilter() {
-    //   this.listQuery.page = 1
-    //   this.getList()
-    // },
-    // handleCreate() {
-    //   this.$router.push({ path: '/goods/create' })
-    // },
     resetForm() {
       this.dataForm = {
         value: undefined,
@@ -212,7 +182,6 @@ export default {
       this.dataForm = Object.assign({}, row)
       this.typeId = row.type
       this.luaIds = row.lan
-      // this.$router.push({ path: '/basic/categoryEdit', query: { id: row.id }})
       this.dialogStatus = 'update'
       this.createDialogVisible = true
       this.$nextTick(() => {
@@ -220,8 +189,6 @@ export default {
       })
     },
     handleCreate() {
-      // this.typeId === 1 ? this.typeName = '测亩仪' : this.typeName = '喷码机'
-      // this.lua === 'zh-CN' ? this.luaName = '中文' : this.luaName = '英文'
       this.resetForm()
       this.dataForm.type = this.typeId
       this.dataForm.lan = this.luaIds
@@ -284,10 +251,6 @@ export default {
         this.getList()
       }
     }
-    // showDetail(detail) {
-    //   this.goodsDetail = detail
-    //   this.detailDialogVisible = true
-    // },
   }
 }
 </script>

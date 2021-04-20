@@ -7,6 +7,9 @@
         <el-form-item label="编辑ID" prop="id">
           <el-input v-model="scheme.id" disabled />
         </el-form-item>
+        <el-form-item label="语言类型" prop="id">
+          <el-input v-model="lanName" disabled />
+        </el-form-item>
         <el-form-item label="方案名称" prop="sName">
           <el-input v-model="scheme.sName" />
         </el-form-item>
@@ -27,30 +30,6 @@
         <el-form-item label="方案内容">
           <editor v-model="scheme.sContent" :init="editorInit" />
         </el-form-item>
-        <!--        <el-form-item label="是否新品" prop="isNew">-->
-        <!--          <el-radio-group v-model="goods.isNew">-->
-        <!--            <el-radio :label="true">新品</el-radio>-->
-        <!--            <el-radio :label="false">非新品</el-radio>-->
-        <!--          </el-radio-group>-->
-        <!--        </el-form-item>-->
-
-        <!--        <el-form-item label="宣传画廊">-->
-        <!--          <el-upload-->
-        <!--            :action="uploadPath"-->
-        <!--            :headers="headers"-->
-        <!--            :limit="5"-->
-        <!--            :file-list="galleryFileList"-->
-        <!--            :on-exceed="uploadOverrun"-->
-        <!--            :on-success="handleGalleryUrl"-->
-        <!--            :on-remove="handleRemove"-->
-        <!--            multiple-->
-        <!--            accept=".jpg,.jpeg,.png,.gif"-->
-        <!--            list-type="picture-card"-->
-        <!--          >-->
-        <!--            <i class="el-icon-plus" />-->
-        <!--          </el-upload>-->
-        <!--        </el-form-item>-->
-
       </el-form>
     </el-card>
 
@@ -111,36 +90,13 @@ import { MessageBox } from 'element-ui'
 import { getToken } from '@/utils/auth'
 
 export default {
-  name: 'GoodsEdit',
+  name: 'SchemeEdit',
   components: { Editor },
   data() {
     return {
       uploadPath,
-      newKeywordVisible: false,
-      newKeyword: '',
-      keywords: [],
-      galleryFileList: [],
-      categoryList: [],
-      brandList: [],
-      categoryIds: [],
       scheme: {},
-      specVisiable: false,
-      specForm: { specification: '', value: '', picUrl: '' },
-      specifications: [{ specification: '规格', value: '标准', picUrl: '' }],
-      productVisiable: false,
-      productForm: {
-        id: 0,
-        specifications: [],
-        price: 0.0,
-        number: 0,
-        url: ''
-      },
-      products: [
-        { id: 0, specifications: ['标准'], price: 0.0, number: 0, url: '' }
-      ],
-      attributeVisiable: false,
-      attributeAdd: true,
-      attributeForm: { attribute: '', value: '' },
+      lanName: '中文',
       attributes: [],
       rules: {
         name: [{ required: true, message: '商品名称不能为空', trigger: 'blur' }]
@@ -195,20 +151,21 @@ export default {
       if (this.$route.query.id == null) {
         return
       }
-
+      if (this.$route.query.lan == null) {
+        return
+      }
+      const lan = this.$route.query.lan
+      lan === 'zh-CN' ? this.lanName = '中文' : this.lanName = '英文'
       const schemeId = this.$route.query.id
       readScheme(schemeId).then(response => {
         this.scheme = response.data.data
+        this.scheme.lan = lan
+
       })
-      //
-      // listCatAndBrand().then(response => {
-      //   this.categoryList = response.data.data.categoryList
-      //   this.brandList = response.data.data.brandList
-      // })
     },
     handleCancel: function() {
       this.$store.dispatch('tagsView/delView', this.$route)
-      this.$router.push({ path: '/basic/schemeList' })
+      this.$router.push({ path: '/basic/schemeList', query: { lan: this.scheme.lan} })
     },
     // 修改方法
     handleEdit: function() {
@@ -219,8 +176,10 @@ export default {
             title: '成功',
             message: '编辑成功'
           })
+          alert( this.scheme.lan)
+
           this.$store.dispatch('tagsView/delView', this.$route)
-          this.$router.push({ path: '/basic/schemeList' })
+          this.$router.push({ path: '/basic/schemeList', query: { lan: this.scheme.lan } })
         })
         .catch(response => {
           MessageBox.alert('业务错误：' + response.data.errmsg, '警告', {

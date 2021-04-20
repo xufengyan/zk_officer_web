@@ -1,5 +1,13 @@
 var lan = getCookie("userLanguage") === null?'zh-CN':getCookie("userLanguage")
-var requestUrl = "http://localhost:8089/html"
+//全局地址
+var requestUrl = "http://localhost:8089"
+
+var more;
+var dw;
+lan === 'zh-CN' ? more = '更多...' : more = 'more...'
+lan === 'zh-CN' ? dw = '下载' : dw = 'download'
+
+
 //轮播
 function addBanner(callback) {
     let str = ""
@@ -31,7 +39,7 @@ function addBanner(callback) {
             callback(res)
         },
         error: function (error) {
-            alert(error);
+            console.log(error);
         }
     });
 }
@@ -80,7 +88,7 @@ function addParagraphList() {
 
         },
         error: function (error) {
-            alert(error);
+            console.log(error);
         }
     });
 }
@@ -107,7 +115,7 @@ function addProductList(callback) {
             callback(res)
         },
         error: function (error) {
-            alert(error);
+            console.log(error);
         }
     });
 }
@@ -136,7 +144,7 @@ function addBasic(callback) {
             res.data.owLogo
         },
         error: function (error) {
-            alert(error);
+            console.log(error);
         }
     });
 }
@@ -153,14 +161,16 @@ function addCategoryList(callback) {
         success: function (res) {
             res.data.list.forEach(function (item,index) {
                 if (index<4) {
-                    str += "<li><a href=\"#\">" + item.label + "</a></li>\n"
+
+                    str += "<li><a href=\"product.html\">" + item.label + "</a></li>\n"
                 }
             })
             $("#Category").html(str)
             callback(res)
+
         },
         error: function (error) {
-            alert(error);
+            console.log(error);
         }
     });
 }
@@ -177,14 +187,14 @@ function addSchemeList(callback) {
             callback(res)
             res.data.list.forEach(function (item,index) {
                 if(index<4){
-                    str += "<li><a href=\"#\">"+item.sName+"</a></li>\n"
+                    str += "<li><a href=\"schemeRead.html?id="+item.id+"\">"+item.sName+"</a></li>\n"
                 }
             })
-            str += "<li><a href=\"#\">更多</a></li>\n"
+            str += "<li><a href=\"scheme.html\" class='i18n' name='more'>"+more+"</a></li>\n"
             $("#scheme").html(str)
         },
         error: function (error) {
-            alert(error);
+            console.log(error);
         }
     });
 }
@@ -200,15 +210,42 @@ function addDownloadList(callback) {
         success: function (res) {
             res.data.list.forEach(function (item,index) {
                 if(index<4){
-                    str += "<li><a href=\"#\">"+item.dName+"</a></li>\n"
+                    str += "<li><a href='"+requestUrl+"/admin/storage/download/"+item.dPath+"'>"+item.dName+"</a></li>\n"
                 }
             })
-            str+="<li><a href=\"#\">更多</a></li>\n"
+            str+="<li><a href=\"download.html\" class='i18n' name='more'>"+more+"</a></li>\n"
             $("#download").html(str)
             callback(res)
         },
         error: function (error) {
-            alert(error);
+            console.log(error);
+        }
+    });
+}
+
+function getSchemeRead(id,callback) {
+    $.ajax({
+        url: "http://localhost:8089/html/scheme/read.html/"+id,
+        type: "get",
+        dataType: 'json',
+        success: function (res) {
+            callback(res)
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
+}
+function getProductRead(id,callback) {
+    $.ajax({
+        url: "http://localhost:8089/html/product/read.html/"+id,
+        type: "get",
+        dataType: 'json',
+        success: function (res) {
+            callback(res)
+        },
+        error: function (error) {
+            console.log(error);
         }
     });
 }
