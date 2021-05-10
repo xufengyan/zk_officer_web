@@ -35,7 +35,7 @@ public class ZkSchemeController
      */
     @RequiresPermissions("admin:scheme:list")
     @RequiresPermissionsDesc(menu = {"官网管理","解决方案"} ,button = "查询")
-    @GetMapping("/list")
+    @GetMapping(value = "/list")
     public Object list( ZkScheme zkScheme)
     {
         PageHelper.startPage(zkScheme.getPage(), zkScheme.getLimit());
@@ -48,7 +48,7 @@ public class ZkSchemeController
      */
     @RequiresPermissions("admin:scheme:add")
     @RequiresPermissionsDesc(menu = {"官网管理","解决方案"} ,button = "添加")
-    @PostMapping("/add")
+    @PostMapping(value = "/add")
     public Object addSave(@RequestBody ZkScheme zkScheme)
     {
         zkSchemeService.insertZkScheme(zkScheme);
@@ -60,7 +60,7 @@ public class ZkSchemeController
      */
     @RequiresPermissions("admin:scheme:read")
     @RequiresPermissionsDesc(menu = {"官网管理","解决方案"} ,button = "详情")
-    @GetMapping("/read/{id}")
+    @GetMapping(value = "/read/{id}")
     public Object read(@PathVariable("id") Long id)
     {
         if (id==null){
@@ -75,7 +75,7 @@ public class ZkSchemeController
      */
     @RequiresPermissions("admin:scheme:edit")
     @RequiresPermissionsDesc(menu = {"官网管理","解决方案"} ,button = "编辑")
-    @PostMapping("/edit")
+    @PostMapping(value = "/edit")
     public Object editSave(@RequestBody ZkScheme zkScheme)
     {
         if(zkSchemeService.updateZkScheme(zkScheme) == 0){
@@ -89,7 +89,7 @@ public class ZkSchemeController
      */
     @RequiresPermissions("admin:scheme:remove")
     @RequiresPermissionsDesc(menu = {"官网管理","解决方案"} ,button = "删除")
-    @PostMapping( "/remove")
+    @PostMapping(value = "/remove")
     public Object remove(@RequestBody Long id)
     {
         if(id == null){

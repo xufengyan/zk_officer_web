@@ -36,8 +36,8 @@ public class ZkImageManagementController
      * 查询轮播，荣誉等管理列表
      */
     @RequiresPermissions("admin:management:list")
-    @RequiresPermissionsDesc(menu = {"官网管理","图片管理"} , button = "查询")
-    @GetMapping("/list")
+    @RequiresPermissionsDesc(menu = {"官网图片管理","图片管理"} , button = "查询")
+    @GetMapping(value = "/list")
     public Object list(ZkImageManagement zkImageManagement)
     {
         PageHelper.startPage(zkImageManagement.getPage(), zkImageManagement.getLimit());
@@ -50,8 +50,8 @@ public class ZkImageManagementController
      * 新增保存轮播，荣誉等管理
      */
     @RequiresPermissions("admin:management:add")
-    @RequiresPermissionsDesc(menu = {"官网管理","图片管理"} , button = "添加")
-    @PostMapping("/add")
+    @RequiresPermissionsDesc(menu = {"官网图片管理","图片管理"} , button = "添加")
+    @PostMapping(value = "/add")
     public Object addSave(@RequestBody ZkImageManagement zkImageManagement)
     {
         zkImageManagementService.insertZkImageManagement(zkImageManagement);
@@ -62,8 +62,8 @@ public class ZkImageManagementController
      * 修改轮播，荣誉等管理
      */
     @RequiresPermissions("admin:management:read")
-    @RequiresPermissionsDesc(menu = {"官网管理","图片管理"} , button = "详情")
-    @GetMapping("/read/{id}")
+    @RequiresPermissionsDesc(menu = {"官网图片管理","图片管理"} , button = "详情")
+    @GetMapping(value = "/read/{id}")
     public Object edit(@PathVariable("id") Long id)
     {
         ZkImageManagement zkImageManagement = zkImageManagementService.selectZkImageManagementById(id);
@@ -74,8 +74,8 @@ public class ZkImageManagementController
      * 修改保存轮播，荣誉等管理
      */
     @RequiresPermissions("admin:management:edit")
-    @RequiresPermissionsDesc(menu = {"官网管理","图片管理"} , button = "编辑")
-    @PostMapping("/edit")
+    @RequiresPermissionsDesc(menu = {"官网图片管理","图片管理"} , button = "编辑")
+    @PostMapping(value = "/edit")
     public Object editSave(@RequestBody ZkImageManagement zkImageManagement)
     {
         if (zkImageManagementService.updateZkImageManagement(zkImageManagement) == 0){
@@ -89,8 +89,8 @@ public class ZkImageManagementController
      * 逻辑删除
      */
     @RequiresPermissions("admin:management:remove")
-    @RequiresPermissionsDesc(menu = {"官网管理","图片管理"} , button = "删除")
-    @GetMapping("/remove/{id}")
+    @RequiresPermissionsDesc(menu = {"官网图片管理","图片管理"} , button = "删除")
+    @GetMapping(value = "/remove/{id}")
     public Object remove(@PathVariable("id") Long id)
     {
         if (id == null) {

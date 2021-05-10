@@ -56,7 +56,7 @@ public class AdminAuthController {
     @Autowired
     private Producer kaptchaProducer;
 
-    @GetMapping("/kaptcha")
+    @GetMapping(value = "/kaptcha")
     public Object kaptcha(HttpServletRequest request) {
         String kaptcha = doKaptcha(request);
         if (kaptcha != null) {
@@ -85,7 +85,7 @@ public class AdminAuthController {
     /*
      *  { username : value, password : value }
      */
-    @PostMapping("/login")
+    @PostMapping(value = "/login")
     public Object login(@RequestBody String body, HttpServletRequest request) {
         String username = JacksonUtil.parseString(body, "username");
         String password = JacksonUtil.parseString(body, "password");
@@ -142,7 +142,7 @@ public class AdminAuthController {
      *
      */
     @RequiresAuthentication
-    @PostMapping("/logout")
+    @PostMapping(value = "/logout")
     public Object logout() {
         Subject currentUser = SecurityUtils.getSubject();
 
@@ -153,7 +153,7 @@ public class AdminAuthController {
 
 
     @RequiresAuthentication
-    @GetMapping("/info")
+    @GetMapping(value = "/info")
     public Object info() {
         Subject currentUser = SecurityUtils.getSubject();
         ZkAdmin admin = (ZkAdmin) currentUser.getPrincipal();
@@ -204,17 +204,17 @@ public class AdminAuthController {
         return apis;
     }
 
-    @GetMapping("/401")
+    @GetMapping(value = "/401")
     public Object page401() {
         return ResponseUtil.unlogin();
     }
 
-    @GetMapping("/index")
+    @GetMapping(value = "/index")
     public Object pageIndex() {
         return ResponseUtil.ok();
     }
 
-    @GetMapping("/403")
+    @GetMapping(value = "/403")
     public Object page403() {
         return ResponseUtil.unauthz();
     }

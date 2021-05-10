@@ -33,8 +33,8 @@ public class ZkDownloadController
      * 查询说明文件下载列表
      */
     @RequiresPermissions("admin:download:list")
-    @RequiresPermissionsDesc(menu = {"官网管理","说明文件下载"} ,button = "查询")
-    @GetMapping("/list")
+    @RequiresPermissionsDesc(menu = {"官网管理","说明文件下载管理"} ,button = "查询")
+    @GetMapping(value = "/list")
     public Object list(ZkDownload zkDownload)
     {
         PageHelper.startPage(zkDownload.getPage(), zkDownload.getLimit());
@@ -46,8 +46,8 @@ public class ZkDownloadController
      * 新增保存说明文件下载
      */
     @RequiresPermissions("admin:download:add")
-    @RequiresPermissionsDesc(menu = {"官网管理","说明文件下载"} ,button = "添加")
-    @PostMapping("/add")
+    @RequiresPermissionsDesc(menu = {"官网管理","说明文件下载管理"} ,button = "添加")
+    @PostMapping(value = "/add")
     public Object addSave(@RequestBody ZkDownload zkDownload)
     {
         zkDownloadService.insertZkDownload(zkDownload);
@@ -59,8 +59,8 @@ public class ZkDownloadController
      * 修改保存说明文件下载
      */
     @RequiresPermissions("admin:download:edit")
-    @RequiresPermissionsDesc(menu = {"官网管理","说明文件下载"} ,button = "编辑")
-    @PostMapping("/edit")
+    @RequiresPermissionsDesc(menu = {"官网管理","说明文件下载管理"} ,button = "编辑")
+    @PostMapping(value = "/edit")
     public Object editSave(@RequestBody ZkDownload zkDownload)
     {
         if (zkDownloadService.updateZkDownload(zkDownload) == 0){
@@ -73,8 +73,8 @@ public class ZkDownloadController
      * 删除说明文件下载
      */
     @RequiresPermissions("admin:download:remove")
-    @RequiresPermissionsDesc(menu = {"官网管理","说明文件下载"} ,button = "删除")
-    @PostMapping( "/remove")
+    @RequiresPermissionsDesc(menu = {"官网管理","说明文件下载管理"} ,button = "删除")
+    @PostMapping( value = "/remove")
     public Object remove(@RequestBody Long id)
     {
         if (id == null) {

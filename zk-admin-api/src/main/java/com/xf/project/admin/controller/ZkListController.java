@@ -34,8 +34,8 @@ public class ZkListController
      * 查询技术领域和优势段落列表
      */
     @RequiresPermissions("admin:list:list")
-    @RequiresPermissionsDesc(menu = {"官网管理","段落管理"},button = "查询")
-    @GetMapping("/list")
+    @RequiresPermissionsDesc(menu = {"官网管理","技术和领域管理"},button = "查询")
+    @GetMapping(value = "/list")
     public Object list(ZkList zkList)
     {
         PageHelper.startPage(zkList.getPage(), zkList.getLimit());
@@ -47,8 +47,8 @@ public class ZkListController
      * 新增保存技术领域和优势段落
      */
     @RequiresPermissions("admin:list:add")
-    @RequiresPermissionsDesc(menu = {"官网管理","段落管理"},button = "添加")
-    @PostMapping("/add")
+    @RequiresPermissionsDesc(menu = {"官网管理","技术和领域管理"},button = "添加")
+    @PostMapping(value = "/add")
     public Object addSave(@RequestBody ZkList zkList)
     {
         zkListService.insertZkList(zkList);
@@ -59,8 +59,8 @@ public class ZkListController
      * 修改技术领域和优势段落
      */
     @RequiresPermissions("admin:list:read")
-    @RequiresPermissionsDesc(menu = {"官网管理","段落管理"},button = "详情")
-    @GetMapping("/read/{id}")
+    @RequiresPermissionsDesc(menu = {"官网管理","技术和领域管理"},button = "详情")
+    @GetMapping(value = "/read/{id}")
     public Object edit(@PathVariable("id") Long id)
     {
         if (id == null){
@@ -74,8 +74,8 @@ public class ZkListController
      * 修改保存技术领域和优势段落
      */
     @RequiresPermissions("admin:list:edit")
-    @RequiresPermissionsDesc(menu = {"官网管理","段落管理"},button = "编辑")
-    @PostMapping("/edit")
+    @RequiresPermissionsDesc(menu = {"官网管理","技术和领域管理"},button = "编辑")
+    @PostMapping(value = "/edit")
     public Object editSave(@RequestBody ZkList zkList)
     {
         if (zkListService.updateZkList(zkList) == 0){
@@ -88,8 +88,8 @@ public class ZkListController
      * 删除技术领域和优势段落
      */
     @RequiresPermissions("admin:list:remove")
-    @RequiresPermissionsDesc(menu = {"官网管理","段落管理"},button = "删除")
-    @PostMapping( "/remove")
+    @RequiresPermissionsDesc(menu = {"官网管理","技术和领域管理"},button = "删除")
+    @PostMapping(value = "/remove")
     public Object remove(@RequestBody Long id)
     {
         if(id == null){

@@ -37,10 +37,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/linlinjava/litemall.git"
+    "url": ""
   },
   "bugs": {
-    "url": "https://github.com/linlinjava/litemall/issues"
+    "url": ""
   },
   "dependencies": {
     "@tinymce/tinymce-vue": "3.0.1",

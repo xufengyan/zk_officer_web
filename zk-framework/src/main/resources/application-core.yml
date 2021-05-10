@@ -6,15 +6,17 @@ xf:
     # 本地对象存储配置信息
     local:
 #      storagePath: D:\\home/image/storage
-      storagePath: /Users/xufeng/Desktop/image/storage
+      storagePath: /home/image/storage
       # 这个地方应该是wx模块的WxStorageController的fetch方法对应的地址
-      address: http://localhost:8089/admin/storage/fetch/
+#      address: http://192.168.0.131:8089/admin/storage/fetch/
+      address: http://www.chiky.cn/zkweb/admin/storage/fetch/
+
     # 阿里云对象存储配置信息
     aliyun:
       endpoint: oss-cn-shenzhen.aliyuncs.com
       accessKeyId: 111111
       accessKeySecret: xxxxxx
-      bucketName: litemall
+      bucketName: 111111
     # 腾讯对象存储配置信息
     # 请参考 https://cloud.tencent.com/document/product/436/6249
     tencent:
@@ -27,4 +29,4 @@ xf:
       endpoint: http://pd5cb6ulu.bkt.clouddn.com
       accessKey: 111111
       secretKey: xxxxxx
-      bucketName: litemall
+      bucketName: 111111

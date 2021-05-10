@@ -46,7 +46,7 @@ public class AdminRoleController {
 
     @RequiresPermissions("admin:role:list")
     @RequiresPermissionsDesc(menu = {"系统管理", "角色管理"}, button = "角色查询")
-    @GetMapping("/list")
+    @GetMapping(value = "/list")
     public Object list(String name,
                        @RequestParam(defaultValue = "1") Integer page,
                        @RequestParam(defaultValue = "10") Integer limit,
@@ -56,7 +56,7 @@ public class AdminRoleController {
         return ResponseUtil.okList(roleList);
     }
 
-    @GetMapping("/options")
+    @GetMapping(value = "/options")
     public Object options() {
         List<ZkRole> roleList = roleService.queryAll();
 
@@ -73,7 +73,7 @@ public class AdminRoleController {
 
     @RequiresPermissions("admin:role:read")
     @RequiresPermissionsDesc(menu = {"系统管理", "角色管理"}, button = "角色详情")
-    @GetMapping("/read")
+    @GetMapping(value = "/read")
     public Object read(@NotNull Integer id) {
         ZkRole role = roleService.findById(id);
         return ResponseUtil.ok(role);
@@ -91,7 +91,7 @@ public class AdminRoleController {
 
     @RequiresPermissions("admin:role:create")
     @RequiresPermissionsDesc(menu = {"系统管理", "角色管理"}, button = "角色添加")
-    @PostMapping("/create")
+    @PostMapping(value = "/create")
     public Object create(@RequestBody ZkRole role) {
         Object error = validate(role);
         if (error != null) {
@@ -109,7 +109,7 @@ public class AdminRoleController {
 
     @RequiresPermissions("admin:role:update")
     @RequiresPermissionsDesc(menu = {"系统管理", "角色管理"}, button = "角色编辑")
-    @PostMapping("/update")
+    @PostMapping(value = "/update")
     public Object update(@RequestBody ZkRole role) {
         Object error = validate(role);
         if (error != null) {
@@ -122,7 +122,7 @@ public class AdminRoleController {
 
     @RequiresPermissions("admin:role:delete")
     @RequiresPermissionsDesc(menu = {"系统管理", "角色管理"}, button = "角色删除")
-    @PostMapping("/delete")
+    @PostMapping(value = "/delete")
     public Object delete(@RequestBody ZkRole role) {
         Integer id = role.getId();
         if (id == null) {
@@ -181,7 +181,7 @@ public class AdminRoleController {
      */
     @RequiresPermissions("admin:role:permission:get")
     @RequiresPermissionsDesc(menu = {"系统管理", "角色管理"}, button = "权限详情")
-    @GetMapping("/permissions")
+    @GetMapping(value = "/permissions")
     public Object getPermissions(Integer roleId) {
         List<PermVo> systemPermissions = getSystemPermissions();
         Set<String> assignedPermissions = getAssignedPermissions(roleId);
@@ -201,7 +201,7 @@ public class AdminRoleController {
      */
     @RequiresPermissions("admin:role:permission:update")
     @RequiresPermissionsDesc(menu = {"系统管理", "角色管理"}, button = "权限变更")
-    @PostMapping("/permissions")
+    @PostMapping(value = "/permissions")
     public Object updatePermissions(@RequestBody String body) {
         Integer roleId = JacksonUtil.parseInteger(body, "roleId");
         List<String> permissions = JacksonUtil.parseStringList(body, "permissions");

@@ -34,7 +34,7 @@ public class ZkCategoryController
      */
     @RequiresPermissions("admin:category:list")
     @RequiresPermissionsDesc(menu = {"官网管理","产品系列管理"}, button = "查询")
-    @GetMapping("/list")
+    @GetMapping(value = "/list")
     public Object list(ZkCategory zkCategory)
     {
         PageHelper.startPage(zkCategory.getPage(), zkCategory.getLimit());
@@ -47,7 +47,7 @@ public class ZkCategoryController
      */
     @RequiresPermissions("admin:category:add")
     @RequiresPermissionsDesc(menu = {"官网管理","产品系列管理"}, button = "添加")
-    @PostMapping("/add")
+    @PostMapping(value = "/add")
     public Object addSave(@RequestBody ZkCategory zkCategory)
     {
         if (zkCategoryService.insertZkCategory(zkCategory) == 0){
@@ -64,7 +64,7 @@ public class ZkCategoryController
      */
     @RequiresPermissions("admin:category:edit")
     @RequiresPermissionsDesc(menu = {"官网管理","产品系列管理"}, button = "修改")
-    @PostMapping("/edit")
+    @PostMapping(value = "/edit")
     public Object editSave(@RequestBody ZkCategory zkCategory)
     {
         if (zkCategoryService.updateZkCategory(zkCategory) ==0 ){
@@ -78,7 +78,7 @@ public class ZkCategoryController
      */
     @RequiresPermissions("admin:category:remove")
     @RequiresPermissionsDesc(menu = {"官网管理","产品系列管理"}, button = "删除")
-    @PostMapping( "/remove")
+    @PostMapping( value = "/remove")
     public Object remove(@RequestBody Long id)
     {
         if (id == null) {

@@ -35,7 +35,7 @@ public class ZkBasicController
      */
     @RequiresPermissions("admin:basic:list")
     @RequiresPermissionsDesc(menu = {"官网管理", "网站基本信息"}, button = "查询")
-    @GetMapping("/list")
+    @GetMapping(value = "/list")
     public Object list(ZkBasic zkBasic)
     {
         PageHelper.startPage(zkBasic.getPage(), zkBasic.getLimit());
@@ -48,7 +48,7 @@ public class ZkBasicController
      */
     @RequiresPermissions("admin:list:read")
     @RequiresPermissionsDesc(menu = {"官网管理","网站基本信息"},button = "详情")
-    @GetMapping("/read/{id}")
+    @GetMapping(value = "/read/{id}")
     public Object edit(@PathVariable("id") Long id)
     {
         if (id == null){
@@ -62,7 +62,7 @@ public class ZkBasicController
      */
     @RequiresPermissions("admin:basic:edit")
     @RequiresPermissionsDesc(menu = {"官网管理", "网站基本信息"}, button = "修改")
-    @PostMapping("/edit")
+    @PostMapping(value = "/edit")
     public Object editSave(@RequestBody ZkBasic zkBasic)
     {
         if (zkBasicService.updateZkBasic(zkBasic) == 0) {

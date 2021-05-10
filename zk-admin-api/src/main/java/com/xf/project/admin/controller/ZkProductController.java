@@ -32,8 +32,8 @@ public class ZkProductController
      * 查询产品列表
      */
     @RequiresPermissions("admin:product:list")
-    @RequiresPermissionsDesc(menu = {"网站管理","展示产品"},button = "查询")
-    @GetMapping("/list")
+    @RequiresPermissionsDesc(menu = {"官网管理","展示产品"},button = "查询")
+    @GetMapping(value = "/list")
     public Object list( ZkProduct zkProduct,String type)
     {
         PageHelper.startPage(zkProduct.getPage(), zkProduct.getLimit());
@@ -47,8 +47,8 @@ public class ZkProductController
      * 新增保存产品
      */
     @RequiresPermissions("admin:product:add")
-    @RequiresPermissionsDesc(menu = {"网站管理","展示产品"},button = "添加")
-    @PostMapping("/add")
+    @RequiresPermissionsDesc(menu = {"官网管理","展示产品"},button = "添加")
+    @PostMapping(value = "/add")
     public Object addSave(@RequestBody ZkProduct zkProduct)
     {
         zkProductService.insertZkProduct(zkProduct);
@@ -59,8 +59,8 @@ public class ZkProductController
      * 修改产品
      */
     @RequiresPermissions("admin:product:read")
-    @RequiresPermissionsDesc(menu = {"网站管理","展示产品"},button = "详情")
-    @GetMapping("/read/{id}")
+    @RequiresPermissionsDesc(menu = {"官网管理","展示产品"},button = "详情")
+    @GetMapping(value = "/read/{id}")
     public Object read(@PathVariable("id") Long id)
     {   if (id==null){
         return ResponseUtil.badArgumentValue();
@@ -73,8 +73,8 @@ public class ZkProductController
      * 修改保存产品
      */
     @RequiresPermissions("admin:product:edit")
-    @RequiresPermissionsDesc(menu = {"网站管理","展示产品"},button = "修改")
-    @PostMapping("/edit")
+    @RequiresPermissionsDesc(menu = {"官网管理","展示产品"},button = "修改")
+    @PostMapping(value = "/edit")
     public Object editSave(@RequestBody ZkProduct zkProduct)
     {
         if(zkProductService.updateZkProduct(zkProduct) == 0){
@@ -87,8 +87,8 @@ public class ZkProductController
      * 删除产品
      */
     @RequiresPermissions("admin:product:remove")
-    @RequiresPermissionsDesc(menu = {"网站管理","展示产品"},button = "删除")
-    @PostMapping("/remove")
+    @RequiresPermissionsDesc(menu = {"官网管理","展示产品"},button = "删除")
+    @PostMapping(value = "/remove")
     public Object remove(@RequestBody Long id)
     {
         if (id == null){

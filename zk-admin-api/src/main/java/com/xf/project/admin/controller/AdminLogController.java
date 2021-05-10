@@ -30,7 +30,7 @@ public class AdminLogController {
 
     @RequiresPermissions("admin:log:list")
     @RequiresPermissionsDesc(menu = {"系统管理", "操作日志"}, button = "查询")
-    @GetMapping("/list")
+    @GetMapping(value = "/list")
     public Object list(String name,
                        @RequestParam(defaultValue = "1") Integer page,
                        @RequestParam(defaultValue = "10") Integer limit,

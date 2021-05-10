@@ -1,7 +1,7 @@
 var lan = getCookie("userLanguage") === null?'zh-CN':getCookie("userLanguage")
 //全局地址
-var requestUrl = "http://localhost:8089"
-
+//var requestUrl = "http://localhost:8089/html"
+var requestUrl = "http://www.chiky.cn/zkweb/html"
 var more;
 var dw;
 lan === 'zh-CN' ? more = '更多...' : more = 'more...'
@@ -13,7 +13,7 @@ function addBanner(callback) {
     let str = ""
     let i = 0
     $.ajax({
-        url: "http://localhost:8089/html/management/list.html",
+        url: requestUrl+"/management/list.html",
         type: "get",
         // contentType : 'application/json',
         // async: true,
@@ -49,7 +49,7 @@ function addParagraphList() {
     let i2 = 0;
 
     $.ajax({
-        url: "http://localhost:8089/html/paragraph/list.html",
+        url: requestUrl+"/paragraph/list.html",
         type: "get",
         // contentType : 'application/json',
         // async: true,
@@ -95,7 +95,7 @@ function addParagraphList() {
 function addProductList(callback) {
     let str = ""
     $.ajax({
-        url: "http://localhost:8089/html/product/list.html",
+        url: requestUrl+"/product/list.html",
         type: "get",
         // contentType : 'application/json',
         // async: true,
@@ -123,7 +123,7 @@ function addProductList(callback) {
 function addBasic(callback) {
     let str = ""
     $.ajax({
-        url: "http://localhost:8089/html/basic/read/"+lan,
+        url: requestUrl+"/basic/read/"+lan,
         type: "get",
         // contentType : 'application/json',
         // async: true,
@@ -152,7 +152,7 @@ function addBasic(callback) {
 function addCategoryList(callback) {
     var str = "";
     $.ajax({
-        url: "http://localhost:8089/html/category/list.html",
+        url: requestUrl+"/category/list.html",
         type: "get",
         // contentType : 'application/json',
         // async: true,
@@ -177,7 +177,7 @@ function addCategoryList(callback) {
 function addSchemeList(callback) {
     var str = "";
     $.ajax({
-        url: "http://localhost:8089/html/scheme/list.html",
+        url: requestUrl+"/scheme/list.html",
         type: "get",
         // contentType : 'application/json',
         // async: true,
@@ -201,7 +201,7 @@ function addSchemeList(callback) {
 function addDownloadList(callback) {
     var str = "";
     $.ajax({
-        url: "http://localhost:8089/html/download/list.html",
+        url: requestUrl+"/download/list.html",
         type: "get",
         // contentType : 'application/json',
         // async: true,
@@ -225,7 +225,7 @@ function addDownloadList(callback) {
 
 function getSchemeRead(id,callback) {
     $.ajax({
-        url: "http://localhost:8089/html/scheme/read.html/"+id,
+        url: requestUrl+"/scheme/read.html/"+id,
         type: "get",
         dataType: 'json',
         success: function (res) {
@@ -238,7 +238,7 @@ function getSchemeRead(id,callback) {
 }
 function getProductRead(id,callback) {
     $.ajax({
-        url: "http://localhost:8089/html/product/read.html/"+id,
+        url: requestUrl+"/product/read.html/"+id,
         type: "get",
         dataType: 'json',
         success: function (res) {

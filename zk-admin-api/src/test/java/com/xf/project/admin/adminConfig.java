@@ -1,6 +1,5 @@
 package com.xf.project.admin;
 
-import com.xf.project.admin.controller.test.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +16,8 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 public class adminConfig {
-    @Autowired
-    private User u;
     @Test
     public void test(){
-        System.out.println(u);
+
     }
 }

@@ -37,7 +37,7 @@ public class AdminAdminController {
 
     @RequiresPermissions("admin:admin:list")
     @RequiresPermissionsDesc(menu = {"系统管理", "管理员管理"}, button = "查询")
-    @GetMapping("/list")
+    @GetMapping(value = "/list")
     public Object list(String username,
                        @RequestParam(defaultValue = "1") Integer page,
                        @RequestParam(defaultValue = "10") Integer limit,
@@ -64,7 +64,7 @@ public class AdminAdminController {
 
     @RequiresPermissions("admin:admin:create")
     @RequiresPermissionsDesc(menu = {"系统管理", "管理员管理"}, button = "添加")
-    @PostMapping("/create")
+    @PostMapping(value = "/create")
     public Object create(@RequestBody ZkAdmin admin) {
         Object error = validate(admin);
         if (error != null) {
@@ -88,7 +88,7 @@ public class AdminAdminController {
 
     @RequiresPermissions("admin:admin:read")
     @RequiresPermissionsDesc(menu = {"系统管理", "管理员管理"}, button = "详情")
-    @GetMapping("/read")
+    @GetMapping(value = "/read")
     public Object read(@NotNull Integer id) {
         ZkAdmin admin = adminService.findById(id);
         return ResponseUtil.ok(admin);
@@ -96,7 +96,7 @@ public class AdminAdminController {
 
     @RequiresPermissions("admin:admin:update")
     @RequiresPermissionsDesc(menu = {"系统管理", "管理员管理"}, button = "编辑")
-    @PostMapping("/update")
+    @PostMapping(value = "/update")
     public Object update(@RequestBody ZkAdmin admin) {
         Object error = validate(admin);
         if (error != null) {
@@ -121,7 +121,7 @@ public class AdminAdminController {
 
     @RequiresPermissions("admin:admin:delete")
     @RequiresPermissionsDesc(menu = {"系统管理", "管理员管理"}, button = "删除")
-    @PostMapping("/delete")
+    @PostMapping(value = "/delete")
     public Object delete(@RequestBody ZkAdmin admin) {
         Integer anotherAdminId = admin.getId();
         if (anotherAdminId == null) {

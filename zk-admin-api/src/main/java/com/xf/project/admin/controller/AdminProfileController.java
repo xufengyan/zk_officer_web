@@ -25,7 +25,7 @@ public class AdminProfileController {
 
 
     @RequiresAuthentication
-    @GetMapping("/nnotice")
+    @GetMapping(value = "/nnotice")
     public Object nNotice() {
 //        int count = noticeAdminService.countUnread(getAdminId());
         return ResponseUtil.ok(0);

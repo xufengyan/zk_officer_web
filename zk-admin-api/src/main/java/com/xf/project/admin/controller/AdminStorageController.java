@@ -38,7 +38,7 @@ public class AdminStorageController {
 
     @RequiresPermissions("admin:storage:list")
     @RequiresPermissionsDesc(menu = {"系统管理", "对象存储"}, button = "查询")
-    @GetMapping("/list")
+    @GetMapping(value = "/list")
     public Object list(String key, String name,
                        @RequestParam(defaultValue = "1") Integer page,
                        @RequestParam(defaultValue = "10") Integer limit,
@@ -50,7 +50,7 @@ public class AdminStorageController {
 
     @RequiresPermissions("admin:storage:create")
     @RequiresPermissionsDesc(menu = {"系统管理", "对象存储"}, button = "上传")
-    @PostMapping("/create")
+    @PostMapping(value = "/create")
     public Object create(@RequestParam("file") MultipartFile file) throws IOException {
         String originalFilename = file.getOriginalFilename();
         ZkStorage zkStorage = storageService.store(file.getInputStream(), file.getSize(),
@@ -59,8 +59,8 @@ public class AdminStorageController {
     }
 
     @RequiresPermissions("admin:storage:read")
-    @RequiresPermissionsDesc(menu = {"系统管理", "对象存储"}, button = "详情")
-    @PostMapping("/read")
+    @RequiresPermissionsDesc(menu = {"系统管理", "对象存储"}, button = "Post详情")
+    @PostMapping(value = "/read")
     public Object read(@NotNull String key) {
         ZkStorage storageInfo = zkStorageService.findByKey(key);
         if (storageInfo == null) {
@@ -70,8 +70,8 @@ public class AdminStorageController {
     }
 
     @RequiresPermissions("admin:storage:read")
-    @RequiresPermissionsDesc(menu = {"系统管理", "对象存储"}, button = "详情")
-    @GetMapping("/read/{key}")
+    @RequiresPermissionsDesc(menu = {"系统管理", "对象存储"}, button = "Get详情")
+    @GetMapping(value = "/read/{key}")
     public Object readBykey(@PathVariable("key") String key) {
         ZkStorage storageInfo = zkStorageService.findByKey(key);
         if (storageInfo == null) {
@@ -82,7 +82,7 @@ public class AdminStorageController {
 
     @RequiresPermissions("admin:storage:update")
     @RequiresPermissionsDesc(menu = {"系统管理", "对象存储"}, button = "编辑")
-    @PostMapping("/update")
+    @PostMapping(value = "/update")
     public Object update(@RequestBody ZkStorage zkStorage) {
         if (zkStorageService.update(zkStorage) == 0) {
             return ResponseUtil.updatedDataFailed();
@@ -92,7 +92,7 @@ public class AdminStorageController {
 
     @RequiresPermissions("admin:storage:delete")
     @RequiresPermissionsDesc(menu = {"系统管理", "对象存储"}, button = "删除")
-    @PostMapping("/delete")
+    @PostMapping(value = "/delete")
     public Object delete(@RequestBody ZkStorage zkStorage) {
         String key = zkStorage.getKey();
         if (StringUtils.isEmpty(key)) {
@@ -108,7 +108,7 @@ public class AdminStorageController {
      * @param key 存储对象key
      * @return
      */
-    @GetMapping("/fetch/{key:.+}")
+    @GetMapping(value = "/fetch/{key:.+}")
 //    @GetMapping("/fetch")
     public ResponseEntity<Resource> fetch(@PathVariable String key) {
         ZkStorage zkStorage = zkStorageService.findByKey(key);
@@ -133,7 +133,7 @@ public class AdminStorageController {
      * @param key 存储对象key
      * @return
      */
-    @GetMapping("/download/{key:.+}")
+    @GetMapping(value = "/download/{key:.+}")
     public ResponseEntity<Resource> download(@PathVariable String key) {
         ZkStorage zkStorage = zkStorageService.findByKey(key);
         if (key == null) {
